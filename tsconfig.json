@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "strict": true,
+        "module": "es6",
+        "target": "es2023",
+        "lib": ["es2023", "dom"],
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "exclude": ["node_modules"]
+}
