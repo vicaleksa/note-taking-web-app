@@ -1,0 +1,34 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input {
+    color: currentcolor;
+    font-family: inherit;
+}
+
+button {
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    font: inherit;
+}
