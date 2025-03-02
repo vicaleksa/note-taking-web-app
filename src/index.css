@@ -1,3 +1,8 @@
+body {
+    font: var(--text-sans-serif-preset5);
+    letter-spacing: var(--letter-spacing-preset5);
+}
+
 h1,
 h2,
 h3,
