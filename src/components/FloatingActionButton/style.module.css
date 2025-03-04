@@ -4,23 +4,6 @@
     box-shadow: 0 7px 11px 0 rgb(202 207 216 / 70%);
 }
 
-.FAB:hover {
-    background-color: var(--clr-blue-700);
-    box-shadow: none;
-}
-
-.FAB:focus {
-    outline: var(--spacing-025) solid var(--clr-neutral-400);
-    outline-offset: var(--spacing-025);
-}
-
-.FAB:disabled {
-    pointer-events: none;
-    box-shadow: none;
-    background-color: var(--clr-neutral-100);
-    color: var(--clr-neutral-300);
-}
-
 .FABsmall {
     padding: var(--spacing-100);
     width: var(--spacing-600);
