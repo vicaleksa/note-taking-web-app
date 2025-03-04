@@ -5,12 +5,16 @@ import './variables.css';
 import 'normalize.css';
 import Button from './components/Button';
 import PageHeader from './components/PageHeader';
+import FAB from './components/FloatingActionButton';
 import iconShow from './assets/images/icon-show-password.svg';
+import iconPlus from './assets/images/icon-plus.svg';
 
 function App() {
     return (
         <>
             <PageHeader />
+            <FAB size="small" ariaLabel="add" icon={<img src={iconPlus} alt="" className="FABicon" />} />
+            <FAB size="large" ariaLabel="add" icon={<img src={iconPlus} alt="" className="FABicon" />} />
             <Button variant="primary" buttonText="Primary Button" />
             <Button variant="secondary" buttonText="Secondary Button" />
             <Button

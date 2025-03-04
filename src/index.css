@@ -41,3 +41,7 @@ button {
 .buttonIcon {
     width: var(--spacing-250);
 }
+
+.FABicon {
+    width: var(--spacing-400);
+}
