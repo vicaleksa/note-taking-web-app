@@ -30,6 +30,7 @@
         "import/no-unresolved": ["off"],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+        "react/require-default-props": ["off"],
         "jsx-a11y/label-has-associated-control": ["error", {"assert": "either"}],
         "import/extensions": ["error", "never", {
             "js": "never",

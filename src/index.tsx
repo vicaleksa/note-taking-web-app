@@ -1,11 +1,22 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import './index.css';
+import './variables.css';
 import 'normalize.css';
+import Button from './components/Button';
+import iconShow from './assets/images/icon-show-password.svg';
 
 function App() {
     return (
-        <p>All Notes</p>
+        <>
+            <Button variant="primary" buttonText="Primary Button" />
+            <Button variant="secondary" buttonText="Secondary Button" />
+            <Button
+                variant="outlined"
+                buttonText="Outlined Button"
+                leftIcon={<img src={iconShow} alt="" className="buttonIcon" />}
+            />
+        </>
     );
 }
 
