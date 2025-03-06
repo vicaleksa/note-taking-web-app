@@ -5,23 +5,27 @@ import './variables.css';
 import 'normalize.css';
 import Button from './components/Button';
 import PageHeader from './components/PageHeader';
+import TextInput from './components/TextInput';
 import FAB from './components/FloatingActionButton';
-import iconShow from './assets/images/icon-show-password.svg';
-import iconPlus from './assets/images/icon-plus.svg';
 
 function App() {
     return (
         <>
             <PageHeader />
-            <FAB size="small" ariaLabel="add" icon={<img src={iconPlus} alt="" className="FABicon" />} />
-            <FAB size="large" ariaLabel="add" icon={<img src={iconPlus} alt="" className="FABicon" />} />
-            <Button variant="primary" buttonText="Primary Button" />
-            <Button variant="secondary" buttonText="Secondary Button" />
-            <Button
-                variant="outlined"
-                buttonText="Outlined Button"
-                leftIcon={<img src={iconShow} alt="" className="buttonIcon" />}
+            <TextInput
+                name="inputName"
+                title="Change Label"
+                placeholder="Placeholder text"
+                leftIcon="show"
+                rightIcon="show"
+                hintIcon="info"
+                hintText="This is a hint text to help user."
             />
+            <FAB size="small" ariaLabel="add" icon="plus" />
+            <FAB size="large" ariaLabel="add" icon="plus" />
+            <Button variant="primary" buttonText="Primary Button" leftIcon="show" />
+            <Button variant="secondary" buttonText="Secondary Button" leftIcon="show" />
+            <Button variant="outlined" buttonText="Outlined Button" leftIcon="show" />
         </>
     );
 }
