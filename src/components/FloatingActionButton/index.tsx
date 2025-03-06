@@ -1,14 +1,14 @@
-import { JSX } from 'react';
 import clsx from 'clsx';
 import styles from './style.module.css';
+import Icon from '../../assets/images/Icon';
 
 type FABprops = {
     size: 'small' | 'large';
-    icon: JSX.Element;
-    ariaLabel: string
+    ariaLabel: string;
+    icon: string
 }
 
-export default function FAB({ size, icon, ariaLabel }: FABprops) {
+export default function FAB({ size, ariaLabel, icon }: FABprops) {
     return (
         <button
             type="button"
@@ -18,7 +18,7 @@ export default function FAB({ size, icon, ariaLabel }: FABprops) {
                 [styles.FABlarge]: size === 'large',
             })}
         >
-            {icon}
+            <Icon type={icon} className={styles.icon} />
         </button>
     );
 }

@@ -1,11 +1,11 @@
-import { JSX } from 'react';
 import clsx from 'clsx';
 import styles from './style.module.css';
+import Icon from '../../assets/images/Icon';
 
 type ButtonProps = {
     variant: 'primary' | 'secondary' | 'outlined';
     buttonText: string;
-    leftIcon?: JSX.Element
+    leftIcon?: string
 }
 
 export default function Button({ variant, buttonText, leftIcon }: ButtonProps) {
@@ -18,7 +18,7 @@ export default function Button({ variant, buttonText, leftIcon }: ButtonProps) {
                 [styles.buttonOutlined]: variant === 'outlined',
             })}
         >
-            {leftIcon}
+            {leftIcon && (<Icon type={leftIcon} className={styles.leftIcon} />)}
             {buttonText}
         </button>
     );

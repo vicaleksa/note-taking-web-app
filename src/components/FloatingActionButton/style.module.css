@@ -15,3 +15,9 @@
     width: var(--spacing-800);
     height: var(--spacing-800);
 }
+
+.icon {
+    color: var(--clr-neutral-0);
+    width: var(--spacing-400);
+    height: var(--spacing-400);
+}
