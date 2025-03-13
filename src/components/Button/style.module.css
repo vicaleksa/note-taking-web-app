@@ -67,10 +67,27 @@
     outline-offset: var(--spacing-025);
 }
 
+.buttonGhost {
+    gap: var(--spacing-050);
+    font: var(--text-sans-serif-preset5);
+    letter-spacing: var(--letter-spacing-preset5);
+    color: var(--clr-neutral-600);
+    padding: 0;
+}
+
 .leftIcon {
     width: var(--spacing-250);
     height: var(--spacing-250);
     transition: color 125ms;
+}
+
+.iconGhost {
+    width: var(--spacing-225);
+    height:  var(--spacing-225);
+}
+
+.buttonGhostBlue {
+    color: var(--clr-blue-500);
 }
 
 button:hover .leftIcon {
