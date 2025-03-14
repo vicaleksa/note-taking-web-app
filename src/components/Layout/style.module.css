@@ -1,0 +1,14 @@
+.layout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr-neutral-100);
+}
+
+.content {
+    background-color: var(--clr-neutral-0);
+    flex-grow: 1;
+    padding: var(--spacing-250) var(--spacing-200);
+    border-top-left-radius: var(--radius-12);
+    border-top-right-radius: var(--radius-12);
+}
