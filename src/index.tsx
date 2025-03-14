@@ -1,13 +1,23 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import './index.css';
-import './variables.css';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import 'normalize.css';
-import Note from './pages/Note';
+import './variables.css';
+import './index.css';
+import Layout from './components/Layout';
+import Notes from './pages/Notes';
+import NoteDetail from './pages/NoteDetail';
 
 function App() {
     return (
-        <Note />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Notes />} />
+                    <Route path="/:id" element={<NoteDetail />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 
