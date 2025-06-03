@@ -1,0 +1,5 @@
+.title {
+    font: var(--text-sans-serif-preset1);
+    letter-spacing: var(--letter-spacing-preset1);
+    margin-bottom: var(--spacing-200);
+}
