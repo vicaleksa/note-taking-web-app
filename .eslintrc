@@ -35,6 +35,7 @@
         "import/extensions": ["error", "never", {
             "js": "never",
             "jsx": "never",
+            "json": "always",
             "ts": "never",
             "tsx": "never"
         }]
