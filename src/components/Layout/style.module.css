@@ -12,3 +12,12 @@
     border-top-left-radius: var(--radius-12);
     border-top-right-radius: var(--radius-12);
 }
+
+.scrollable {
+    flex: 1 1;
+    overflow-y: scroll;
+}
+
+.fixed {
+    flex: 0 0;
+}
