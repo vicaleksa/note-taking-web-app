@@ -1,3 +1,4 @@
+import formatDate from '../../utils/formatDate';
 import styles from './style.module.css';
 
 type NoteCardProps = {
@@ -15,13 +16,15 @@ export default function NoteCard({
         <div key={tag} className={styles.tag}>{tag}</div>
     ));
 
+    const formattedDate = formatDate(date);
+
     return (
         <div className={styles.card}>
             <p className={styles.title}>{title}</p>
             <div className={styles.tagsWrapper}>
                 {tagElements}
             </div>
-            <p className={styles.date}>{date}</p>
+            <p className={styles.date}>{formattedDate}</p>
         </div>
     );
 }
