@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
 import data from '../../data.json';
+import FAB from '../../components/FloatingActionButton';
 
 export default function Notes() {
     const notesElements = data.notes.map((note) => (
@@ -18,6 +19,11 @@ export default function Notes() {
         <>
             <h1 className={styles.title}>All Notes</h1>
             {notesElements}
+            <FAB
+                size="small"
+                ariaLabel="Create a new note"
+                icon="plus"
+            />
         </>
     );
 }
