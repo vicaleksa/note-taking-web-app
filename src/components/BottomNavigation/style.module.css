@@ -13,6 +13,12 @@
     align-items: center;
     flex-grow: 1;
     padding: var(--spacing-050) 0;
+    border-radius: var(--radius-4);
+}
+
+.iconButtonActive {
+    background-color: var(--clr-blue-50);
+    color: var(--clr-blue-500);
 }
 
 .text {

@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router';
+import clsx from 'clsx';
 import styles from './style.module.css';
 import IconHome from '../../assets/images/IconHome';
 import IconSearch from '../../assets/images/IconSearch';
@@ -5,29 +7,49 @@ import IconArchive from '../../assets/images/IconArchive';
 import IconTag from '../../assets/images/IconTag';
 import IconSettings from '../../assets/images/IconSettings';
 
+const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
+    styles.iconButton,
+    { [styles.iconButtonActive]: isActive },
+);
+
 export default function BottomNavigation() {
     return (
         <div className={styles.navbar}>
-            <a href="#home" className={styles.iconButton}>
+            <NavLink
+                to="/"
+                className={getNavClassName}
+            >
                 <IconHome />
                 <span className={styles.text}>Home</span>
-            </a>
-            <a href="#search" className={styles.iconButton}>
+            </NavLink>
+            <NavLink
+                to="/search"
+                className={getNavClassName}
+            >
                 <IconSearch />
                 <span className={styles.text}>Search</span>
-            </a>
-            <a href="#archived" className={styles.iconButton}>
+            </NavLink>
+            <NavLink
+                to="/archived"
+                className={getNavClassName}
+            >
                 <IconArchive />
                 <span className={styles.text}>Archived</span>
-            </a>
-            <a href="#tags" className={styles.iconButton}>
+            </NavLink>
+            <NavLink
+                to="/tags"
+                className={getNavClassName}
+            >
                 <IconTag />
                 <span className={styles.text}>Tags</span>
-            </a>
-            <a href="#settings" className={styles.iconButton}>
+            </NavLink>
+            <NavLink
+                to="/settings"
+                className={getNavClassName}
+            >
                 <IconSettings />
                 <span className={styles.text}>Settings</span>
-            </a>
+            </NavLink>
         </div>
     );
 }
