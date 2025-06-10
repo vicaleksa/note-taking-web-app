@@ -1,0 +1,48 @@
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: var(--spacing-150);
+    border-bottom: 1px solid var(--clr-neutral-200);
+    margin-bottom: var(--spacing-150);
+}
+
+.rightControl {
+    display: flex;
+    gap: var(--spacing-200);
+}
+
+.title {
+    font: var(--text-sans-serif-preset1);
+    margin-bottom: var(--spacing-150);
+}
+
+.property {
+    display: grid;
+    row-gap: var(--spacing-050);
+    grid-template-columns: auto 5.875rem 1fr;
+    align-items: center;
+    font: var(--text-sans-serif-preset6);
+    padding-bottom: var(--spacing-150);
+    border-bottom: 1px solid var(--clr-neutral-200);
+}
+
+.propertyIcon {
+    width: var(--spacing-200);
+    height: var(--spacing-200);
+    margin: var(--spacing-050) var(--spacing-075) var(--spacing-050) 0;
+}
+
+.propertyName {
+    margin-right: var(--spacing-100);
+}
+
+.text {
+    padding-top: var(--spacing-150);
+}
+
+@media (width >= 48rem) {
+    .navContainer {
+        padding-top: var(--spacing-200);
+        padding-bottom: var(--spacing-200);
+    }
+}
