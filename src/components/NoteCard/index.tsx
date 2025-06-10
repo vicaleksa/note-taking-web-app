@@ -24,7 +24,7 @@ export default function NoteCard({
             <div className={styles.tagsWrapper}>
                 {tagElements}
             </div>
-            <p className={styles.date}>{formattedDate}</p>
+            <time className={styles.date}>{formattedDate}</time>
         </div>
     );
 }
