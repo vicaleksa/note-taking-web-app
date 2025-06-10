@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import IconArchive from './IconArchive';
 import IconArrowLeft from './IconArrowLeft';
+import IconClock from './IconClock';
 import IconDelete from './IconDelete';
 import IconHome from './IconHome';
 import IconInfo from './IconInfo';
@@ -22,6 +23,7 @@ const icons = {
     settings: IconSettings,
     arrowLeft: IconArrowLeft,
     delete: IconDelete,
+    clock: IconClock,
 };
 
 export type IconType = keyof typeof icons;
