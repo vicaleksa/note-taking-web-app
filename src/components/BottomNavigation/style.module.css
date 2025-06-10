@@ -7,41 +7,8 @@
     box-shadow: var(--shadow-small-top);
 }
 
-.iconButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    padding: var(--spacing-050) 0;
-    border-radius: var(--radius-4);
-}
-
-.iconButtonActive {
-    background-color: var(--clr-blue-50);
-    color: var(--clr-blue-500);
-}
-
-.text {
-    display: none;
-    color: var(--clr-neutral-500);
-    font: var(--text-sans-serif-preset6);
-    letter-spacing: var(--letter-spacing-preset6);
-}
-
 @media (width >= 48rem) {
     .navbar {
         padding: var(--spacing-150) var(--spacing-400);
-    }
-
-    .iconButton {
-        gap: var(--spacing-050);
-    }
-
-    .iconButton:not(:last-child) {
-        border-right: 1px solid var(--clr-neutral-100);
-    }
-
-    .text {
-        display: inline-block;
     }
 }
