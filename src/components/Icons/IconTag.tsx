@@ -1,9 +1,7 @@
 /* eslint-disable max-len */
-type iconProps = {
-    className?: string;
-}
+import { IconProps } from './types';
 
-export default function IconTag({ className }:iconProps) {
+export default function IconTag({ className }: IconProps) {
     return (
         <svg
             className={className}

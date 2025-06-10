@@ -1,8 +1,6 @@
-type iconProps = {
-    className: string;
-}
+import { IconProps } from './types';
 
-export default function IconArrowLeft({ className }:iconProps) {
+export default function IconArrowLeft({ className }: IconProps) {
     return (
         <svg
             className={className}

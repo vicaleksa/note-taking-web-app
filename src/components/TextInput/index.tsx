@@ -1,14 +1,14 @@
 import styles from './style.module.css';
-import Icon from '../../assets/images/Icon';
+import Icon, { IconType } from '../Icons/Icon';
 
 type TextIconProps = {
     name: string;
     title: string;
     placeholder: string;
-    leftIcon?: string;
-    rightIcon?: string;
-    hintIcon: string;
-    hintText: string;
+    leftIcon?: IconType;
+    rightIcon?: IconType;
+    hintIcon: IconType;
+    hintText: IconType;
 }
 
 export default function TextInput({

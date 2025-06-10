@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import styles from './style.module.css';
-import Icon from '../../assets/images/Icon';
+import Icon, { IconType } from '../Icons/Icon';
 
 type FABprops = {
     size: 'small' | 'large';
     ariaLabel: string;
-    icon: string
+    icon: IconType;
 }
 
 export default function FAB({ size, ariaLabel, icon }: FABprops) {

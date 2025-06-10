@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import styles from './style.module.css';
-import Icon from '../../assets/images/Icon';
+import Icon, { IconType } from '../Icons/Icon';
 
 type ButtonProps = {
     variant: 'primary' | 'secondary' | 'outlined' | 'ghost';
     buttonText?: string;
-    leftIcon?: string;
+    leftIcon?: IconType;
     color?: string
 }
 

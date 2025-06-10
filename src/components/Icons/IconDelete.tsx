@@ -1,8 +1,6 @@
-type iconProps = {
-    className?: string;
-}
+import { IconProps } from './types';
 
-export default function IconDelete({ className }:iconProps) {
+export default function IconDelete({ className }: IconProps) {
     return (
         <svg
             className={className}
