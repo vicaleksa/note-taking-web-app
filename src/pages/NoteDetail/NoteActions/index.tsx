@@ -1,7 +1,7 @@
-import Button from '../Button';
+import Button from '../../../components/Button';
 import styles from './style.module.css';
 
-export default function TopNavigation() {
+export default function NoteActions() {
     return (
         <div className={styles.navContainer}>
             <Button variant="ghost" buttonText="Go Back" leftIcon="arrowLeft" />
