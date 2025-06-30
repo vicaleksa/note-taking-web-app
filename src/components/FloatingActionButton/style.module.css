@@ -1,4 +1,8 @@
 .FAB {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     right: 1rem;
 
@@ -11,14 +15,10 @@
 
 .FABsmall {
     padding: var(--spacing-100);
-    width: var(--spacing-600);
-    height: var(--spacing-600);
 }
 
 .FABlarge {
     padding: var(--spacing-200);
-    width: var(--spacing-800);
-    height: var(--spacing-800);
 }
 
 .icon {

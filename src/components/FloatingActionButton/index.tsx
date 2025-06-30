@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Link } from 'react-router';
 import styles from './style.module.css';
 import Icon, { IconType } from '../Icons/Icon';
 
@@ -10,8 +11,8 @@ type FABprops = {
 
 export default function FAB({ size, ariaLabel, icon }: FABprops) {
     return (
-        <button
-            type="button"
+        <Link
+            to="/new-note"
             aria-label={ariaLabel}
             className={clsx(styles.FAB, {
                 [styles.FABsmall]: size === 'small',
@@ -19,6 +20,6 @@ export default function FAB({ size, ariaLabel, icon }: FABprops) {
             })}
         >
             <Icon type={icon} className={styles.icon} />
-        </button>
+        </Link>
     );
 }
