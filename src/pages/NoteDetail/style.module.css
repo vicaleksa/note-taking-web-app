@@ -3,6 +3,18 @@
     margin-bottom: var(--spacing-150);
 }
 
+.title::placeholder {
+    color: currentcolor;
+}
+
+.textarea {
+    width: 100%;
+    padding: 0;
+    border: none;
+    resize: none;
+    overflow: scroll;
+}
+
 .property {
     display: grid;
     row-gap: var(--spacing-050);
@@ -11,6 +23,7 @@
     font: var(--text-sans-serif-preset6);
     padding-bottom: var(--spacing-150);
     border-bottom: 1px solid var(--clr-neutral-200);
+    margin-bottom: var(--spacing-150);
 }
 
 .propertyIcon {
@@ -23,9 +36,18 @@
     margin-right: var(--spacing-100);
 }
 
+.tags::placeholder {
+    color: var(--clr-neutral-400);
+}
+
 .text {
-    padding-top: var(--spacing-150);
     white-space: pre-line;
+    flex: 1 1;
+    padding-bottom: 30vh;
+}
+
+.text::placeholder {
+    color: currentcolor;
 }
 
 @media (width >= 48rem) {
