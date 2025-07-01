@@ -69,8 +69,6 @@
 
 .buttonGhost {
     gap: var(--spacing-050);
-    font: var(--text-sans-serif-preset5);
-    letter-spacing: var(--letter-spacing-preset5);
     color: var(--clr-neutral-600);
     padding: 0;
 }
