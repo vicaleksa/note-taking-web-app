@@ -42,7 +42,6 @@
 
 .text {
     white-space: pre-line;
-    flex: 1 1;
     padding-bottom: 30vh;
 }
 
