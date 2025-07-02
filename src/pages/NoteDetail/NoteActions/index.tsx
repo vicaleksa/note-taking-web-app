@@ -17,7 +17,6 @@ export default function NoteActions() {
             <div className={styles.rightControl}>
                 <Button variant="ghost" leftIcon="delete" />
                 <Button variant="ghost" leftIcon="archive" />
-                <Button variant="ghost" buttonText="Cancel" />
                 <Button variant="ghost" buttonText="Save Note" color="blue" />
             </div>
         </div>
