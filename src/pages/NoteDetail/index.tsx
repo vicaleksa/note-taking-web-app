@@ -35,6 +35,14 @@ export default function NoteDetail({ create }: NoteDetailProps) {
     const textRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
+        const el = textRef.current;
+        if (el && create) {
+            el.focus();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
         const el = titleRef.current;
         if (el) {
             el.style.height = 'auto';
