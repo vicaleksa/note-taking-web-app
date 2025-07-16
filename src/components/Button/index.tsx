@@ -6,15 +6,17 @@ type ButtonProps = {
     variant: 'primary' | 'secondary' | 'outlined' | 'ghost';
     buttonText?: string;
     leftIcon?: IconType;
-    color?: string
+    color?: string;
+    onClick?: React.MouseEventHandler;
 }
 
 export default function Button({
-    variant, buttonText, leftIcon, color,
+    variant, buttonText, leftIcon, color, onClick,
 }: ButtonProps) {
     return (
         <button
             type="button"
+            onClick={onClick}
             className={clsx(styles.button, {
                 [styles.buttonPrimary]: variant === 'primary',
                 [styles.buttonSecondary]: variant === 'secondary',

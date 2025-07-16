@@ -2,13 +2,16 @@ import { Link } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
 import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
-import data from '../../data.json';
 import FAB from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
-import { StoredData } from '../../types';
+import { Note } from '../../types';
 
 export default function Notes() {
-    const notesElements = (data as StoredData).notes.map((note) => (
+    const notes: Array<Note> = localStorage.getItem('notes') === null
+        ? []
+        : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+
+    const notesElements = notes.map((note) => (
         <Fragment key={note.id}>
             <Link to={note.id}>
                 <NoteCard
@@ -20,6 +23,7 @@ export default function Notes() {
             <div className={styles.divider} />
         </Fragment>
     ));
+
     return (
         <>
             <h1 className={styles.title}>All Notes</h1>

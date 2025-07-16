@@ -3,7 +3,11 @@ import Button from '../../../components/Button';
 import styles from './style.module.css';
 import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
 
-export default function NoteActions() {
+type NoteActionsProps = {
+    onSave: React.MouseEventHandler;
+}
+
+export default function NoteActions({ onSave }: NoteActionsProps) {
     return (
         <div className={styles.navContainer}>
             <Link
@@ -17,7 +21,7 @@ export default function NoteActions() {
             <div className={styles.rightControl}>
                 <Button variant="ghost" leftIcon="delete" />
                 <Button variant="ghost" leftIcon="archive" />
-                <Button variant="ghost" buttonText="Save Note" color="blue" />
+                <Button variant="ghost" buttonText="Save Note" color="blue" onClick={onSave} />
             </div>
         </div>
     );

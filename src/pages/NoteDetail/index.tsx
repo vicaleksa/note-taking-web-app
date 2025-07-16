@@ -1,25 +1,26 @@
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { v4 as uuidv4 } from 'uuid';
 import IconClock from '../../components/Icons/IconClock';
 import IconTag from '../../components/Icons/IconTag';
 import styles from './style.module.css';
-import data from '../../data.json';
 import formatDate from '../../utils/formatDate';
 import NoteActions from './NoteActions';
+import { Note } from '../../types';
 
 interface NoteDetailProps {
     create?: boolean,
 }
 
-interface DefaultFormDataType {
+interface FormDataType {
     title: string,
     tags: string,
     content: string,
     lastEdited: null | string,
 }
 
-const defaultFormData = {
+const defaultFormData: FormDataType = {
     title: '',
     tags: '',
     content: '',
@@ -28,11 +29,56 @@ const defaultFormData = {
 
 export default function NoteDetail({ create }: NoteDetailProps) {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [notFound, setNotFound] = useState(false);
-    const [formState, setFormState] = useState<DefaultFormDataType>(defaultFormData);
+    const [formState, setFormState] = useState<FormDataType>(defaultFormData);
     const titleRef = useRef<HTMLTextAreaElement>(null);
     const tagsRef = useRef<HTMLTextAreaElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
+
+    const saveNote = () => {
+        const newNote = {
+            ...formState,
+            lastEdited: new Date().toISOString(),
+        };
+        setFormState(newNote);
+
+        const notes: Array<Note> = localStorage.getItem('notes') === null
+            ? []
+            : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+
+        if (create) {
+            const noteId = uuidv4();
+            notes.push({
+                ...newNote,
+                id: noteId,
+                tags: newNote.tags.split(', '),
+            });
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            navigate(`/${noteId}`);
+        } else {
+            const noteIndex = notes.findIndex((note) => note.id === id);
+            if (!id) {
+                console.error('id is undefined');
+                return;
+            }
+            if (noteIndex === -1) {
+                notes.push({
+                    ...newNote,
+                    id,
+                    tags: newNote.tags.split(', '),
+                });
+            } else {
+                notes[noteIndex] = {
+                    ...newNote,
+                    id,
+                    tags: newNote.tags.split(', '),
+                };
+            }
+        }
+
+        localStorage.setItem('notes', JSON.stringify(notes));
+    };
 
     useEffect(() => {
         const el = textRef.current;
@@ -68,7 +114,10 @@ export default function NoteDetail({ create }: NoteDetailProps) {
 
     useEffect(() => {
         if (!create && id) {
-            const foundNote = data.notes.find((noteItem) => noteItem.id === id);
+            const notes: Array<Note> = localStorage.getItem('notes') === null
+                ? []
+                : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+            const foundNote = notes.find((noteItem) => noteItem.id === id);
             if (foundNote) {
                 const newNote = {
                     ...foundNote,
@@ -97,12 +146,12 @@ export default function NoteDetail({ create }: NoteDetailProps) {
     };
 
     if (notFound) {
-        return <p>Note is not found</p>;
+        return <p>Note not found 😕</p>;
     }
 
     return (
         <>
-            <NoteActions />
+            <NoteActions onSave={saveNote} />
             <textarea
                 ref={titleRef}
                 value={formState.title}

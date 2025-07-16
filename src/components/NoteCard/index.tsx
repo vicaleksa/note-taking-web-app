@@ -15,7 +15,6 @@ export default function NoteCard({
     const tagElements = tags.map((tag) => (
         <div key={tag} className={styles.tag}>{tag}</div>
     ));
-
     const formattedDate = formatDate(date);
 
     return (
