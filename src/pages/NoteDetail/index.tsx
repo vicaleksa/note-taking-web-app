@@ -8,6 +8,7 @@ import styles from './style.module.css';
 import formatDate from '../../utils/formatDate';
 import NoteActions from './NoteActions';
 import { Note } from '../../types';
+import useTextareaResize from '../../hooks/useTextareaResize';
 
 interface NoteDetailProps {
     create?: boolean,
@@ -88,29 +89,9 @@ export default function NoteDetail({ create }: NoteDetailProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        const el = titleRef.current;
-        if (el) {
-            el.style.height = 'auto';
-            el.style.height = `${String(el.scrollHeight)}px`;
-        }
-    }, [formState.title]);
-
-    useEffect(() => {
-        const el = tagsRef.current;
-        if (el) {
-            el.style.height = 'auto';
-            el.style.height = `${String(el.scrollHeight)}px`;
-        }
-    }, [formState.tags]);
-
-    useEffect(() => {
-        const el = textRef.current;
-        if (el) {
-            el.style.height = 'auto';
-            el.style.height = `${String(el.scrollHeight)}px`;
-        }
-    }, [formState.content]);
+    useTextareaResize(titleRef, formState.title);
+    useTextareaResize(tagsRef, formState.tags);
+    useTextareaResize(textRef, formState.content);
 
     useEffect(() => {
         if (!create && id) {
