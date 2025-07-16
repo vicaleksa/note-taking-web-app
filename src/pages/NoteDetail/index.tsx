@@ -9,6 +9,7 @@ import formatDate from '../../utils/formatDate';
 import NoteActions from './NoteActions';
 import { Note } from '../../types';
 import useTextareaResize from '../../hooks/useTextareaResize';
+import parseTags from '../../utils/parseTags';
 
 interface NoteDetailProps {
     create?: boolean,
@@ -53,7 +54,7 @@ export default function NoteDetail({ create }: NoteDetailProps) {
             notes.push({
                 ...newNote,
                 id: noteId,
-                tags: newNote.tags.split(', '),
+                tags: parseTags(newNote.tags),
             });
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             navigate(`/${noteId}`);
@@ -67,13 +68,13 @@ export default function NoteDetail({ create }: NoteDetailProps) {
                 notes.push({
                     ...newNote,
                     id,
-                    tags: newNote.tags.split(', '),
+                    tags: parseTags(newNote.tags),
                 });
             } else {
                 notes[noteIndex] = {
                     ...newNote,
                     id,
-                    tags: newNote.tags.split(', '),
+                    tags: parseTags(newNote.tags),
                 };
             }
         }
