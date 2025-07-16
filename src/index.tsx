@@ -30,6 +30,5 @@ if (rootElement) {
         </StrictMode>,
     );
 } else {
-    // eslint-disable-next-line no-console
     console.error('root is not found');
 }

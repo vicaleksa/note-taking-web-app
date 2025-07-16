@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import IconArchive from './IconArchive';
 import IconArrowLeft from './IconArrowLeft';
 import IconClock from './IconClock';
@@ -35,6 +33,7 @@ interface IconProps {
 
 export default function Icon({ type, className }: IconProps) {
     const Component = icons[type];
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!Component) {
         console.warn(`Unknown icon type: ${type}`);
         return null;

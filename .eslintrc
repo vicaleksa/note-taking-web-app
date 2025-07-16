@@ -29,6 +29,7 @@
         "react/prop-types": ["off"],
         "import/no-unresolved": ["off"],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-console": ["error", { "allow": ["warn", "error"] }],
         "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
         "react/require-default-props": ["off"],
         "jsx-a11y/label-has-associated-control": ["error", {"assert": "either"}],
