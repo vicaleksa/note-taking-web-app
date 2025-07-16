@@ -10,6 +10,7 @@ import NoteActions from './NoteActions';
 import { Note } from '../../types';
 import useTextareaResize from '../../hooks/useTextareaResize';
 import parseTags from '../../utils/parseTags';
+import formatTags from '../../utils/formatTags';
 
 interface NoteDetailProps {
     create?: boolean,
@@ -103,7 +104,7 @@ export default function NoteDetail({ create }: NoteDetailProps) {
             if (foundNote) {
                 const newNote = {
                     ...foundNote,
-                    tags: foundNote.tags.join(', '),
+                    tags: formatTags(foundNote.tags),
                 };
                 setFormState(newNote);
             } else {
