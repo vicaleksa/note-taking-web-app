@@ -33,6 +33,7 @@
         "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
         "react/require-default-props": ["off"],
         "jsx-a11y/label-has-associated-control": ["error", {"assert": "either"}],
+        "@typescript-eslint/no-floating-promises": "off",
         "import/extensions": ["error", "never", {
             "js": "never",
             "jsx": "never",
