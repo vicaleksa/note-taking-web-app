@@ -1,10 +1,13 @@
 import IconArchive from './IconArchive';
 import IconArrowLeft from './IconArrowLeft';
+import IconCheckmark from './IconCheckmark';
 import IconClock from './IconClock';
 import IconDelete from './IconDelete';
 import IconHome from './IconHome';
 import IconInfo from './IconInfo';
+import IconLoading from './IconLoading';
 import IconPlus from './IconPlus';
+import IconRestore from './IconRestore';
 import IconSearch from './IconSearch';
 import IconSettings from './IconSettings';
 import IconShow from './IconShow';
@@ -22,6 +25,9 @@ const icons = {
     arrowLeft: IconArrowLeft,
     delete: IconDelete,
     clock: IconClock,
+    restore: IconRestore,
+    loading: IconLoading,
+    checkmark: IconCheckmark,
 };
 
 export type IconType = keyof typeof icons;
