@@ -23,6 +23,8 @@ export default function Button({
                 [styles.buttonOutlined]: variant === 'outlined',
                 [styles.buttonGhost]: variant === 'ghost',
                 [styles.buttonGhostBlue]: color === 'blue',
+                [styles.buttonBlue]: color === 'blue_bg',
+                [styles.buttonDanger]: color === 'red',
             })}
         >
             {leftIcon && (

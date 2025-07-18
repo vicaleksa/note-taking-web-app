@@ -88,6 +88,14 @@
     color: var(--clr-blue-500);
 }
 
+.buttonDanger {
+    background-color: var(--clr-red-500);
+}
+
+.buttonBlue {
+    background-color: var(--clr-blue-500);
+}
+
 button:hover .leftIcon {
     transition: color 450ms;
 }
