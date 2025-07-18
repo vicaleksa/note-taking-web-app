@@ -4,5 +4,5 @@ export interface Note {
     tags: Array<string>,
     content: string,
     lastEdited: string,
-    isArchived?: boolean;
+    isArchived: boolean;
 }
