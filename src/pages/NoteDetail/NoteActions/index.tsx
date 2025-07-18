@@ -4,10 +4,18 @@ import styles from './style.module.css';
 import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
 
 type NoteActionsProps = {
-    onSave: React.MouseEventHandler;
+    onSave: React.MouseEventHandler,
+    onDelete: React.MouseEventHandler,
+    onArchive: React.MouseEventHandler,
+    create: boolean
 }
 
-export default function NoteActions({ onSave }: NoteActionsProps) {
+export default function NoteActions({
+    onSave,
+    onDelete,
+    onArchive,
+    create,
+}: NoteActionsProps) {
     return (
         <div className={styles.navContainer}>
             <Link
@@ -19,8 +27,8 @@ export default function NoteActions({ onSave }: NoteActionsProps) {
                 Go Back
             </Link>
             <div className={styles.rightControl}>
-                <Button variant="ghost" leftIcon="delete" />
-                <Button variant="ghost" leftIcon="archive" />
+                { !create && <Button variant="ghost" leftIcon="delete" onClick={onDelete} /> }
+                { !create && <Button variant="ghost" leftIcon="archive" onClick={onArchive} /> }
                 <Button variant="ghost" buttonText="Save Note" color="blue" onClick={onSave} />
             </div>
         </div>

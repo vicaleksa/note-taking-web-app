@@ -7,10 +7,11 @@ import IconTag from '../../components/Icons/IconTag';
 import styles from './style.module.css';
 import formatDate from '../../utils/formatDate';
 import NoteActions from './NoteActions';
-import { Note } from '../../types';
 import useTextareaResize from '../../hooks/useTextareaResize';
 import parseTags from '../../utils/parseTags';
 import formatTags from '../../utils/formatTags';
+import Modal from '../../components/Modal';
+import getNotesFromStorage from '../../utils/getNotesFromStorage';
 
 interface NoteDetailProps {
     create?: boolean,
@@ -21,6 +22,7 @@ interface FormDataType {
     tags: string,
     content: string,
     lastEdited: null | string,
+    isArchived: boolean,
 }
 
 const defaultFormData: FormDataType = {
@@ -28,13 +30,16 @@ const defaultFormData: FormDataType = {
     tags: '',
     content: '',
     lastEdited: null,
+    isArchived: false,
 };
 
-export default function NoteDetail({ create }: NoteDetailProps) {
+export default function NoteDetail({ create = false }: NoteDetailProps) {
     const { id } = useParams();
     const navigate = useNavigate();
     const [notFound, setNotFound] = useState(false);
     const [formState, setFormState] = useState<FormDataType>(defaultFormData);
+    const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+    const [IsOpenArchiveModal, setIsOpenArchiveModal] = useState(false);
     const titleRef = useRef<HTMLTextAreaElement>(null);
     const tagsRef = useRef<HTMLTextAreaElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
@@ -46,9 +51,7 @@ export default function NoteDetail({ create }: NoteDetailProps) {
         };
         setFormState(newNote);
 
-        const notes: Array<Note> = localStorage.getItem('notes') === null
-            ? []
-            : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+        const notes = getNotesFromStorage();
 
         if (create) {
             const noteId = uuidv4();
@@ -57,7 +60,6 @@ export default function NoteDetail({ create }: NoteDetailProps) {
                 id: noteId,
                 tags: parseTags(newNote.tags),
             });
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             navigate(`/${noteId}`);
         } else {
             const noteIndex = notes.findIndex((note) => note.id === id);
@@ -83,6 +85,24 @@ export default function NoteDetail({ create }: NoteDetailProps) {
         localStorage.setItem('notes', JSON.stringify(notes));
     };
 
+    const deleteNote = () => {
+        const notes = getNotesFromStorage();
+        const noteIndex = notes.findIndex((note) => note.id === id);
+        notes.splice(noteIndex, 1);
+        localStorage.setItem('notes', JSON.stringify(notes));
+        setIsOpenDeleteModal(false);
+        navigate('/');
+    };
+
+    const archiveNote = () => {
+        const notes = getNotesFromStorage();
+        const noteIndex = notes.findIndex((note) => note.id === id);
+        notes[noteIndex].isArchived = true;
+        localStorage.setItem('notes', JSON.stringify(notes));
+        setIsOpenArchiveModal(false);
+        navigate('/');
+    };
+
     useEffect(() => {
         const el = textRef.current;
         if (el && create) {
@@ -97,9 +117,8 @@ export default function NoteDetail({ create }: NoteDetailProps) {
 
     useEffect(() => {
         if (!create && id) {
-            const notes: Array<Note> = localStorage.getItem('notes') === null
-                ? []
-                : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+            const notes = getNotesFromStorage();
+
             const foundNote = notes.find((noteItem) => noteItem.id === id);
             if (foundNote) {
                 const newNote = {
@@ -134,7 +153,33 @@ export default function NoteDetail({ create }: NoteDetailProps) {
 
     return (
         <>
-            <NoteActions onSave={saveNote} />
+            <Modal
+                icon="delete"
+                title="Delete Note"
+                text="Are you sure you want to permanently delete this note? This action cannot be undone."
+                color="red"
+                open={isOpenDeleteModal}
+                onClose={() => { setIsOpenDeleteModal(false); }}
+                onAction={deleteNote}
+                actionContent="Delete Note"
+            />
+            <Modal
+                icon="archive"
+                title="Archive Note"
+                text="Are you sure you want to archive this note?
+                You can find it in the Archived Notes section and restore it anytime."
+                color="blue_bg"
+                open={IsOpenArchiveModal}
+                onClose={() => { setIsOpenArchiveModal(false); }}
+                onAction={archiveNote}
+                actionContent="Archive Note"
+            />
+            <NoteActions
+                onSave={saveNote}
+                onDelete={() => { setIsOpenDeleteModal(true); }}
+                onArchive={() => { setIsOpenArchiveModal(true); }}
+                create={create}
+            />
             <textarea
                 ref={titleRef}
                 value={formState.title}

@@ -4,18 +4,17 @@ import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
 import FAB from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
-import { Note } from '../../types';
+import getNotesFromStorage from '../../utils/getNotesFromStorage';
 
 export default function Notes() {
-    const notes: Array<Note> = localStorage.getItem('notes') === null
-        ? []
-        : JSON.parse(localStorage.getItem('notes') as string) as Array<Note>;
+    const notes = getNotesFromStorage();
+    const notArchivedNotes = notes.filter((note) => !note.isArchived);
 
-    const notesElements = notes.map((note) => (
+    const notesElements = notArchivedNotes.map((note) => (
         <Fragment key={note.id}>
             <Link to={note.id}>
                 <NoteCard
-                    title={note.title}
+                    title={note.title || 'Untitled Note'}
                     tags={note.tags}
                     date={note.lastEdited}
                 />
