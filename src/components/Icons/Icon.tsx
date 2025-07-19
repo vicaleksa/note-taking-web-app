@@ -2,6 +2,7 @@ import IconArchive from './IconArchive';
 import IconArrowLeft from './IconArrowLeft';
 import IconCheckmark from './IconCheckmark';
 import IconClock from './IconClock';
+import IconClose from './IconClose';
 import IconDelete from './IconDelete';
 import IconHome from './IconHome';
 import IconInfo from './IconInfo';
@@ -28,6 +29,7 @@ const icons = {
     restore: IconRestore,
     loading: IconLoading,
     checkmark: IconCheckmark,
+    icon: IconClose,
 };
 
 export type IconType = keyof typeof icons;
