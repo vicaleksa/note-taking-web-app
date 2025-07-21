@@ -6,11 +6,17 @@ import FAB from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 
-export default function Notes() {
-    const notes = getNotesFromStorage();
-    const notArchivedNotes = notes.filter((note) => !note.isArchived);
+interface NoteProps {
+    archived?: boolean;
+}
 
-    const notesElements = notArchivedNotes.map((note) => (
+export default function Notes({ archived }: NoteProps) {
+    const storageNotes = getNotesFromStorage();
+    const notArchivedNotes = storageNotes.filter((note) => !note.isArchived);
+    const archivedNotes = storageNotes.filter((note) => note.isArchived);
+    const notes = archived ? archivedNotes : notArchivedNotes;
+
+    const notesElements = notes.map((note) => (
         <Fragment key={note.id}>
             <Link to={note.id}>
                 <NoteCard
@@ -25,7 +31,13 @@ export default function Notes() {
 
     return (
         <>
-            <h1 className={styles.title}>All Notes</h1>
+            <h1 className={styles.title}>{archived ? 'Archived Notes' : 'All Notes'}</h1>
+            {archived && (
+                <p className={styles.description}>
+                    All your archived notes are stored here.
+                    You can restore or delete them anytime.
+                </p>
+            )}
             {notesElements.length > 0
                 ? notesElements
                 : (
