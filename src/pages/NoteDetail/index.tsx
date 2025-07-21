@@ -12,9 +12,12 @@ import parseTags from '../../utils/parseTags';
 import formatTags from '../../utils/formatTags';
 import Modal from '../../components/Modal';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
+import IconLoading from '../../components/Icons/IconLoading';
+import Toast from '../../components/Toast';
 
 interface NoteDetailProps {
     create?: boolean,
+    archived?: boolean,
 }
 
 interface FormDataType {
@@ -33,13 +36,15 @@ const defaultFormData: FormDataType = {
     isArchived: false,
 };
 
-export default function NoteDetail({ create = false }: NoteDetailProps) {
+export default function NoteDetail({ create = false, archived }: NoteDetailProps) {
     const { id } = useParams();
     const navigate = useNavigate();
     const [notFound, setNotFound] = useState(false);
     const [formState, setFormState] = useState<FormDataType>(defaultFormData);
     const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-    const [IsOpenArchiveModal, setIsOpenArchiveModal] = useState(false);
+    const [isOpenArchiveModal, setIsOpenArchiveModal] = useState(false);
+    const [isOpenArchiveToast, setIsOpenArchiveToast] = useState(false);
+    const [isOpenUnarchiveToast, setIsOpenUnarchiveToast] = useState(false);
     const titleRef = useRef<HTMLTextAreaElement>(null);
     const tagsRef = useRef<HTMLTextAreaElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
@@ -100,7 +105,25 @@ export default function NoteDetail({ create = false }: NoteDetailProps) {
         notes[noteIndex].isArchived = true;
         localStorage.setItem('notes', JSON.stringify(notes));
         setIsOpenArchiveModal(false);
-        navigate('/');
+        if (!id) {
+            console.error('id is undefined');
+            return;
+        }
+        navigate(`/archive/${id}`);
+        setIsOpenArchiveToast(true);
+    };
+
+    const unarchiveNote = () => {
+        const notes = getNotesFromStorage();
+        const noteIndex = notes.findIndex((note) => note.id === id);
+        notes[noteIndex].isArchived = false;
+        localStorage.setItem('notes', JSON.stringify(notes));
+        if (!id) {
+            console.error('id is undefined');
+            return;
+        }
+        navigate(`/${id}`);
+        setIsOpenUnarchiveToast(true);
     };
 
     useEffect(() => {
@@ -163,22 +186,51 @@ export default function NoteDetail({ create = false }: NoteDetailProps) {
                 onAction={deleteNote}
                 actionContent="Delete Note"
             />
-            <Modal
-                icon="archive"
-                title="Archive Note"
-                text="Are you sure you want to archive this note?
-                You can find it in the Archived Notes section and restore it anytime."
-                color="blue_bg"
-                open={IsOpenArchiveModal}
-                onClose={() => { setIsOpenArchiveModal(false); }}
-                onAction={archiveNote}
-                actionContent="Archive Note"
-            />
+            {!archived && (
+                <Modal
+                    icon="archive"
+                    title="Archive Note"
+                    text="Are you sure you want to archive this note?
+                    You can find it in the Archived Notes section and restore it anytime."
+                    color="blue_bg"
+                    open={isOpenArchiveModal}
+                    onClose={() => { setIsOpenArchiveModal(false); }}
+                    onAction={archiveNote}
+                    actionContent="Archive Note"
+                />
+            )}
+            {isOpenArchiveToast && (
+                <Toast
+                    icon="checkmark"
+                    text="Note archived."
+                    link="/archive"
+                    linkText="Archived Notes"
+                    onClose={() => { setIsOpenArchiveToast(false); }}
+                />
+            )}
+            {isOpenUnarchiveToast && (
+                <Toast
+                    icon="checkmark"
+                    text="Note restored to active notes."
+                    link="/"
+                    linkText="All Notes"
+                    onClose={() => { setIsOpenUnarchiveToast(false); }}
+                />
+            )}
             <NoteActions
                 onSave={saveNote}
                 onDelete={() => { setIsOpenDeleteModal(true); }}
-                onArchive={() => { setIsOpenArchiveModal(true); }}
+                onArchive={() => {
+                    if (!archived) {
+                        setIsOpenUnarchiveToast(false);
+                        setIsOpenArchiveModal(true);
+                    } else {
+                        setIsOpenArchiveToast(false);
+                        unarchiveNote();
+                    }
+                }}
                 create={create}
+                archived={archived}
             />
             <textarea
                 ref={titleRef}
@@ -205,6 +257,14 @@ export default function NoteDetail({ create = false }: NoteDetailProps) {
                     onChange={handleChange}
                     onKeyDown={handleEnterDown}
                 />
+
+                {archived && (
+                    <>
+                        <IconLoading className={styles.propertyIcon} />
+                        <div className={styles.propertyName}>Status</div>
+                        <div className={styles.propertyName}>Archived</div>
+                    </>
+                )}
 
                 <IconClock className={styles.propertyIcon} />
                 <div className={styles.propertyName}>Last edited</div>
