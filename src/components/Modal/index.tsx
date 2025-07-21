@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import Button from '../Button';
-import Icon from '../Icons/Icon';
+import Icon, { IconType } from '../Icons/Icon';
 import styles from './style.module.css';
 
 type ModalProps = {
-    icon: 'delete' | 'archive',
+    icon: IconType,
     title: string,
     text: string,
     color: string,
