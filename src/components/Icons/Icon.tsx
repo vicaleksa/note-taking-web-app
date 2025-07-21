@@ -29,7 +29,7 @@ const icons = {
     restore: IconRestore,
     loading: IconLoading,
     checkmark: IconCheckmark,
-    icon: IconClose,
+    close: IconClose,
 };
 
 export type IconType = keyof typeof icons;
