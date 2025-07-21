@@ -7,7 +7,8 @@ type NoteActionsProps = {
     onSave: React.MouseEventHandler,
     onDelete: React.MouseEventHandler,
     onArchive: React.MouseEventHandler,
-    create: boolean
+    create: boolean,
+    archived?: boolean,
 }
 
 export default function NoteActions({
@@ -15,6 +16,7 @@ export default function NoteActions({
     onDelete,
     onArchive,
     create,
+    archived,
 }: NoteActionsProps) {
     return (
         <div className={styles.navContainer}>
@@ -28,7 +30,13 @@ export default function NoteActions({
             </Link>
             <div className={styles.rightControl}>
                 { !create && <Button variant="ghost" leftIcon="delete" onClick={onDelete} /> }
-                { !create && <Button variant="ghost" leftIcon="archive" onClick={onArchive} /> }
+                { !create && (
+                    <Button
+                        variant="ghost"
+                        leftIcon={archived ? 'restore' : 'archive'}
+                        onClick={onArchive}
+                    />
+                )}
                 <Button variant="ghost" buttonText="Save Note" color="blue" onClick={onSave} />
             </div>
         </div>
