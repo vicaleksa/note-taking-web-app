@@ -15,7 +15,7 @@ export default function BottomNavigation() {
                 text="Search"
             />
             <NavigationLink
-                link="/archived"
+                link="/archive"
                 icon="archive"
                 text="Archived"
             />
