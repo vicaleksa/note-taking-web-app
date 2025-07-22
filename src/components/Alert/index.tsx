@@ -5,5 +5,5 @@ interface AlertProps {
 }
 
 export default function Alert({ text }: AlertProps) {
-    return <div className={styles.text}>{text}</div>;
+    return <div className={styles.alert}>{text}</div>;
 }
