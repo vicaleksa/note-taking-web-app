@@ -128,7 +128,7 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
 
     useEffect(() => {
         const el = textRef.current;
-        if (el && create) {
+        if (el) {
             el.focus();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
