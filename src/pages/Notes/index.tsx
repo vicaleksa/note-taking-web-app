@@ -42,7 +42,9 @@ export default function Notes({ archived }: NoteProps) {
                 ? notesElements
                 : (
                     <Alert
-                        text="You don’t have any notes yet. Start a new note to capture your thoughts and ideas."
+                        text={archived
+                            ? 'No notes have been archived yet. Move notes here for safekeeping, or create a new note.'
+                            : 'You don’t have any notes yet. Start a new note to capture your thoughts and ideas.'}
                     />
                 )}
             <FAB
