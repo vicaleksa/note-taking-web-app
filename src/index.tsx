@@ -18,6 +18,7 @@ function App() {
                     <Route path="/new-note" element={<NoteDetail create />} />
                     <Route path="/archive" element={<Notes archived />} />
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
+                    <Route path="/tags" element={<Notes tags />} />
                 </Route>
             </Routes>
         </BrowserRouter>
