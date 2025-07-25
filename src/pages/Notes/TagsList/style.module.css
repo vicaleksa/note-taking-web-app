@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    gap: var(--spacing-100);
+    padding-top: var(--spacing-100);
+    padding-bottom: var(--spacing-150);
+}
+
+
+.icon {
+    width: var(--spacing-250);
+    height: var(--spacing-250);
+}
+
+.divider:not(:last-of-type) {
+    height: 1px;
+    background-color: var(--clr-neutral-200);
+    margin-bottom: var(--spacing-050);
+}
