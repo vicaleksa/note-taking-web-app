@@ -14,11 +14,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Notes />} />
+                    <Route path="/new" element={<NoteDetail create />} />
                     <Route path="/:id" element={<NoteDetail />} />
-                    <Route path="/new-note" element={<NoteDetail create />} />
-                    <Route path="/archive" element={<Notes archived />} />
+
+                    <Route path="/archive" element={<Notes showArchive />} />
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
-                    <Route path="/tags" element={<Notes tags />} />
+
+                    <Route path="/tags" element={<Notes showTagsOverview />} />
+                    <Route path="/tags/:id" element={<Notes showNotesByTag />} />
                 </Route>
             </Routes>
         </BrowserRouter>

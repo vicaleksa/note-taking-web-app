@@ -12,7 +12,7 @@ type FABprops = {
 export default function FAB({ size, ariaLabel, icon }: FABprops) {
     return (
         <Link
-            to="/new-note"
+            to="/new"
             aria-label={ariaLabel}
             className={clsx(styles.FAB, {
                 [styles.FABsmall]: size === 'small',
