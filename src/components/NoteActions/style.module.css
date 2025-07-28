@@ -3,24 +3,9 @@
     top: 0;
     display: flex;
     justify-content: space-between;
-    padding: var(--spacing-150) 0;
     border-bottom: 1px solid var(--clr-neutral-200);
     margin-bottom: var(--spacing-150);
     background-color: var(--clr-neutral-0);
-}
-
-.backButton {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-050);
-    color: var(--clr-neutral-600);
-    font: var(--text-sans-serif-preset4);
-    letter-spacing: var(--letter-spacing-preset4);
-}
-
-.backIcon {
-    width: var(--spacing-225);
-    height: var(--spacing-225);
 }
 
 .rightControl {

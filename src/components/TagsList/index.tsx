@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
-import Icon from '../../../components/Icons/Icon';
+import Icon from '../Icons/Icon';
 import styles from './style.module.css';
 
 interface TagsListProps {

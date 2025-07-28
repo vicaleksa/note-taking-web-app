@@ -1,7 +1,6 @@
-import { Link } from 'react-router';
-import Button from '../../../components/Button';
+import Button from '../Button';
 import styles from './style.module.css';
-import IconArrowLeft from '../../../components/Icons/IconArrowLeft';
+import BackLink from '../BackLink';
 
 type NoteActionsProps = {
     onSave: React.MouseEventHandler,
@@ -20,14 +19,7 @@ export default function NoteActions({
 }: NoteActionsProps) {
     return (
         <div className={styles.navContainer}>
-            <Link
-                to=".."
-                relative="path"
-                className={styles.backButton}
-            >
-                <IconArrowLeft className={styles.backIcon} />
-                Go Back
-            </Link>
+            <BackLink />
             <div className={styles.rightControl}>
                 { !create && <Button variant="ghost" leftIcon="delete" onClick={onDelete} /> }
                 { !create && (

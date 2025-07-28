@@ -6,7 +6,7 @@ import IconClock from '../../components/Icons/IconClock';
 import IconTag from '../../components/Icons/IconTag';
 import styles from './style.module.css';
 import formatDate from '../../utils/formatDate';
-import NoteActions from './NoteActions';
+import NoteActions from '../../components/NoteActions';
 import useTextareaResize from '../../hooks/useTextareaResize';
 import parseTags from '../../utils/parseTags';
 import formatTags from '../../utils/formatTags';
