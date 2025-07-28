@@ -1,0 +1,15 @@
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-050);
+    color: var(--clr-neutral-600);
+    font: var(--text-sans-serif-preset4);
+    letter-spacing: var(--letter-spacing-preset4);
+    padding: var(--spacing-150) 0;
+}
+
+.backIcon {
+    width: var(--spacing-225);
+    height: var(--spacing-225);
+}
