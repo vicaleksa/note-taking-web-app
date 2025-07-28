@@ -21,7 +21,8 @@ function App() {
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
 
                     <Route path="/tags" element={<Notes showTagsOverview />} />
-                    <Route path="/tags/:id" element={<Notes showNotesByTag />} />
+                    <Route path="/tags/:tagId" element={<Notes showNotesByTag />} />
+                    <Route path="/tags/:tagId/:id" element={<NoteDetail />} />
                 </Route>
             </Routes>
         </BrowserRouter>

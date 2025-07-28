@@ -16,13 +16,13 @@ interface NoteProps {
 }
 
 export default function Notes({ showArchive, showTagsOverview, showNotesByTag }: NoteProps) {
-    const { id } = useParams();
+    const { tagId } = useParams();
 
     const storageNotes = getNotesFromStorage();
 
     let notes: Note[] = [];
-    if (showNotesByTag && id) {
-        notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === id.toLowerCase()));
+    if (showNotesByTag && tagId) {
+        notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === tagId.toLowerCase()));
     } else {
         notes = storageNotes.filter((note) => note.isArchived === Boolean(showArchive));
     }
@@ -40,8 +40,8 @@ export default function Notes({ showArchive, showTagsOverview, showNotesByTag }:
         if (showTagsOverview) {
             return 'Tags';
         }
-        if (showNotesByTag && id) {
-            return `Notes Tagged: ${id}`;
+        if (showNotesByTag && tagId) {
+            return `Notes Tagged: ${tagId}`;
         }
         return 'All Notes';
     };
@@ -58,7 +58,7 @@ export default function Notes({ showArchive, showTagsOverview, showNotesByTag }:
             return (
                 <p className={styles.description}>
                     All notes with the ”
-                    {id}
+                    {tagId}
                     ” tag are shown here.
                 </p>
             );
