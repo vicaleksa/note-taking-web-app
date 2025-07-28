@@ -1,60 +1,94 @@
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
 import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
 import FAB from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
-import TagsList from './TagsList';
+import TagsList from '../../components/TagsList';
+import BackLink from '../../components/BackLink';
+import { Note } from '../../types';
 
 interface NoteProps {
-    archived?: boolean,
-    tags?: boolean,
+    showArchive?: boolean,
+    showTagsOverview?: boolean,
+    showNotesByTag?: boolean,
 }
 
-export default function Notes({ archived, tags }: NoteProps) {
+export default function Notes({ showArchive, showTagsOverview, showNotesByTag }: NoteProps) {
+    const { id } = useParams();
+
     const storageNotes = getNotesFromStorage();
-    const notes = storageNotes.filter((note) => note.isArchived === Boolean(archived));
+
+    let notes: Note[] = [];
+    if (showNotesByTag && id) {
+        notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === id.toLowerCase()));
+    } else {
+        notes = storageNotes.filter((note) => note.isArchived === Boolean(showArchive));
+    }
 
     const tagSet = new Set<string>();
     storageNotes.forEach((note) => {
         note.tags.forEach((tag) => tagSet.add(tag));
     });
-    const notesTags = Array.from(tagSet);
+    const uniqueTags = Array.from(tagSet);
 
     const getTitle = () => {
-        if (archived) {
+        if (showArchive) {
             return 'Archived Notes';
         }
-        if (tags) {
+        if (showTagsOverview) {
             return 'Tags';
+        }
+        if (showNotesByTag && id) {
+            return `Notes Tagged: ${id}`;
         }
         return 'All Notes';
     };
 
-    const renderContent = () => {
-        const notesElements = notes.map((note) => (
-            <Fragment key={note.id}>
-                <Link to={note.id}>
-                    <NoteCard
-                        title={note.title || 'Untitled Note'}
-                        tags={note.tags}
-                        date={note.lastEdited}
-                    />
-                </Link>
-                <div className={styles.divider} />
-            </Fragment>
-        ));
+    const getDescription = () => {
+        if (showArchive) {
+            return (
+                <p className={styles.description}>
+                    All your archived notes are stored here. You can restore or delete them anytime.
+                </p>
+            );
+        }
+        if (showNotesByTag) {
+            return (
+                <p className={styles.description}>
+                    All notes with the ”
+                    {id}
+                    ” tag are shown here.
+                </p>
+            );
+        }
+        return null;
+    };
 
-        if (tags) {
-            return <TagsList tags={notesTags} />;
+    const renderContent = () => {
+        if (showTagsOverview) {
+            return <TagsList tags={uniqueTags} />;
         }
+
         if (notes.length > 0) {
-            return notesElements;
+            return notes.map((note) => (
+                <Fragment key={note.id}>
+                    <Link to={note.id}>
+                        <NoteCard
+                            title={note.title || 'Untitled Note'}
+                            tags={note.tags}
+                            date={note.lastEdited}
+                        />
+                    </Link>
+                    <div className={styles.divider} />
+                </Fragment>
+            ));
         }
+
         return (
             <Alert
-                text={archived
+                text={showArchive
                     ? 'No notes have been archived yet. Move notes here for safekeeping, or create a new note.'
                     : 'You don’t have any notes yet. Start a new note to capture your thoughts and ideas.'}
             />
@@ -63,13 +97,9 @@ export default function Notes({ archived, tags }: NoteProps) {
 
     return (
         <>
+            {showNotesByTag && <BackLink />}
             <h1 className={styles.title}>{getTitle()}</h1>
-            {archived && (
-                <p className={styles.description}>
-                    All your archived notes are stored here.
-                    You can restore or delete them anytime.
-                </p>
-            )}
+            {getDescription()}
             {renderContent()}
             <FAB
                 size="small"
