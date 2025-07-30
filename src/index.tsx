@@ -7,6 +7,7 @@ import './index.css';
 import Layout from './components/Layout';
 import Notes from './pages/Notes';
 import NoteDetail from './pages/NoteDetail';
+import Search from './pages/Search';
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                     <Route path="/new" element={<NoteDetail create />} />
                     <Route path="/:id" element={<NoteDetail />} />
 
-                    <Route path="/search" element={<Notes showSearch />} />
+                    <Route path="/search" element={<Search />} />
                     <Route path="/search/:id" element={<NoteDetail />} />
 
                     <Route path="/archive" element={<Notes showArchive />} />
