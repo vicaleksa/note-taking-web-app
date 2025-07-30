@@ -1,5 +1,6 @@
-import { Link, useParams } from 'react-router';
+import { Link, useLocation, useParams } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
+import { useEffect, useState } from 'react';
 import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
 import FAB from '../../components/FloatingActionButton';
@@ -8,21 +9,43 @@ import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import TagsList from '../../components/TagsList';
 import BackLink from '../../components/BackLink';
 import { Note } from '../../types';
+import Search from '../../components/Search';
 
 interface NoteProps {
+    showSearch?: boolean,
     showArchive?: boolean,
     showTagsOverview?: boolean,
     showNotesByTag?: boolean,
 }
 
-export default function Notes({ showArchive, showTagsOverview, showNotesByTag }: NoteProps) {
+export default function Notes({
+    showSearch,
+    showArchive,
+    showTagsOverview,
+    showNotesByTag,
+}: NoteProps) {
     const { tagId } = useParams();
+    const location = useLocation();
+    const [searchFilter, setSearchFilter] = useState('');
 
     const storageNotes = getNotesFromStorage();
 
     let notes: Note[] = [];
     if (showNotesByTag && tagId) {
         notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === tagId.toLowerCase()));
+    } else if (showSearch) {
+        notes = storageNotes.filter((note) => {
+            if (note.title.toLowerCase().includes(searchFilter.toLowerCase())) {
+                return true;
+            }
+            if (note.tags.some((tag) => tag.toLowerCase().includes(searchFilter.toLowerCase()))) {
+                return true;
+            }
+            if (note.content.toLowerCase().includes(searchFilter.toLowerCase())) {
+                return true;
+            }
+            return false;
+        });
     } else {
         notes = storageNotes.filter((note) => note.isArchived === Boolean(showArchive));
     }
@@ -34,6 +57,9 @@ export default function Notes({ showArchive, showTagsOverview, showNotesByTag }:
     const uniqueTags = Array.from(tagSet);
 
     const getTitle = () => {
+        if (showSearch) {
+            return 'Search';
+        }
         if (showArchive) {
             return 'Archived Notes';
         }
@@ -47,6 +73,15 @@ export default function Notes({ showArchive, showTagsOverview, showNotesByTag }:
     };
 
     const getDescription = () => {
+        if (searchFilter && showSearch) {
+            return (
+                <p className={styles.description}>
+                    All notes matching ”
+                    {searchFilter}
+                    ” are displayed below.
+                </p>
+            );
+        }
         if (showArchive) {
             return (
                 <p className={styles.description}>
@@ -86,19 +121,34 @@ export default function Notes({ showArchive, showTagsOverview, showNotesByTag }:
             ));
         }
 
+        let alertText;
+        if (showSearch) {
+            alertText = 'No notes match your search. Try a different keyword or create a new note.';
+        } else if (showArchive) {
+            alertText = 'No notes have been archived yet. Move notes here for safekeeping, or create a new note.';
+        } else {
+            alertText = 'You don’t have any notes yet. Start a new note to capture your thoughts and ideas.';
+        }
+
         return (
-            <Alert
-                text={showArchive
-                    ? 'No notes have been archived yet. Move notes here for safekeeping, or create a new note.'
-                    : 'You don’t have any notes yet. Start a new note to capture your thoughts and ideas.'}
-            />
+            <Alert text={alertText} />
         );
+    };
+
+    useEffect(() => {
+        setSearchFilter('');
+    }, [location.pathname]);
+
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setSearchFilter(value);
     };
 
     return (
         <>
             {showNotesByTag && <BackLink />}
             <h1 className={styles.title}>{getTitle()}</h1>
+            {showSearch && <Search onChange={handleChange} />}
             {getDescription()}
             {renderContent()}
             <FAB
