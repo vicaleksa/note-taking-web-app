@@ -17,6 +17,9 @@ function App() {
                     <Route path="/new" element={<NoteDetail create />} />
                     <Route path="/:id" element={<NoteDetail />} />
 
+                    <Route path="/search" element={<Notes showSearch />} />
+                    <Route path="/search/:id" element={<NoteDetail />} />
+
                     <Route path="/archive" element={<Notes showArchive />} />
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
 
