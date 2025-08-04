@@ -9,6 +9,7 @@ import Notes from './pages/Notes';
 import NoteDetail from './pages/NoteDetail';
 import Search from './pages/Search';
 import Archive from './pages/Archive';
+import TagsOverview from './pages/TagsOverview';
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
                     <Route path="/archive" element={<Archive />} />
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
 
-                    <Route path="/tags" element={<Notes showTagsOverview />} />
+                    <Route path="/tags" element={<TagsOverview />} />
                     <Route path="/tags/:tagId" element={<Notes showNotesByTag />} />
                     <Route path="/tags/:tagId/:id" element={<NoteDetail />} />
                 </Route>
