@@ -4,6 +4,7 @@ import IconCheckmark from './IconCheckmark';
 import IconClock from './IconClock';
 import IconClose from './IconClose';
 import IconDelete from './IconDelete';
+import IconFont from './IconFont';
 import IconHome from './IconHome';
 import IconInfo from './IconInfo';
 import IconLoading from './IconLoading';
@@ -32,6 +33,7 @@ const icons = {
     checkmark: IconCheckmark,
     close: IconClose,
     sun: IconSun,
+    font: IconFont,
 };
 
 export type IconType = keyof typeof icons;
