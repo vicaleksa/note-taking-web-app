@@ -1,3 +1,4 @@
+import Alert from '../../components/Alert';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import TagsList from '../../components/TagsList';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
@@ -15,6 +16,9 @@ export default function TagsOverview() {
         <>
             <h1 className={styles.title}>Tags</h1>
             <TagsList tags={uniqueTags} />
+            {uniqueTags.length === 0 && (
+                <Alert text="You don’t have any tags yet. Add tags to your notes to make them easier to find." />
+            )}
             <FloatingActionButton
                 size="small"
                 ariaLabel="Create a new note"
