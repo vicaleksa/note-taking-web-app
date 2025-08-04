@@ -1,5 +1,5 @@
 import Alert from '../../components/Alert';
-import FAB from '../../components/FloatingActionButton';
+import FloatingActionButton from '../../components/FloatingActionButton';
 import NoteList from '../../components/NoteList';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import styles from './style.module.css';
@@ -18,7 +18,7 @@ export default function Archive() {
             {notes.length === 0 && (
                 <Alert text="No notes have been archived yet. Move notes here for safekeeping, or create a new note." />
             )}
-            <FAB
+            <FloatingActionButton
                 size="small"
                 ariaLabel="Create a new note"
                 icon="plus"

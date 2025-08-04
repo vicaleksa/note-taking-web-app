@@ -3,13 +3,13 @@ import { Fragment } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
 import NoteCard from '../../components/NoteCard';
 import styles from './style.module.css';
-import FAB from '../../components/FloatingActionButton';
+import FloatingActionButton from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import TagsList from '../../components/TagsList';
 import BackLink from '../../components/BackLink';
 import { Note } from '../../types';
-import Search from '../../components/Search';
+import Search from '../../components/SearchInput';
 
 interface NoteProps {
     showSearch?: boolean,
@@ -151,7 +151,7 @@ export default function Notes({
             {showSearch && <Search onChange={handleChange} />}
             {getDescription()}
             {renderContent()}
-            <FAB
+            <FloatingActionButton
                 size="small"
                 ariaLabel="Create a new note"
                 icon="plus"

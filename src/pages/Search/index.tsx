@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import FAB from '../../components/FloatingActionButton';
 import SearchInput from '../../components/SearchInput';
 import styles from './style.module.css';
 import NoteList from '../../components/NoteList';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import Alert from '../../components/Alert';
 import { Note } from '../../types';
+import FloatingActionButton from '../../components/FloatingActionButton';
 
 export default function Search() {
     const [searchFilter, setSearchFilter] = useState('');
@@ -47,7 +47,7 @@ export default function Search() {
             {notes.length === 0 && searchFilter && (
                 <Alert text="No notes match your search. Try a different keyword or create a new note." />
             )}
-            <FAB
+            <FloatingActionButton
                 size="small"
                 ariaLabel="Create a new note"
                 icon="plus"

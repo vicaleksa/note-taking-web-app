@@ -3,13 +3,13 @@ import { Link } from 'react-router';
 import styles from './style.module.css';
 import Icon, { IconType } from '../Icons/Icon';
 
-type FABprops = {
+type FloatingActionButtonProps = {
     size: 'small' | 'large';
     ariaLabel: string;
     icon: IconType;
 }
 
-export default function FAB({ size, ariaLabel, icon }: FABprops) {
+export default function FloatingActionButton({ size, ariaLabel, icon }: FloatingActionButtonProps) {
     return (
         <Link
             to="/new"
