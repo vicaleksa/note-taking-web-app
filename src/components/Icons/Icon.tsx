@@ -12,6 +12,7 @@ import IconRestore from './IconRestore';
 import IconSearch from './IconSearch';
 import IconSettings from './IconSettings';
 import IconShow from './IconShow';
+import IconSun from './IconSun';
 import IconTag from './IconTag';
 
 const icons = {
@@ -30,6 +31,7 @@ const icons = {
     loading: IconLoading,
     checkmark: IconCheckmark,
     close: IconClose,
+    sun: IconSun,
 };
 
 export type IconType = keyof typeof icons;
