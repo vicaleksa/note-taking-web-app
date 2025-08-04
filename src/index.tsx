@@ -8,6 +8,7 @@ import Layout from './components/Layout';
 import Notes from './pages/Notes';
 import NoteDetail from './pages/NoteDetail';
 import Search from './pages/Search';
+import Archive from './pages/Archive';
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/search/:id" element={<NoteDetail />} />
 
-                    <Route path="/archive" element={<Notes showArchive />} />
+                    <Route path="/archive" element={<Archive />} />
                     <Route path="/archive/:id" element={<NoteDetail archived />} />
 
                     <Route path="/tags" element={<Notes showTagsOverview />} />
