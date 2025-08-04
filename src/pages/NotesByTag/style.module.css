@@ -1,0 +1,16 @@
+.title {
+    font: var(--text-sans-serif-preset1);
+    letter-spacing: var(--letter-spacing-preset1);
+    margin-top: var(--spacing-050);
+    margin-bottom: var(--spacing-200);
+    color: var(--clr-neutral-600);
+}
+
+.tag {
+    color: var(--clr-neutral-950);
+}
+
+.description {
+    padding-bottom: var(--spacing-200);
+    font: var(--text-sans-serif-preset4);
+}
