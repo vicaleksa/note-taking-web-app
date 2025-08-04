@@ -8,6 +8,7 @@ import IconFont from './IconFont';
 import IconHome from './IconHome';
 import IconInfo from './IconInfo';
 import IconLoading from './IconLoading';
+import IconLock from './IconLock';
 import IconPlus from './IconPlus';
 import IconRestore from './IconRestore';
 import IconSearch from './IconSearch';
@@ -34,6 +35,7 @@ const icons = {
     close: IconClose,
     sun: IconSun,
     font: IconFont,
+    lock: IconLock,
 };
 
 export type IconType = keyof typeof icons;
