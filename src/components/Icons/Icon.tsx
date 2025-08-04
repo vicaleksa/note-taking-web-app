@@ -1,6 +1,7 @@
 import IconArchive from './IconArchive';
 import IconArrowLeft from './IconArrowLeft';
 import IconCheckmark from './IconCheckmark';
+import IconChevronRight from './IconChevronRight';
 import IconClock from './IconClock';
 import IconClose from './IconClose';
 import IconDelete from './IconDelete';
@@ -38,6 +39,7 @@ const icons = {
     font: IconFont,
     lock: IconLock,
     logout: IconLogout,
+    chevronRight: IconChevronRight,
 };
 
 export type IconType = keyof typeof icons;
