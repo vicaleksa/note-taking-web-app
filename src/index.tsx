@@ -11,6 +11,7 @@ import Search from './pages/Search';
 import Archive from './pages/Archive';
 import TagsOverview from './pages/TagsOverview';
 import NotesByTag from './pages/NotesByTag';
+import Settings from './pages/Settings';
 
 function App() {
     return (
@@ -30,6 +31,8 @@ function App() {
                     <Route path="/tags" element={<TagsOverview />} />
                     <Route path="/tags/:tagId" element={<NotesByTag />} />
                     <Route path="/tags/:tagId/:id" element={<NoteDetail />} />
+
+                    <Route path="/settings" element={<Settings />} />
                 </Route>
             </Routes>
         </BrowserRouter>
