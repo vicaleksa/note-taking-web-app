@@ -11,6 +11,7 @@ import IconInfo from './IconInfo';
 import IconLoading from './IconLoading';
 import IconLock from './IconLock';
 import IconLogout from './IconLogout';
+import IconMoon from './IconMoon';
 import IconPlus from './IconPlus';
 import IconRestore from './IconRestore';
 import IconSearch from './IconSearch';
@@ -40,6 +41,7 @@ const icons = {
     lock: IconLock,
     logout: IconLogout,
     chevronRight: IconChevronRight,
+    moon: IconMoon,
 };
 
 export type IconType = keyof typeof icons;
