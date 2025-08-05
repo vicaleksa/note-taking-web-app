@@ -2,7 +2,11 @@ import { Link } from 'react-router';
 import IconArrowLeft from '../Icons/IconArrowLeft';
 import styles from './style.module.css';
 
-export default function BackLink() {
+interface BackLinkProps {
+    text: string,
+}
+
+export default function BackLink({ text }: BackLinkProps) {
     return (
         <Link
             to=".."
@@ -10,7 +14,7 @@ export default function BackLink() {
             className={styles.backButton}
         >
             <IconArrowLeft className={styles.backIcon} />
-            Go Back
+            {text}
         </Link>
     );
 }

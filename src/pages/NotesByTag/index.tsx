@@ -13,7 +13,7 @@ export default function NotesByTag() {
 
     return (
         <>
-            <BackLink />
+            <BackLink text="Go Back" />
             <h1 className={styles.title}>
                 Notes Tagged:
                 {' '}

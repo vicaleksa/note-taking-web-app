@@ -19,7 +19,7 @@ export default function NoteActions({
 }: NoteActionsProps) {
     return (
         <div className={styles.navContainer}>
-            <BackLink />
+            <BackLink text="Go Back" />
             <div className={styles.rightControl}>
                 { !create && <Button variant="ghost" leftIcon="delete" onClick={onDelete} /> }
                 { !create && (
