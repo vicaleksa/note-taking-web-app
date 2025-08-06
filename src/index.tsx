@@ -12,6 +12,7 @@ import Archive from './pages/Archive';
 import TagsOverview from './pages/TagsOverview';
 import NotesByTag from './pages/NotesByTag';
 import Settings from './pages/Settings';
+import Theme from './pages/Theme';
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/tags/:tagId/:id" element={<NoteDetail />} />
 
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/settings/theme" element={<Theme />} />
                 </Route>
             </Routes>
         </BrowserRouter>
