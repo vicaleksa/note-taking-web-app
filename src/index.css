@@ -1,7 +1,7 @@
 body {
     font: var(--text-sans-serif-preset5);
     letter-spacing: var(--letter-spacing-preset5);
-    color: var(--clr-neutral-950);
+    color: var(--color-text-primary);
 }
 
 h1,

@@ -8,9 +8,9 @@
 
     /* 57px - navbar size */
     bottom: calc(57px + 1rem);
-    background-color: var(--clr-blue-500);
+    background-color: var(--color-accent-primary);
     border-radius: var(--radius-full);
-    box-shadow: 0 7px 11px 0 rgb(202 207 216 / 70%);
+    box-shadow: var(--shadow-floating-button);
 }
 
 .FABsmall {
@@ -22,7 +22,7 @@
 }
 
 .icon {
-    color: var(--clr-neutral-0);
+    color: var(--color-icon-inverted);
     width: var(--spacing-400);
     height: var(--spacing-400);
 }

@@ -40,7 +40,9 @@ export default function Modal({
     return (
         <dialog ref={dialogRef} className={styles.card} aria-label={title}>
             <div className={styles.top}>
-                <div className={styles.iconContainer}><Icon type={icon} /></div>
+                <div className={styles.iconContainer}>
+                    <Icon type={icon} className={styles.icon} />
+                </div>
                 <div className={styles.content}>
                     <p className={styles.title}>{title}</p>
                     <p className={styles.text}>{text}</p>

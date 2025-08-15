@@ -3,9 +3,9 @@
     top: 0;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(--clr-neutral-200);
+    border-bottom: 1px solid var(--color-border);
     margin-bottom: var(--spacing-150);
-    background-color: var(--clr-neutral-0);
+    background-color: var(--color-bg-primary);
 }
 
 .rightControl {

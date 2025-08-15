@@ -5,18 +5,23 @@
     flex-grow: 1;
     padding: var(--spacing-050) 0;
     border-radius: var(--radius-4);
+    color: var(--color-icon-secondary);
 }
 
 .iconButtonActive {
-    background-color: var(--clr-blue-50);
-    color: var(--clr-blue-500);
+    background-color: var(--color-bg-accent);
+    color: var(--color-icon-accent);
 }
 
 .text {
     display: none;
-    color: var(--clr-neutral-500);
+    color: var(--color-text-secondary);
     font: var(--text-sans-serif-preset6);
     letter-spacing: var(--letter-spacing-preset6);
+}
+
+.iconButtonActive .text {
+    color: var(--color-text-accent);
 }
 
 @media (width >= 48rem) {
@@ -25,7 +30,7 @@
     }
 
     .iconButton:not(:last-child) {
-        border-right: 1px solid var(--clr-neutral-100);
+        border-right: 1px solid var(--color-border);
     }
 
     .text {

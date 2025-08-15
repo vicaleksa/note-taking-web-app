@@ -1,9 +1,8 @@
 .navbar {
     display: flex;
     padding: var(--spacing-150) var(--spacing-200);
-    background-color: var(--clr-neutral-0);
-    color: var(--clr-neutral-600);
-    border-top: 1px solid var(--clr-neutral-200);
+    background-color: var(--color-bg-primary);
+    border-top: 1px solid var(--color-border);
     box-shadow: var(--shadow-small-top);
 }
 

@@ -12,65 +12,65 @@
 .button:disabled {
     pointer-events: none;
     box-shadow: none;
-    background-color: var(--clr-neutral-100);
-    color: var(--clr-neutral-300);
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-muted);
 }
 
 .buttonPrimary {
-    background-color: var(--clr-blue-500);
-    color: var(--clr-neutral-0);
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-inverted);
     transition: background-color 450ms;
 }
 
 .buttonPrimary:hover {
-    background-color: var(--clr-blue-700);
+    background-color: var(--color-accent-primary-hover);
     transition: background-color 125ms;
 }
 
 .buttonPrimary:focus {
-    outline: var(--spacing-025) solid var(--clr-neutral-400);
+    outline: var(--spacing-025) solid var(--color-border-focus);
     outline-offset: var(--spacing-025);
 }
 
 .buttonSecondary {
-    background-color: var(--clr-neutral-100);
-    color: var(--clr-neutral-600);
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
     transition: background-color 450ms, box-shadow 450ms;
 }
 
 .buttonSecondary:hover {
-    background-color: var(--clr-neutral-0);
-    color: var(--clr-neutral-950);
-    box-shadow: 0 0 0 1px var(--clr-neutral-300) inset;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    box-shadow: 0 0 0 1px var(--color-border-strong) inset;
     transition: background-color 125ms, box-shadow 125ms;
 }
 
 .buttonOutlined {
-    background-color: var(--clr-neutral-0);
-    color: var(--clr-neutral-950);
-    box-shadow: 0 0 0 1px var(--clr-neutral-300) inset;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    box-shadow: 0 0 0 1px var(--color-border-strong) inset;
     transition: background-color 450ms, box-shadow 450ms;
 }
 
 .buttonOutlined:hover {
-    background-color: var(--clr-neutral-100);
-    color: var(--clr-neutral-600);
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
     box-shadow: none;
     transition: background-color 125ms, box-shadow 125ms;
 }
 
 .buttonSecondary:focus,
 .buttonOutlined:focus {
-    background-color: var(--clr-neutral-0);
-    color: var(--clr-neutral-950);
-    box-shadow: 0 0 0 1px var(--clr-neutral-950) inset;
-    outline: var(--spacing-025) solid var(--clr-neutral-400);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    box-shadow: 0 0 0 1px var(--color-border-strong-focus) inset;
+    outline: var(--spacing-025) solid var(--color-border-focus);
     outline-offset: var(--spacing-025);
 }
 
 .buttonGhost {
     gap: var(--spacing-050);
-    color: var(--clr-neutral-600);
+    color: var(--color-text-secondary);
     padding: 0;
 }
 
@@ -86,15 +86,15 @@
 }
 
 .buttonGhostBlue {
-    color: var(--clr-blue-500);
+    color: var(--color-text-accent);
 }
 
 .buttonDanger {
-    background-color: var(--clr-red-500);
+    background-color: var(--color-accent-danger);
 }
 
 .buttonBlue {
-    background-color: var(--clr-blue-500);
+    background-color: var(--color-accent-primary);
 }
 
 button:hover .leftIcon {

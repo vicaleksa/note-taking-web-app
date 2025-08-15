@@ -1,23 +1,47 @@
 :root {
-    --clr-neutral-950: #0E121B;
-    --clr-neutral-900: #191B25;
-    --clr-neutral-800: #232530;
-    --clr-neutral-700: #2B303B;
-    --clr-neutral-600: #525866;
-    --clr-neutral-500: #717784;
-    --clr-neutral-400: #99A0AE;
-    --clr-neutral-300: #CACFD8;
-    --clr-neutral-200: #E0E4EA;
-    --clr-neutral-100: #F3F5F8;
-    --clr-neutral-50: #F5F7FA;
-    --clr-neutral-0: #FFF;
-    --clr-blue-700: #2547D0;
-    --clr-blue-500: #335CFF;
-    --clr-blue-50: #EBF1FF;
-    --clr-green-500: #21C16B;
-    --clr-green-100: #D1FBE9;
-    --clr-red-500: #FB3748;
-    --clr-red-100: #FFD5D8;
+    /* Backgrounds */
+    --color-bg-primary: #FFF; /* 0 */
+    --color-bg-secondary: #F3F5F8; /* 100 */
+    --color-bg-tertiary: #F3F5F8;  /* 100 */
+    --color-bg-accent: #EBF1FF; /* blue-50 */
+    --color-bg-muted: #E0E4EA; /* 200 */
+    --color-bg-inverted: #0E121B; /* 950 */
+
+    /* Text Colors */
+    --color-text-primary: #0E121B; /* 950 */
+    --color-text-secondary: #525866; /* 600 */
+    --color-text-tertiary: #717784; /* 500 */
+    --color-text-muted: #CACFD8; /* 300 */
+    --color-text-inverted: #FFF; /* 0 */
+    --color-text-accent: var(--color-accent-primary); /* blue-500 */
+
+    /* Icons */
+    --color-icon-primary: var(--color-text-primary); /* 950 */
+    --color-icon-secondary: var(--color-text-secondary); /* 600 */
+    --color-icon-tertiary: var(--color-text-tertiary); /* 500 */
+    --color-icon-inverted: var(--color-text-inverted); /* 0 */
+    --color-icon-accent: var(--color-accent-primary); /* blue-500 */
+
+    /* Borders & Lines */
+    --color-border: #E0E4EA; /* 200 */
+    --color-border-strong: #CACFD8; /* 300 */
+    --color-border-focus: #99A0AE; /* 400 */
+    --color-border-strong-focus: #0E121B; /* 950 */
+
+    /* Status Colors */
+    --color-accent-primary: #335CFF; /* blue-500 */
+    --color-accent-primary-hover: #2547D0; /* blue-700 */
+    --color-accent-danger: #FB3748;
+    --color-accent-success: #21C16B;
+
+    /* Components */
+    --color-modal-bg: #FFF; /* 0 */
+
+    /* Shadows */
+    --shadow-floating-button: 0 7px 11px rgb(202 207 216 / 70%); /* 300 */
+    --shadow-small-top: 0 -0.25rem 0.375rem 0 rgb(240 240 240 / 60%);
+
+    /* Spacing */
     --spacing-0: 0;
     --spacing-025: 0.125rem;
     --spacing-050: 0.25rem;
@@ -33,6 +57,8 @@
     --spacing-600: 3rem;
     --spacing-800: 4rem;
     --spacing-1000: 5rem;
+
+    /* Radius */
     --radius-4: 0.25rem;
     --radius-6: 0.375rem;
     --radius-8: 0.5rem;
@@ -42,6 +68,8 @@
     --radius-20: 1.25rem;
     --radius-24: 1.5rem;
     --radius-full: 63rem;
+
+    /* Fonts */
     --text-sans-serif-preset1: 700 1.5rem/120% 'Inter', sans-serif;
     --text-sans-serif-preset2: 700 1.25rem/120% 'Inter', sans-serif;
     --text-sans-serif-preset3: 600 1rem/120% 'Inter', sans-serif;
@@ -60,13 +88,45 @@
     --text-monospace-preset4: 400 0.875rem/120% 'Source Code Pro', monospace;
     --text-monospace-preset5: 400 1rem/120% 'Source Code Pro', monospace;
     --text-monospace-preset6: 400 0.75rem/120% 'Source Code Pro', monospace;
+
+    /* Letter-spacing */
     --letter-spacing-preset1: -0.03rem;
     --letter-spacing-preset2: -0.03rem;
     --letter-spacing-preset3: -0.02rem;
     --letter-spacing-preset4: -0.01rem;
     --letter-spacing-preset5: -0.01rem;
     --letter-spacing-preset6: -0.01rem;
-    --shadow-small-top: 0 -0.25rem 0.375rem 0 rgb(240 240 240 / 60%);
-    --shadow-small-bottom: 0 0.25rem 0.375rem 0 rgb(240 240 240 / 60%);
-    --shadow-large: 0 0.2rem 0.75rem 0 rgb(240 240 240 / 60%);
+}
+
+.dark {
+    /* Backgrounds */
+    --color-bg-primary: #0E121B; /* 950 */
+    --color-bg-secondary: #232530; /* 800 */
+    --color-bg-tertiary: #525866;  /* 600 */
+    --color-bg-accent: #2B303B; /* 700 */
+    --color-bg-muted: #2B303B; /* 700 */
+
+    /* Text Colors */
+    --color-text-primary: #FFF; /* 0 */
+    --color-text-secondary: #CACFD8; /* 300 */
+    --color-text-tertiary: #99A0AE; /* 400 */
+
+    /* Icons */
+    --color-icon-primary: var(--color-text-primary); /* 0 */
+    --color-icon-secondary: var(--color-text-secondary); /* 300 */
+    --color-icon-tertiary: var(--color-text-tertiary); /* 400 */
+    --color-icon-accent: var(--color-accent-primary); /* blue-500 */
+
+    /* Borders & Lines */
+    --color-border: #2B303B; /* 700 */
+    --color-border-strong: #525866; /* 600 */
+    --color-border-focus: #E0E4EA; /* 200 */
+    --color-border-strong-focus: #FFF; /* 0 */
+
+    /* Components */
+    --color-modal-bg: #2B303B; /* 700 */
+
+    /* Shadows */
+    --shadow-floating-button: 0 7px 11px rgb(0 0 0 / 70%);
+    --shadow-small-top: 0 -0.25rem 0.375rem 0 rgb(0 0 0 / 30%);
 }

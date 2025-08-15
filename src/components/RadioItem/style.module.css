@@ -4,15 +4,21 @@
     gap: var(--spacing-200);
     padding: var(--spacing-200);
     border-radius: var(--radius-12);
-    border: 1px solid var(--clr-neutral-200);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.radioContainer:hover {
+    border-color: var(--color-border-strong);
 }
 
 .iconContainer {
     display: flex;
     padding: var(--spacing-100);
     border-radius: var(--radius-12);
-    border: 1px solid var(--clr-neutral-200);
-    background-color: var(--clr-neutral-0);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-primary);
 }
 
 .text {
@@ -22,14 +28,14 @@
     gap: var(--spacing-075);
 }
 
-.label {
+.title {
     font: var(--text-sans-serif-preset4);
     font-weight: 500;
 }
 
 .description {
     font: var(--text-sans-serif-preset6);
-    color: var(--clr-neutral-700);
+    color: var(--color-text-secondary);
 }
 
 .radioInput {
@@ -37,14 +43,16 @@
     background: transparent;
     width: var(--spacing-200);
     height: var(--spacing-200);
-    border: 2px solid var(--clr-neutral-200);
+    border: 2px solid var(--color-border-strong);
     border-radius: 50%;
+    pointer-events: none;
 }
 
-.radioInput:checked {
-    border: 4px solid var(--clr-blue-500);
+.inputChecked {
+    border: 4px solid var(--color-accent-primary);
 }
 
-.radioContainer:has(.radioInput:checked) {
-    background-color: var(--clr-neutral-100);
+.containerChecked {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
 }

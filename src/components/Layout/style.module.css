@@ -2,12 +2,11 @@
     height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: var(--clr-neutral-100);
+    background-color: var(--color-bg-secondary);
 }
 
 .content {
-    position: relative;
-    background-color: var(--clr-neutral-0);
+    background-color: var(--color-bg-primary);
     flex-grow: 1;
     padding: var(--spacing-100) var(--spacing-200) var(--spacing-250) var(--spacing-200);
     border-top-left-radius: var(--radius-12);

@@ -9,9 +9,11 @@
 .icon {
     width: var(--spacing-250);
     height: var(--spacing-250);
+    color: var(--color-icon-primary);
 }
 
 .text {
     flex-grow: 1;
+    color: var(--color-text-primary);
     font: var(--text-sans-serif-preset4);
 }

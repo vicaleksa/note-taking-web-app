@@ -8,4 +8,5 @@
 .description {
     padding-bottom: var(--spacing-200);
     font: var(--text-sans-serif-preset4);
+    color: var(--color-text-secondary);
 }

@@ -2,14 +2,14 @@
     margin-right: var(--spacing-200);
     margin-left: var(--spacing-200);
     padding: var(--spacing-250) var(--spacing-250) var(--spacing-200) var(--spacing-250);
-    background-color: var(--clr-neutral-0);
+    background-color: var(--color-modal-bg);
     border-radius: var(--radius-12);
-    border: 1px solid var(--clr-neutral-200);
+    border: 2px solid var(--color-border-strong);
     box-sizing: border-box;
 }
 
 .card::backdrop {
-    background-color: var(--clr-neutral-950);
+    background-color: var(--color-bg-inverted);
     opacity: 0.5;
 }
 
@@ -25,25 +25,31 @@
     flex-shrink: 0;
     width: var(--spacing-500);
     height: var(--spacing-500);
-    background-color: var(--clr-neutral-100);
+    background-color: var(--color-bg-tertiary);
     border-radius: var(--radius-8);
+}
+
+.icon {
+    color: var(--color-icon-primary);
 }
 
 .title {
     font: var(--text-sans-serif-preset3);
     letter-spacing: var(--letter-spacing-preset3);
+    color: var(--color-text-primary);
     padding-bottom: var(--spacing-075);
 }
 
 .text {
     font: var(--text-sans-serif-preset4);
     letter-spacing: var(--letter-spacing-preset4);
+    color: var(--color-text-secondary);
     padding-bottom: var(--spacing-250);
 }
 
 .divider {
     height: 1px;
-    background-color: var(--clr-neutral-200);
+    background-color: var(--color-border-strong);
     margin-right: calc(var(--spacing-250) * -1);
     margin-left: calc(var(--spacing-250) * -1);
     margin-bottom: var(--spacing-200);

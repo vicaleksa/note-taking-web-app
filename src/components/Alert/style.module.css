@@ -1,7 +1,7 @@
 .alert {
     font: var(--text-sans-serif-preset4);
-    background-color: var(--clr-neutral-100);
-    padding: var( --spacing-100);
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-100);
     border-radius: var(--radius-8);
-    border: 1px solid var(--clr-neutral-200);
+    border: 1px solid var(--color-border);
 }
