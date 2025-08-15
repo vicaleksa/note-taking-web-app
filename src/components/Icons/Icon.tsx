@@ -10,6 +10,7 @@ import IconHome from './IconHome';
 import IconInfo from './IconInfo';
 import IconLoading from './IconLoading';
 import IconLock from './IconLock';
+import IconLogo from './IconLogo';
 import IconLogout from './IconLogout';
 import IconMoon from './IconMoon';
 import IconPlus from './IconPlus';
@@ -44,6 +45,7 @@ const icons = {
     chevronRight: IconChevronRight,
     moon: IconMoon,
     sunAndMoon: IconSunAndMoon,
+    logo: IconLogo,
 };
 
 export type IconType = keyof typeof icons;
