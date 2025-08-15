@@ -1,3 +1,13 @@
+.themeOptions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+    border: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: var(--spacing-250);
+}
+
 .title {
     font: var(--text-sans-serif-preset1);
     letter-spacing: var(--letter-spacing-preset1);
@@ -6,15 +16,9 @@
 }
 
 .description {
-    padding-bottom: var(--spacing-250);
+    padding-bottom: var(--spacing-050);
     font: var(--text-sans-serif-preset4);
-}
-
-.themeOptions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-200);
-    margin-bottom: var(--spacing-250);
+    color: var(--color-text-secondary);
 }
 
 .buttonContainer {

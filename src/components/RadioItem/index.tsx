@@ -1,29 +1,49 @@
+import clsx from 'clsx';
 import Icon from '../Icons/Icon';
 import styles from './style.module.css';
 
 interface RadioItemProps {
-    name: 'themeOptions',
-    label: string,
+    name: 'colorTheme',
+    value: string,
+    title: string,
     description: string,
     icon: 'sun' | 'moon' | 'sunAndMoon',
+    checked: boolean,
+    onChange: (value: string) => void,
 }
 
 export default function RadioItem({
     name,
-    label,
+    value,
+    title,
     description,
     icon,
+    checked,
+    onChange,
 }: RadioItemProps) {
     return (
-        <div className={styles.radioContainer}>
+        <label className={clsx(styles.radioContainer, {
+            [styles.containerChecked]: checked,
+        })}
+        >
             <div className={styles.iconContainer}>
                 <Icon type={icon} />
             </div>
             <div className={styles.text}>
-                <label className={styles.label} htmlFor={label}>{label}</label>
+                <span className={styles.title}>{title}</span>
                 <p className={styles.description}>{description}</p>
             </div>
-            <input type="radio" id={label} name={name} value={label} className={styles.radioInput} />
-        </div>
+            <input
+                className={clsx(styles.radioInput, {
+                    [styles.inputChecked]: checked,
+                })}
+                type="radio"
+                name={name}
+                id={value}
+                value={value}
+                checked={checked}
+                onChange={() => { onChange(value); }}
+            />
+        </label>
     );
 }
