@@ -17,6 +17,7 @@ import IconPlus from './IconPlus';
 import IconRestore from './IconRestore';
 import IconSansSerif from './IconSansSerif';
 import IconSearch from './IconSearch';
+import IconSerif from './IconSerif';
 import IconSettings from './IconSettings';
 import IconShow from './IconShow';
 import IconSun from './IconSun';
@@ -48,6 +49,7 @@ const icons = {
     sunAndMoon: IconSunAndMoon,
     logo: IconLogo,
     sansSerif: IconSansSerif,
+    serif: IconSerif,
 };
 
 export type IconType = keyof typeof icons;
