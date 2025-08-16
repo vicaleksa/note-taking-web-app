@@ -1,5 +1,5 @@
 .title {
-    font: var(--text-sans-serif-preset2);
+    font: var(--text-preset2);
     letter-spacing: var(--letter-spacing-preset2);
     margin-bottom: var(--spacing-075);
 }
@@ -24,7 +24,7 @@
     row-gap: var(--spacing-050);
     grid-template-columns: auto 5.875rem 1fr;
     align-items: center;
-    font: var(--text-sans-serif-preset6);
+    font: var(--text-preset6);
     padding-bottom: var(--spacing-150);
     border-bottom: 1px solid var(--color-border);
     margin-bottom: var(--spacing-150);

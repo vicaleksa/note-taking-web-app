@@ -8,7 +8,7 @@
 }
 
 .title {
-    font: var(--text-sans-serif-preset3);
+    font: var(--text-preset3);
     letter-spacing: var(--letter-spacing-preset3);
 }
 
@@ -20,7 +20,7 @@
 
 .tag {
     padding: var(--spacing-025) var(--spacing-075);
-    font: var(--text-sans-serif-preset6);
+    font: var(--text-preset6);
     letter-spacing: var(--letter-spacing-preset6);
     background-color: var(--color-bg-muted);
     color: var(--color-text-primary);
@@ -28,7 +28,7 @@
 }
 
 .date {
-    font: var(--text-sans-serif-preset6);
+    font: var(--text-preset6);
     letter-spacing: var(--letter-spacing-preset6);
     color: var(--color-text-secondary);
 }

@@ -1,5 +1,5 @@
 .alert {
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     background-color: var(--color-bg-secondary);
     padding: var(--spacing-100);
     border-radius: var(--radius-8);

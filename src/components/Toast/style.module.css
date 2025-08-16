@@ -23,7 +23,7 @@
 
 .text,
 .link {
-    font: var(--text-sans-serif-preset6);
+    font: var(--text-preset6);
     letter-spacing: var(--letter-spacing-preset6);
 }
 

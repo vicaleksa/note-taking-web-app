@@ -18,7 +18,7 @@
 
 .searchInput {
     flex-grow: 1;
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     border: none;
     outline: none;
     padding: 0;

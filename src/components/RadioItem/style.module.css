@@ -29,12 +29,12 @@
 }
 
 .title {
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     font-weight: 500;
 }
 
 .description {
-    font: var(--text-sans-serif-preset6);
+    font: var(--text-preset6);
     color: var(--color-text-secondary);
 }
 

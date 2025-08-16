@@ -1,5 +1,5 @@
 body {
-    font: var(--text-sans-serif-preset5);
+    font: var(--text-preset5);
     letter-spacing: var(--letter-spacing-preset5);
     color: var(--color-text-primary);
 }

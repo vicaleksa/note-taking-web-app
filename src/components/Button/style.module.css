@@ -4,7 +4,7 @@
     gap: var(--spacing-100);
     padding: var(--spacing-150) var(--spacing-200);
     border-radius: var(--radius-8);
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     font-weight: 500;
     letter-spacing: var(--letter-spacing-preset4);
 }

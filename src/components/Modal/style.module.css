@@ -34,14 +34,14 @@
 }
 
 .title {
-    font: var(--text-sans-serif-preset3);
+    font: var(--text-preset3);
     letter-spacing: var(--letter-spacing-preset3);
     color: var(--color-text-primary);
     padding-bottom: var(--spacing-075);
 }
 
 .text {
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     letter-spacing: var(--letter-spacing-preset4);
     color: var(--color-text-secondary);
     padding-bottom: var(--spacing-250);

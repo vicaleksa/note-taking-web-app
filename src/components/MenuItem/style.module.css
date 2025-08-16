@@ -15,5 +15,5 @@
 .text {
     flex-grow: 1;
     color: var(--color-text-primary);
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
 }
