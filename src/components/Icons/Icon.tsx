@@ -12,6 +12,7 @@ import IconLoading from './IconLoading';
 import IconLock from './IconLock';
 import IconLogo from './IconLogo';
 import IconLogout from './IconLogout';
+import IconMonospace from './IconMonospace';
 import IconMoon from './IconMoon';
 import IconPlus from './IconPlus';
 import IconRestore from './IconRestore';
@@ -50,6 +51,7 @@ const icons = {
     logo: IconLogo,
     sansSerif: IconSansSerif,
     serif: IconSerif,
+    monospace: IconMonospace,
 };
 
 export type IconType = keyof typeof icons;
