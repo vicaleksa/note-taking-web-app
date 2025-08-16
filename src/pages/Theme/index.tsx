@@ -4,7 +4,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import styles from './style.module.css';
 
 export default function Theme() {
-    const { theme, toggleTheme } = useTheme();
+    const { theme, switchTheme } = useTheme();
 
     return (
         <>
@@ -19,7 +19,7 @@ export default function Theme() {
                     description="Pick a clean and classic light theme"
                     icon="sun"
                     checked={theme === 'light'}
-                    onChange={toggleTheme}
+                    onChange={() => { switchTheme('light'); }}
                 />
                 <RadioItem
                     name="colorTheme"
@@ -28,7 +28,7 @@ export default function Theme() {
                     description="Select a sleek and modern dark theme"
                     icon="moon"
                     checked={theme === 'dark'}
-                    onChange={toggleTheme}
+                    onChange={() => { switchTheme('dark'); }}
                 />
                 <RadioItem
                     name="colorTheme"
@@ -37,7 +37,7 @@ export default function Theme() {
                     description="Adapts to your device’s theme"
                     icon="sunAndMoon"
                     checked={theme === 'system'}
-                    onChange={toggleTheme}
+                    onChange={() => { switchTheme('system'); }}
                 />
             </fieldset>
         </>

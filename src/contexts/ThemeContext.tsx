@@ -6,42 +6,71 @@ import {
     useMemo,
     useState,
     PropsWithChildren,
+    useRef,
 } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
 interface ThemeContextValue {
     theme: Theme,
-    toggleTheme: () => void,
+    switchTheme: (themeMode: Theme) => void,
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
     theme: 'light',
-    toggleTheme: () => {},
+    switchTheme: () => {},
 });
 
 export function ThemeProvider({ children }: PropsWithChildren) {
     const [theme, setTheme] = useState<Theme>('light');
+    const themeMediaQueryRef = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
 
     useEffect(() => {
         let savedTheme = localStorage.getItem('theme');
-        if (savedTheme !== 'light' && savedTheme !== 'dark') {
+        if (savedTheme === null) {
             savedTheme = 'light';
         }
-        setTheme(savedTheme as Theme);
+        if (savedTheme === 'system') {
+            savedTheme = themeMediaQueryRef.current.matches ? 'dark' : 'light';
+            setTheme('system');
+        } else {
+            setTheme(savedTheme as Theme);
+        }
         document.body.className = savedTheme;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const toggleTheme = useCallback(() => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        document.body.className = newTheme;
-        localStorage.setItem('theme', newTheme);
+    useEffect(() => {
+        const themeMediaQuery = themeMediaQueryRef.current;
+        const handleSystemThemeChange = (event: MediaQueryListEvent) => {
+            if (theme !== 'system') {
+                return;
+            }
+            document.body.className = event.matches ? 'dark' : 'light';
+        };
+
+        themeMediaQuery.addEventListener('change', handleSystemThemeChange);
+
+        return () => {
+            themeMediaQuery.removeEventListener('change', handleSystemThemeChange);
+        };
     }, [theme]);
 
+    const switchTheme = useCallback((themeMode: Theme) => {
+        setTheme(themeMode);
+        localStorage.setItem('theme', themeMode);
+
+        if (themeMode === 'system') {
+            document.body.className = themeMediaQueryRef.current.matches ? 'dark' : 'light';
+        } else {
+            document.body.className = themeMode;
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const value = useMemo(
-        () => ({ theme, toggleTheme }),
-        [theme, toggleTheme],
+        () => ({ theme, switchTheme }),
+        [theme, switchTheme],
     );
 
     return (
