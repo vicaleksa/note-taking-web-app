@@ -8,6 +8,7 @@ import {
     PropsWithChildren,
     useRef,
 } from 'react';
+import clearClassNames from '../utils/clearClassNames';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -20,6 +21,8 @@ const ThemeContext = createContext<ThemeContextValue>({
     theme: 'light',
     switchTheme: () => {},
 });
+
+const themes = ['light', 'dark', 'system'];
 
 export function ThemeProvider({ children }: PropsWithChildren) {
     const [theme, setTheme] = useState<Theme>('light');
@@ -36,7 +39,8 @@ export function ThemeProvider({ children }: PropsWithChildren) {
         } else {
             setTheme(savedTheme as Theme);
         }
-        document.body.className = savedTheme;
+        clearClassNames(document.body, themes);
+        document.body.classList.add(savedTheme);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -46,7 +50,9 @@ export function ThemeProvider({ children }: PropsWithChildren) {
             if (theme !== 'system') {
                 return;
             }
-            document.body.className = event.matches ? 'dark' : 'light';
+            clearClassNames(document.body, themes);
+            const className = event.matches ? 'dark' : 'light';
+            document.body.classList.add(className);
         };
 
         themeMediaQuery.addEventListener('change', handleSystemThemeChange);
@@ -61,9 +67,12 @@ export function ThemeProvider({ children }: PropsWithChildren) {
         localStorage.setItem('theme', themeMode);
 
         if (themeMode === 'system') {
-            document.body.className = themeMediaQueryRef.current.matches ? 'dark' : 'light';
+            clearClassNames(document.body, themes);
+            const className = themeMediaQueryRef.current.matches ? 'dark' : 'light';
+            document.body.classList.add(className);
         } else {
-            document.body.className = themeMode;
+            clearClassNames(document.body, themes);
+            document.body.classList.add(themeMode);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
