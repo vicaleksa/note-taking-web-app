@@ -1,0 +1,22 @@
+.themeOptions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+    border: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: var(--spacing-250);
+}
+
+.title {
+    font: var(--text-preset1);
+    letter-spacing: var(--letter-spacing-preset1);
+    margin-top: var(--spacing-050);
+    margin-bottom: var(--spacing-100);
+}
+
+.description {
+    padding-bottom: var(--spacing-050);
+    font: var(--text-preset4);
+    color: var(--color-text-secondary);
+}

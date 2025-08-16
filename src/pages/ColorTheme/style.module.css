@@ -9,7 +9,7 @@
 }
 
 .title {
-    font: var(--text-sans-serif-preset1);
+    font: var(--text-preset1);
     letter-spacing: var(--letter-spacing-preset1);
     margin-top: var(--spacing-050);
     margin-bottom: var(--spacing-100);
@@ -17,11 +17,6 @@
 
 .description {
     padding-bottom: var(--spacing-050);
-    font: var(--text-sans-serif-preset4);
+    font: var(--text-preset4);
     color: var(--color-text-secondary);
-}
-
-.buttonContainer {
-    display: flex;
-    justify-content: end;
 }

@@ -3,7 +3,7 @@ import RadioItem from '../../components/RadioItem';
 import { useTheme } from '../../contexts/ThemeContext';
 import styles from './style.module.css';
 
-export default function Theme() {
+export default function ColorTheme() {
     const { theme, switchTheme } = useTheme();
 
     return (

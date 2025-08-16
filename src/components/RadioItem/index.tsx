@@ -3,11 +3,11 @@ import Icon from '../Icons/Icon';
 import styles from './style.module.css';
 
 interface RadioItemProps {
-    name: 'colorTheme',
+    name: 'colorTheme' | 'fontTheme',
     value: string,
     title: string,
     description: string,
-    icon: 'sun' | 'moon' | 'sunAndMoon',
+    icon: 'sun' | 'moon' | 'sunAndMoon' | 'sansSerif' | 'serif' | 'monospace',
     checked: boolean,
     onChange: (value: string) => void,
 }
