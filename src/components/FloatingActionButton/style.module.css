@@ -6,23 +6,26 @@
     position: fixed;
     right: 1rem;
 
-    /* 57px - navbar size */
-    bottom: calc(57px + 1rem);
+    /* 3.625rem - navbar size */
+    bottom: calc(3.625rem + 1rem);
     background-color: var(--color-accent-primary);
     border-radius: var(--radius-full);
     box-shadow: var(--shadow-floating-button);
-}
-
-.FABsmall {
     padding: var(--spacing-100);
-}
-
-.FABlarge {
-    padding: var(--spacing-200);
 }
 
 .icon {
     color: var(--color-icon-inverted);
     width: var(--spacing-400);
     height: var(--spacing-400);
+}
+
+@media (width >= 48rem) {
+    .FAB {
+        padding: var(--spacing-200);
+        right: 2rem;
+
+        /* 4.75rem - navbar size */
+        bottom: calc(4.75rem + 2rem);
+    }
 }

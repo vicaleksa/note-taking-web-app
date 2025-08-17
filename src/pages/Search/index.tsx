@@ -48,7 +48,6 @@ export default function Search() {
                 <Alert text="No notes match your search. Try a different keyword or create a new note." />
             )}
             <FloatingActionButton
-                size="small"
                 ariaLabel="Create a new note"
                 icon="plus"
             />

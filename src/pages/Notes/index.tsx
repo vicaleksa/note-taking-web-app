@@ -16,7 +16,6 @@ export default function Notes() {
                 <Alert text="You don’t have any notes yet. Start a new note to capture your thoughts and ideas." />
             )}
             <FloatingActionButton
-                size="small"
                 ariaLabel="Create a new note"
                 icon="plus"
             />

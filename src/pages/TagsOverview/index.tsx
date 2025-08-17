@@ -20,7 +20,6 @@ export default function TagsOverview() {
                 <Alert text="You don’t have any tags yet. Add tags to your notes to make them easier to find." />
             )}
             <FloatingActionButton
-                size="small"
                 ariaLabel="Create a new note"
                 icon="plus"
             />

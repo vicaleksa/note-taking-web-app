@@ -26,7 +26,6 @@ export default function NotesByTag() {
             </p>
             <NoteList notes={notes} />
             <FloatingActionButton
-                size="small"
                 ariaLabel="Create a new note"
                 icon="plus"
             />

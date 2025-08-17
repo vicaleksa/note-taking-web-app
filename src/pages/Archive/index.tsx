@@ -19,7 +19,6 @@ export default function Archive() {
                 <Alert text="No notes have been archived yet. Move notes here for safekeeping, or create a new note." />
             )}
             <FloatingActionButton
-                size="small"
                 ariaLabel="Create a new note"
                 icon="plus"
             />
