@@ -11,8 +11,8 @@
 .title {
     font: var(--text-preset1);
     letter-spacing: var(--letter-spacing-preset1);
-    margin-top: var(--spacing-050);
-    margin-bottom: var(--spacing-100);
+    padding-top: var(--spacing-150);
+    padding-bottom: var(--spacing-100);
 }
 
 .description {

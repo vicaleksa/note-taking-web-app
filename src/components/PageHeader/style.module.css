@@ -4,6 +4,6 @@
 
 @media (width >= 48rem) {
     .header {
-        padding: var(--spacing-200) var(--spacing-400);
+        padding: var(--spacing-300) var(--spacing-400);
     }
 }

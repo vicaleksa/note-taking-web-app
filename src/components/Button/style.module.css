@@ -69,6 +69,7 @@
 }
 
 .buttonGhost {
+    font-weight: 400;
     gap: var(--spacing-050);
     color: var(--color-text-secondary);
     padding: 0;

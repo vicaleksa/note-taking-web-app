@@ -60,3 +60,10 @@
     gap: var(--spacing-200);
     justify-content: flex-end;
 }
+
+@media (width >= 48rem) {
+    .card {
+        width: 27.5rem;
+        margin: auto;
+    }
+}

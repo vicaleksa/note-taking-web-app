@@ -1,7 +1,7 @@
 .title {
     font: var(--text-preset1);
     letter-spacing: var(--letter-spacing-preset1);
-    margin-top: var(--spacing-050);
+    margin-top: var(--spacing-200);
     margin-bottom: var(--spacing-200);
     color: var(--color-text-secondary);
 }

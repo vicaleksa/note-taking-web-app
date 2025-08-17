@@ -10,7 +10,7 @@ export default function Notes() {
 
     return (
         <>
-            <h1 className={styles.title}>All Notes</h1>
+            <h1 className={styles.notesTitle}>All Notes</h1>
             <NoteList notes={notes} />
             {notes.length === 0 && (
                 <Alert text="You don’t have any notes yet. Start a new note to capture your thoughts and ideas." />

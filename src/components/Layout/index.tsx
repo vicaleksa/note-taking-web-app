@@ -8,7 +8,7 @@ export default function Layout() {
         <div className={styles.layout}>
             <div className={styles.scrollable}>
                 <PageHeader />
-                <main className={styles.content}>
+                <main className={styles.mainContent}>
                     <Outlet />
                 </main>
             </div>

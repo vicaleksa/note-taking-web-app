@@ -1,7 +1,7 @@
 .container {
     display: flex;
     gap: var(--spacing-100);
-    padding-top: var(--spacing-100);
+    padding-top: var(--spacing-150);
     padding-bottom: var(--spacing-150);
 }
 
@@ -19,5 +19,4 @@
 .divider:not(:last-of-type) {
     height: 1px;
     background-color: var(--color-border);
-    margin-bottom: var(--spacing-050);
 }

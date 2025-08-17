@@ -52,8 +52,21 @@
 }
 
 @media (width >= 48rem) {
+    .title {
+        font: var(--text-preset1);
+        letter-spacing: var(--letter-spacing-preset1);
+        margin-bottom: var(--spacing-100);
+    }
+
     .navContainer {
         padding-top: var(--spacing-200);
         padding-bottom: var(--spacing-200);
+    }
+
+    .property {
+        row-gap: var(--spacing-100);
+        padding-bottom: var(--spacing-200);
+        margin-bottom: var(--spacing-200);
+        font: var(--text-preset4);
     }
 }

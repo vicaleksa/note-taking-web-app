@@ -29,3 +29,9 @@
 .searchInput::placeholder {
     color: var(--color-text-tertiary);
 }
+
+@media (width >= 48rem) {
+    .searchForm {
+        padding: var(--spacing-200) var(--spacing-200);
+    }
+}

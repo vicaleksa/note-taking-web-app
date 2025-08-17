@@ -5,10 +5,10 @@
     background-color: var(--color-bg-secondary);
 }
 
-.content {
+.mainContent {
     background-color: var(--color-bg-primary);
     flex-grow: 1;
-    padding: var(--spacing-100) var(--spacing-200) var(--spacing-250) var(--spacing-200);
+    padding: var(--spacing-250) var(--spacing-200);
     border-top-left-radius: var(--radius-12);
     border-top-right-radius: var(--radius-12);
 }
@@ -22,4 +22,10 @@
 
 .fixed {
     flex: 0 0;
+}
+
+@media (width >= 48rem) {
+    .mainContent {
+        padding: var(--spacing-300) var(--spacing-400);
+    }
 }
