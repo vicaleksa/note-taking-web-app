@@ -13,19 +13,36 @@
     border-top-right-radius: var(--radius-12);
 }
 
-.scrollable {
+.content {
     display: flex;
     flex-direction: column;
     flex: 1 1;
     overflow-y: scroll;
 }
 
-.fixed {
+.navigation {
     flex: 0 0;
 }
 
 @media (width >= 48rem) {
     .mainContent {
         padding: var(--spacing-300) var(--spacing-400);
+    }
+}
+
+@media (width >= 64rem) {
+    .layout {
+        flex-direction: row-reverse;
+        background-color: var(--color-bg-primary);
+    }
+
+    .navigation {
+        flex: 1 0;
+        border-right: 1px solid var(--color-border);
+        overflow-y: scroll;
+    }
+
+    .content {
+        flex: 4 0;
     }
 }

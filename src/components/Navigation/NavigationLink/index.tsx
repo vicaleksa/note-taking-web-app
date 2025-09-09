@@ -10,8 +10,8 @@ type NavigationLinkProps = {
 }
 
 const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
-    styles.iconButton,
-    { [styles.iconButtonActive]: isActive },
+    styles.linkContainer,
+    { [styles.linkContainerActive]: isActive },
 );
 
 export default function NavigationLink({ link, icon, text }: NavigationLinkProps) {

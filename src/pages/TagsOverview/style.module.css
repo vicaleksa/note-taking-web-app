@@ -3,3 +3,14 @@
     letter-spacing: var(--letter-spacing-preset1);
     margin-bottom: var(--spacing-200);
 }
+
+@media (width >= 64rem) {
+    .title {
+        font: var(--text-preset4);
+        letter-spacing: var(--letter-spacing-preset4);
+        font-weight: 500;
+        color: var(--color-text-tertiary);
+        padding: var(--spacing-100);
+        margin-bottom: 0;
+    }
+}
