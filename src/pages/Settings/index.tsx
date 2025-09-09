@@ -21,7 +21,7 @@ export default function Settings() {
                     leftIcon="lock"
                     text="Change Password"
                 />
-                <div className={styles.divider} />
+                <div className={styles.divider} aria-hidden="true" />
                 <MenuItem
                     link="/settings/logout"
                     leftIcon="logout"

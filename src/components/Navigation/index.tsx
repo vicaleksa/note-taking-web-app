@@ -83,7 +83,7 @@ export default function Navigation() {
                             text="Archived Notes"
                         />
                     </ul>
-                    <div className={styles.divider} />
+                    <div className={styles.divider} aria-hidden="true" />
                     <TagsOverview />
                 </>
             )}

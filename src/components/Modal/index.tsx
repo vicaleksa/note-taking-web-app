@@ -48,7 +48,7 @@ export default function Modal({
                     <p className={styles.text}>{text}</p>
                 </div>
             </div>
-            <div className={styles.divider} />
+            <div className={styles.divider} aria-hidden="true" />
             <div className={styles.buttonContainer}>
                 <Button variant="secondary" buttonText="Cancel" onClick={onClose} />
                 <Button

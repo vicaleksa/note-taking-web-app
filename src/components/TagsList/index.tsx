@@ -20,7 +20,7 @@ export default function TagsList({ tags }: TagsListProps) {
                 <Icon type="tag" className={styles.icon} />
                 <p className={styles.tagTitle}>{tag}</p>
             </NavLink>
-            <div className={styles.divider} />
+            <div className={styles.divider} aria-hidden="true" />
         </Fragment>
     ));
 
