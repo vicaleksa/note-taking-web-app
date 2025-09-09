@@ -12,9 +12,9 @@ export default function Layout() {
                     <Outlet />
                 </main>
             </div>
-            <div className={styles.navigation}>
+            <nav className={styles.navigation}>
                 <Navigation />
-            </div>
+            </nav>
         </div>
     );
 }

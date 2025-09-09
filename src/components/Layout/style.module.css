@@ -21,12 +21,19 @@
 }
 
 .navigation {
-    flex: 0 0;
+    padding: var(--spacing-150) var(--spacing-200);
+    background-color: var(--color-bg-primary);
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-small-top);
 }
 
 @media (width >= 48rem) {
     .mainContent {
         padding: var(--spacing-300) var(--spacing-400);
+    }
+
+    .navigation {
+        padding: var(--spacing-150) var(--spacing-400);
     }
 }
 
@@ -40,6 +47,10 @@
         flex: 1 0;
         border-right: 1px solid var(--color-border);
         overflow-y: scroll;
+        flex-direction: column;
+        padding: var(--spacing-150) var(--spacing-200);
+        border-top: none;
+        box-shadow: none;
     }
 
     .content {

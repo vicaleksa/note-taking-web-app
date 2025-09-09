@@ -16,12 +16,15 @@ const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
 
 export default function NavigationLink({ link, icon, text }: NavigationLinkProps) {
     return (
-        <NavLink
-            to={link}
-            className={getNavClassName}
-        >
-            <Icon type={icon} />
-            <span className={styles.text}>{text}</span>
-        </NavLink>
+        <li className={styles.navbarItem}>
+            <NavLink
+                to={link}
+                className={getNavClassName}
+                aria-label={`Go to ${text}`}
+            >
+                <Icon type={icon} />
+                <span className={styles.text}>{text}</span>
+            </NavLink>
+        </li>
     );
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { NavLink } from 'react-router';
 import styles from './style.module.css';
 import NavigationLink from './NavigationLink';
 import IconLogo from '../Icons/IconLogo';
@@ -31,9 +32,9 @@ export default function Navigation() {
     }, []);
 
     return (
-        <div className={styles.navbar}>
+        <>
             {navigationType === 'bottom' && (
-                <>
+                <ul className={styles.bottomNavbar}>
                     <NavigationLink
                         link="/"
                         icon="home"
@@ -59,27 +60,33 @@ export default function Navigation() {
                         icon="settings"
                         text="Settings"
                     />
-                </>
+                </ul>
             )}
             {navigationType === 'side' && (
                 <>
-                    <div className={styles.logoContainer}>
+                    <NavLink
+                        to="/"
+                        className={styles.logoContainer}
+                        aria-label="Go to all notes"
+                    >
                         <IconLogo />
-                    </div>
-                    <NavigationLink
-                        link="/"
-                        icon="home"
-                        text="All Notes"
-                    />
-                    <NavigationLink
-                        link="/archive"
-                        icon="archive"
-                        text="Archived Notes"
-                    />
+                    </NavLink>
+                    <ul>
+                        <NavigationLink
+                            link="/"
+                            icon="home"
+                            text="All Notes"
+                        />
+                        <NavigationLink
+                            link="/archive"
+                            icon="archive"
+                            text="Archived Notes"
+                        />
+                    </ul>
                     <div className={styles.divider} />
                     <TagsOverview />
                 </>
             )}
-        </div>
+        </>
     );
 }

@@ -1,8 +1,11 @@
+.navbarItem {
+    flex-grow: 1;
+}
+
 .linkContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-grow: 1;
     padding: var(--spacing-050) 0;
     border-radius: var(--radius-4);
     color: var(--color-icon-secondary);
