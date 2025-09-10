@@ -1,39 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router';
 import styles from './style.module.css';
 import NavigationLink from './NavigationLink';
 import IconLogo from '../Icons/IconLogo';
 import TagsOverview from '../../pages/TagsOverview';
-
-type NavigationType = 'bottom' | 'side';
+import useBreakpointType from '../../hooks/useBreakpointType';
 
 export default function Navigation() {
-    const largeScreenMediaQuery = window.matchMedia('(width >= 64rem)');
-    const sizeMediaQueryRef = useRef(largeScreenMediaQuery);
-    const [navigationType, setNavigationType] = useState<NavigationType>(
-        sizeMediaQueryRef.current.matches ? 'side' : 'bottom',
-    );
-
-    useEffect(() => {
-        const sizeMediaQuery = sizeMediaQueryRef.current;
-        const handleNavigationElementChange = (event: MediaQueryListEvent) => {
-            if (event.matches) {
-                setNavigationType('side');
-            } else {
-                setNavigationType('bottom');
-            }
-        };
-
-        sizeMediaQuery.addEventListener('change', handleNavigationElementChange);
-
-        return () => {
-            sizeMediaQuery.removeEventListener('change', handleNavigationElementChange);
-        };
-    }, []);
+    const breakpointType = useBreakpointType();
 
     return (
         <>
-            {navigationType === 'bottom' && (
+            {breakpointType === 'mobile' && (
                 <ul className={styles.bottomNavbar}>
                     <NavigationLink
                         link="/"
@@ -62,7 +39,7 @@ export default function Navigation() {
                     />
                 </ul>
             )}
-            {navigationType === 'side' && (
+            {breakpointType === 'desktop' && (
                 <>
                     <NavLink
                         to="/"
