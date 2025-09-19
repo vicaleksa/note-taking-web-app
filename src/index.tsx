@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { FontProvider } from './contexts/FontContext';
 import 'normalize.css';
@@ -17,33 +17,58 @@ import Settings from './pages/Settings';
 import ColorTheme from './pages/ColorTheme';
 import FontTheme from './pages/FontTheme';
 
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Layout />,
+        children: [
+            { index: true, element: <Notes /> },
+
+            { path: 'new', element: <NoteDetail create /> },
+            { path: ':id', element: <NoteDetail /> },
+
+            {
+                path: 'search',
+                children: [
+                    { index: true, element: <Search /> },
+                    { path: ':id', element: <NoteDetail /> },
+                ],
+            },
+
+            {
+                path: 'archive',
+                children: [
+                    { index: true, element: <Archive /> },
+                    { path: ':id', element: <NoteDetail archived /> },
+                ],
+            },
+
+            {
+                path: 'tags',
+                children: [
+                    { index: true, element: <TagsOverview /> },
+                    { path: ':tagId', element: <NotesByTag /> },
+                    { path: ':tagId/:id', element: <NoteDetail /> },
+                ],
+            },
+
+            {
+                path: 'settings',
+                children: [
+                    { index: true, element: <Settings />, handle: { title: 'Settings' } },
+                    { path: 'theme', element: <ColorTheme /> },
+                    { path: 'font', element: <FontTheme /> },
+                ],
+            },
+        ],
+    },
+]);
+
 function App() {
     return (
         <ThemeProvider>
             <FontProvider>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Layout />}>
-                            <Route index element={<Notes />} />
-                            <Route path="/new" element={<NoteDetail create />} />
-                            <Route path="/:id" element={<NoteDetail />} />
-
-                            <Route path="/search" element={<Search />} />
-                            <Route path="/search/:id" element={<NoteDetail />} />
-
-                            <Route path="/archive" element={<Archive />} />
-                            <Route path="/archive/:id" element={<NoteDetail archived />} />
-
-                            <Route path="/tags" element={<TagsOverview />} />
-                            <Route path="/tags/:tagId" element={<NotesByTag />} />
-                            <Route path="/tags/:tagId/:id" element={<NoteDetail />} />
-
-                            <Route path="/settings" element={<Settings />} />
-                            <Route path="/settings/theme" element={<ColorTheme />} />
-                            <Route path="/settings/font" element={<FontTheme />} />
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
+                <RouterProvider router={router} />
             </FontProvider>
         </ThemeProvider>
     );
