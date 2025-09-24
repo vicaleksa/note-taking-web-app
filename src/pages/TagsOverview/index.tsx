@@ -1,6 +1,7 @@
 import Alert from '../../components/Alert';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import TagsList from '../../components/TagsList';
+import useBreakpointType from '../../hooks/useBreakpointType';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import styles from './style.module.css';
 
@@ -12,6 +13,8 @@ export default function TagsOverview() {
     });
     const uniqueTags = Array.from(tagSet);
 
+    const breakpointType = useBreakpointType();
+
     return (
         <>
             <h1 className={styles.title}>Tags</h1>
@@ -19,10 +22,12 @@ export default function TagsOverview() {
             {uniqueTags.length === 0 && (
                 <Alert text="You don’t have any tags yet. Add tags to your notes to make them easier to find." />
             )}
-            <FloatingActionButton
-                ariaLabel="Create a new note"
-                icon="plus"
-            />
+            {breakpointType === 'mobile' && (
+                <FloatingActionButton
+                    ariaLabel="Create a new note"
+                    icon="plus"
+                />
+            )}
         </>
     );
 }

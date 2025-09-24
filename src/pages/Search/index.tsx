@@ -6,6 +6,7 @@ import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import Alert from '../../components/Alert';
 import { Note } from '../../types';
 import FloatingActionButton from '../../components/FloatingActionButton';
+import useBreakpointType from '../../hooks/useBreakpointType';
 
 export default function Search() {
     const [searchFilter, setSearchFilter] = useState('');
@@ -27,6 +28,8 @@ export default function Search() {
         });
     }
 
+    const breakpointType = useBreakpointType();
+
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setSearchFilter(value);
@@ -47,10 +50,12 @@ export default function Search() {
             {notes.length === 0 && searchFilter && (
                 <Alert text="No notes match your search. Try a different keyword or create a new note." />
             )}
-            <FloatingActionButton
-                ariaLabel="Create a new note"
-                icon="plus"
-            />
+            {breakpointType === 'mobile' && (
+                <FloatingActionButton
+                    ariaLabel="Create a new note"
+                    icon="plus"
+                />
+            )}
         </>
     );
 }

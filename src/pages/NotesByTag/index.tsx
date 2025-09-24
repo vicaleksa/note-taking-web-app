@@ -4,12 +4,15 @@ import BackLink from '../../components/BackLink';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import NoteList from '../../components/NoteList';
+import useBreakpointType from '../../hooks/useBreakpointType';
 
 export default function NotesByTag() {
     const { tagId } = useParams();
 
     const storageNotes = getNotesFromStorage();
     const notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === tagId?.toLowerCase()));
+
+    const breakpointType = useBreakpointType();
 
     return (
         <>
@@ -25,10 +28,12 @@ export default function NotesByTag() {
                 ” tag are shown here.
             </p>
             <NoteList notes={notes} />
-            <FloatingActionButton
-                ariaLabel="Create a new note"
-                icon="plus"
-            />
+            {breakpointType === 'mobile' && (
+                <FloatingActionButton
+                    ariaLabel="Create a new note"
+                    icon="plus"
+                />
+            )}
         </>
     );
 }
