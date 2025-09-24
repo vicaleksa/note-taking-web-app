@@ -35,3 +35,12 @@
         padding: var(--spacing-200) var(--spacing-200);
     }
 }
+
+@media (width >= 64rem) {
+    .searchForm {
+        box-sizing: border-box;
+        padding: var(--spacing-150) var(--spacing-200);
+        width: 18.75rem;
+        margin-bottom: 0;
+    }
+}
