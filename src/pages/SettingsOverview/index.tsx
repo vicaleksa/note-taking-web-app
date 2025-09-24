@@ -1,7 +1,7 @@
 import MenuItem from '../../components/MenuItem';
 import styles from './style.module.css';
 
-export default function Settings() {
+export default function SettingsOverview() {
     return (
         <>
             <h1 className={styles.title}>Settings</h1>

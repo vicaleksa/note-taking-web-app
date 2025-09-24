@@ -1,0 +1,19 @@
+@media (width >= 64rem) {
+    .settingsLayout {
+        height: 100%;
+        display: flex;
+    }
+
+    .settingsOverview {
+        max-width: 16.125rem;
+        box-sizing: border-box;
+        flex-grow: 1;
+        border-right: 1px solid var(--color-border);
+        padding: var(--spacing-250) var(--spacing-200) var(--spacing-250) var(--spacing-400);
+    }
+
+    .settingsOption {
+        flex-grow: 4;
+        padding: var(--spacing-400);
+    }
+}

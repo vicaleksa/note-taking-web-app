@@ -20,3 +20,11 @@
     font: var(--text-preset4);
     color: var(--color-text-secondary);
 }
+
+@media (width >= 64rem) {
+    .title {
+        font: var(--text-preset3);
+        letter-spacing: var(--letter-spacing-preset3);
+        padding-top: 0;
+    }
+}

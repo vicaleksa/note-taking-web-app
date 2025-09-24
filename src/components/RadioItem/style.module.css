@@ -56,3 +56,10 @@
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
 }
+
+@media (width >= 64rem) {
+    .radioContainer {
+        max-width: 33rem;
+        box-sizing: border-box;
+    }
+}

@@ -1,14 +1,16 @@
 import BackLink from '../../components/BackLink';
 import RadioItem from '../../components/RadioItem';
 import { useFont } from '../../contexts/FontContext';
+import useBreakpointType from '../../hooks/useBreakpointType';
 import styles from './style.module.css';
 
 export default function FontTheme() {
     const { font, switchFont } = useFont();
+    const breakpointType = useBreakpointType();
 
     return (
         <>
-            <BackLink text="Settings" />
+            {breakpointType === 'mobile' && <BackLink text="Settings" />}
             <fieldset className={styles.themeOptions}>
                 <legend className={styles.title}>Font Theme</legend>
                 <p className={styles.description}>Choose your font theme:</p>

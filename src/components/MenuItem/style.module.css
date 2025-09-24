@@ -1,4 +1,4 @@
-.container {
+.menuContainer {
     display: flex;
     align-items: center;
     gap: var(--spacing-100);
@@ -16,4 +16,16 @@
     flex-grow: 1;
     color: var(--color-text-primary);
     font: var(--text-preset4);
+}
+
+@media (width >= 64rem) {
+    .menuContainer {
+        border-radius: var(--radius-6);
+        padding: var(--spacing-100);
+    }
+
+    .menuContainerActive {
+        background-color: var(--color-bg-secondary);
+        color: var(--color-text-accent);
+    }
 }

@@ -1,14 +1,16 @@
 import BackLink from '../../components/BackLink';
 import RadioItem from '../../components/RadioItem';
 import { useTheme } from '../../contexts/ThemeContext';
+import useBreakpointType from '../../hooks/useBreakpointType';
 import styles from './style.module.css';
 
 export default function ColorTheme() {
     const { theme, switchTheme } = useTheme();
+    const breakpointType = useBreakpointType();
 
     return (
         <>
-            <BackLink text="Settings" />
+            {breakpointType === 'mobile' && <BackLink text="Settings" />}
             <fieldset className={styles.themeOptions}>
                 <legend className={styles.title}>Color Theme</legend>
                 <p className={styles.description}>Choose your color theme:</p>

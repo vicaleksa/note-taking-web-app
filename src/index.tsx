@@ -13,9 +13,10 @@ import Search from './pages/Search';
 import Archive from './pages/Archive';
 import TagsOverview from './pages/TagsOverview';
 import NotesByTag from './pages/NotesByTag';
-import Settings from './pages/Settings';
+import SettingsOverview from './pages/SettingsOverview';
 import ColorTheme from './pages/ColorTheme';
 import FontTheme from './pages/FontTheme';
+import SettingsLayout from './pages/SettingsLayout';
 
 const router = createBrowserRouter([
     {
@@ -54,10 +55,11 @@ const router = createBrowserRouter([
 
             {
                 path: 'settings',
+                element: <SettingsLayout />,
                 children: [
-                    { index: true, element: <Settings />, handle: { title: 'Settings' } },
-                    { path: 'theme', element: <ColorTheme /> },
-                    { path: 'font', element: <FontTheme /> },
+                    { index: true, element: <SettingsOverview /> },
+                    { path: 'theme', element: <ColorTheme />, handle: { title: 'Settings' } },
+                    { path: 'font', element: <FontTheme />, handle: { title: 'Settings' } },
                 ],
             },
         ],

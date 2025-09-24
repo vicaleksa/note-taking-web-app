@@ -14,3 +14,9 @@
     height: 1px;
     background-color: var(--color-border);
 }
+
+@media (width >= 64rem) {
+    .title {
+        display: none;
+    }
+}
