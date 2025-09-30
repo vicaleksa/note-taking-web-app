@@ -70,3 +70,19 @@
         font: var(--text-preset4);
     }
 }
+
+@media (width >= 64rem) {
+    .text {
+        padding-bottom: 0;
+    }
+
+    .actions {
+        max-width: 15.125rem;
+        flex: 1 0;
+        order: 5;
+    }
+
+    .note {
+        flex: 2 0;
+    }
+}

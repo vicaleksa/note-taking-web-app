@@ -12,7 +12,7 @@ export default function Notes() {
     const breakpointType = useBreakpointType();
 
     return (
-        <>
+        <div className={styles.notesContainer}>
             <h1 className={styles.notesTitle}>All Notes</h1>
             <NoteList notes={notes} />
             {notes.length === 0 && (
@@ -24,6 +24,6 @@ export default function Notes() {
                     icon="plus"
                 />
             )}
-        </>
+        </div>
     );
 }

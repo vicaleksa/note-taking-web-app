@@ -1,0 +1,19 @@
+.noteView {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (width >= 64rem) {
+    .notesLayout {
+        display: flex;
+        height: 100%;
+    }
+
+    .noteView {
+        justify-content: space-between;
+        flex-direction: row;
+        gap: var(--spacing-500);
+        flex: 3 0;
+        padding: var(--spacing-250) var(--spacing-300);
+    }
+}

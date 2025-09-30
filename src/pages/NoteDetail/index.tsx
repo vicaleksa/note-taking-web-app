@@ -176,108 +176,112 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
 
     return (
         <>
-            <Modal
-                icon="delete"
-                title="Delete Note"
-                text="Are you sure you want to permanently delete this note? This action cannot be undone."
-                color="red"
-                open={isOpenDeleteModal}
-                onClose={() => { setIsOpenDeleteModal(false); }}
-                onAction={deleteNote}
-                actionContent="Delete Note"
-            />
-            {!archived && (
+            <div className={styles.actions}>
+                <NoteActions
+                    onSave={saveNote}
+                    onDelete={() => { setIsOpenDeleteModal(true); }}
+                    onArchive={() => {
+                        if (!archived) {
+                            setIsOpenUnarchiveToast(false);
+                            setIsOpenArchiveModal(true);
+                        } else {
+                            setIsOpenArchiveToast(false);
+                            unarchiveNote();
+                        }
+                    }}
+                    create={create}
+                    archived={archived}
+                />
+            </div>
+            <div className={styles.note}>
                 <Modal
-                    icon="archive"
-                    title="Archive Note"
-                    text="Are you sure you want to archive this note?
-                    You can find it in the Archived Notes section and restore it anytime."
-                    color="blue_bg"
-                    open={isOpenArchiveModal}
-                    onClose={() => { setIsOpenArchiveModal(false); }}
-                    onAction={archiveNote}
-                    actionContent="Archive Note"
+                    icon="delete"
+                    title="Delete Note"
+                    text="Are you sure you want to permanently delete this note? This action cannot be undone."
+                    color="red"
+                    open={isOpenDeleteModal}
+                    onClose={() => { setIsOpenDeleteModal(false); }}
+                    onAction={deleteNote}
+                    actionContent="Delete Note"
                 />
-            )}
-            {isOpenArchiveToast && (
-                <Toast
-                    icon="checkmark"
-                    text="Note archived."
-                    link="/archive"
-                    linkText="Archived Notes"
-                    onClose={() => { setIsOpenArchiveToast(false); }}
-                />
-            )}
-            {isOpenUnarchiveToast && (
-                <Toast
-                    icon="checkmark"
-                    text="Note restored to active notes."
-                    link="/"
-                    linkText="All Notes"
-                    onClose={() => { setIsOpenUnarchiveToast(false); }}
-                />
-            )}
-            <NoteActions
-                onSave={saveNote}
-                onDelete={() => { setIsOpenDeleteModal(true); }}
-                onArchive={() => {
-                    if (!archived) {
-                        setIsOpenUnarchiveToast(false);
-                        setIsOpenArchiveModal(true);
-                    } else {
-                        setIsOpenArchiveToast(false);
-                        unarchiveNote();
-                    }
-                }}
-                create={create}
-                archived={archived}
-            />
-            <textarea
-                ref={titleRef}
-                value={formState.title}
-                onChange={handleChange}
-                onKeyDown={handleEnterDown}
-                rows={1}
-                name="title"
-                id="title"
-                className={clsx(styles.title, styles.textarea)}
-                placeholder="Enter a title…"
-            />
-            <div className={styles.property}>
-                <IconTag className={styles.propertyIcon} />
-                <label className={styles.propertyName} htmlFor="tags">Tags</label>
+                {!archived && (
+                    <Modal
+                        icon="archive"
+                        title="Archive Note"
+                        text="Are you sure you want to archive this note?
+                        You can find it in the Archived Notes section and restore it anytime."
+                        color="blue_bg"
+                        open={isOpenArchiveModal}
+                        onClose={() => { setIsOpenArchiveModal(false); }}
+                        onAction={archiveNote}
+                        actionContent="Archive Note"
+                    />
+                )}
+                {isOpenArchiveToast && (
+                    <Toast
+                        icon="checkmark"
+                        text="Note archived."
+                        link="/archive"
+                        linkText="Archived Notes"
+                        onClose={() => { setIsOpenArchiveToast(false); }}
+                    />
+                )}
+                {isOpenUnarchiveToast && (
+                    <Toast
+                        icon="checkmark"
+                        text="Note restored to active notes."
+                        link="/"
+                        linkText="All Notes"
+                        onClose={() => { setIsOpenUnarchiveToast(false); }}
+                    />
+                )}
                 <textarea
-                    ref={tagsRef}
-                    name="tags"
-                    id="tags"
-                    rows={1}
-                    value={formState.tags}
-                    className={clsx(styles.tags, styles.textarea)}
-                    placeholder="Add tags separated by commas (e.g. Work, Planning)"
+                    ref={titleRef}
+                    value={formState.title}
                     onChange={handleChange}
                     onKeyDown={handleEnterDown}
+                    rows={1}
+                    name="title"
+                    id="title"
+                    className={clsx(styles.title, styles.textarea)}
+                    placeholder="Enter a title…"
                 />
+                <div className={styles.property}>
+                    <IconTag className={styles.propertyIcon} />
+                    <label className={styles.propertyName} htmlFor="tags">Tags</label>
+                    <textarea
+                        ref={tagsRef}
+                        name="tags"
+                        id="tags"
+                        rows={1}
+                        value={formState.tags}
+                        className={clsx(styles.tags, styles.textarea)}
+                        placeholder="Add tags separated by commas (e.g. Work, Planning)"
+                        onChange={handleChange}
+                        onKeyDown={handleEnterDown}
+                    />
 
-                {archived && (
-                    <>
-                        <IconLoading className={styles.propertyIcon} />
-                        <div className={styles.propertyName}>Status</div>
-                        <div className={styles.propertyName}>Archived</div>
-                    </>
-                )}
+                    {archived && (
+                        <>
+                            <IconLoading className={styles.propertyIcon} />
+                            <div className={styles.propertyName}>Status</div>
+                            <div className={styles.propertyName}>Archived</div>
+                        </>
+                    )}
 
-                <IconClock className={styles.propertyIcon} />
-                <div className={styles.propertyName}>Last edited</div>
-                <time>{formState.lastEdited ? formatDate(formState.lastEdited) : 'Not yet saved'}</time>
+                    <IconClock className={styles.propertyIcon} />
+                    <div className={styles.propertyName}>Last edited</div>
+                    <time>{formState.lastEdited ? formatDate(formState.lastEdited) : 'Not yet saved'}</time>
+                </div>
+                <textarea
+                    ref={textRef}
+                    name="content"
+                    className={clsx(styles.text, styles.textarea)}
+                    value={formState.content}
+                    placeholder="Start typing your note here…"
+                    onChange={handleChange}
+                />
             </div>
-            <textarea
-                ref={textRef}
-                name="content"
-                className={clsx(styles.text, styles.textarea)}
-                value={formState.content}
-                placeholder="Start typing your note here…"
-                onChange={handleChange}
-            />
         </>
     );
 }

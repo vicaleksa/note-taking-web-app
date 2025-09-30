@@ -17,16 +17,17 @@ import SettingsOverview from './pages/SettingsOverview';
 import ColorTheme from './pages/ColorTheme';
 import FontTheme from './pages/FontTheme';
 import SettingsLayout from './pages/SettingsLayout';
+import NotesLayout from './pages/NotesLayout';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
         children: [
-            { index: true, element: <Notes /> },
+            { index: true, element: <Notes />, handle: { title: 'All Notes' } },
 
             { path: 'new', element: <NoteDetail create /> },
-            { path: ':id', element: <NoteDetail /> },
+            { path: ':id', element: <NotesLayout><NoteDetail /></NotesLayout>, handle: { title: 'All Notes' } },
 
             {
                 path: 'search',
