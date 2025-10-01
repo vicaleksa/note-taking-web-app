@@ -1,5 +1,11 @@
 .divider:not(:last-of-type) {
     height: 1px;
     background-color: var(--color-border);
-    margin-bottom: var(--spacing-050);
+}
+
+@media (width >= 64rem) {
+    .noteCardActive {
+        background-color: var(--color-bg-secondary);
+        border-radius: var(--radius-6);
+    }
 }
