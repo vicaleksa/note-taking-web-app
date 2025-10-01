@@ -42,11 +42,9 @@ export default function NoteActions({
             }
             {breakpointType === 'desktop' && (
                 <div className={styles.actionsSidebar}>
-                    <Button variant="primary" buttonText="Save Note" onClick={onSave} />
                     { !create && (
                         <Button
                             variant="outlined"
-                            buttonText="Archive Note"
                             leftIcon={archived ? 'restore' : 'archive'}
                             onClick={onArchive}
                         />
@@ -54,11 +52,11 @@ export default function NoteActions({
                     { !create && (
                         <Button
                             variant="outlined"
-                            buttonText="Delete Note"
                             leftIcon="delete"
                             onClick={onDelete}
                         />
                     )}
+                    <Button variant="primary" buttonText="Save" onClick={onSave} />
                 </div>
             )}
         </>
