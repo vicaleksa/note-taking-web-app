@@ -77,12 +77,16 @@
     }
 
     .actions {
-        max-width: 15.125rem;
-        flex: 1 0;
         order: 5;
     }
 
     .note {
         flex: 2 0;
+    }
+
+    .buttonContainer {
+        position: sticky;
+        bottom: var(--spacing-200);
+        padding-top: var(--spacing-200);
     }
 }

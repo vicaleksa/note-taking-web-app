@@ -12,8 +12,8 @@
     .noteView {
         justify-content: space-between;
         flex-direction: row;
-        gap: var(--spacing-500);
-        flex: 3 0;
+        gap: var(--spacing-800);
+        flex: 2 0;
         padding: var(--spacing-250) var(--spacing-300);
     }
 }
