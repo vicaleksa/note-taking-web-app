@@ -1,9 +1,16 @@
 .divider:not(:last-of-type) {
     height: 1px;
     background-color: var(--color-border);
+    margin-top: var(--spacing-050);
+    margin-bottom: var(--spacing-050);
 }
 
 @media (width >= 64rem) {
+    .noteCard:hover {
+        background-color: var(--color-bg-secondary);
+        border-radius: var(--radius-6);
+    }
+
     .newNoteCard {
         font: var(--text-preset3);
         letter-spacing: var(--letter-spacing-preset3);
@@ -15,5 +22,6 @@
     .noteCardActive {
         background-color: var(--color-bg-secondary);
         border-radius: var(--radius-6);
+        cursor: default;
     }
 }
