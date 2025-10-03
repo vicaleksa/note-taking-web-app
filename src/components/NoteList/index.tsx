@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
 import clsx from 'clsx';
 import NoteCard from '../NoteCard';
@@ -15,6 +15,8 @@ const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
 );
 
 export default function NoteList({ notes }: NoteListProps) {
+    const location = useLocation();
+
     const noteListElement = notes.map((note) => (
         <Fragment key={note.id}>
             <NavLink to={`/${note.id}`} className={getNavClassName}>
@@ -28,5 +30,17 @@ export default function NoteList({ notes }: NoteListProps) {
         </Fragment>
     ));
 
-    return noteListElement;
+    return (
+        <>
+            {location.pathname === '/new' && (
+                <>
+                    <div className={styles.newNoteCard}>
+                        Untitled Note
+                    </div>
+                    <div className={styles.divider} aria-hidden="true" />
+                </>
+            )}
+            {noteListElement}
+        </>
+    );
 }

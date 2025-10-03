@@ -4,6 +4,14 @@
 }
 
 @media (width >= 64rem) {
+    .newNoteCard {
+        font: var(--text-preset3);
+        letter-spacing: var(--letter-spacing-preset3);
+        padding: var(--spacing-100);
+        background-color: var(--color-bg-secondary);
+        border-radius: var(--radius-6);
+    }
+
     .noteCardActive {
         background-color: var(--color-bg-secondary);
         border-radius: var(--radius-6);
