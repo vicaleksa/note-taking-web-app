@@ -23,10 +23,6 @@
     letter-spacing: var(--letter-spacing-preset6);
 }
 
-.linkContainerActive .text {
-    color: var(--color-text-accent);
-}
-
 @media (width >= 48rem) {
     .linkContainer {
         gap: var(--spacing-050);
@@ -38,6 +34,11 @@
 }
 
 @media (width >= 64rem) {
+    .navbarItem:hover {
+        background-color: var(--color-bg-secondary);
+        border-radius: var(--radius-8);
+    }
+
     .linkContainer {
         flex-direction: row;
         flex-grow: 0;
@@ -50,7 +51,7 @@
 
     .linkContainerActive {
         background-color: var(--color-bg-secondary);
-        color: var(--color-text-accent);
+        cursor: default;
     }
 
     .text {

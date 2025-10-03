@@ -28,6 +28,11 @@
         margin-bottom: var(--spacing-050);
     }
 
+    .tagContainer:hover {
+        background-color: var(--color-bg-secondary);
+        border-radius: var(--radius-8);
+    }
+
     .icon {
         color: var(--color-icon-primary);
     }
@@ -39,16 +44,8 @@
 
     .tagContainerActive {
         background-color: var(--color-bg-secondary);
-        color: var(--color-text-accent);
         border-radius: var(--radius-8);
-    }
-
-    .tagContainerActive .tagTitle {
-        color: var(--color-text-accent);
-    }
-
-    .tagContainerActive .icon {
-        color: var(--color-text-accent);
+        cursor: default;
     }
 
     .divider {
