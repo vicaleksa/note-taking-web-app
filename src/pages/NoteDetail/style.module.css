@@ -72,11 +72,9 @@
 }
 
 @media (width >= 64rem) {
-    .text {
-        padding-bottom: 0;
-    }
-
     .actions {
+        position: sticky;
+        top: 0;
         order: 5;
     }
 

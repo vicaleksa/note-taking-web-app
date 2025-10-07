@@ -18,7 +18,9 @@ export default function TagsOverview() {
     return (
         <>
             <h1 className={styles.title}>Tags</h1>
-            <TagsList tags={uniqueTags} />
+            <div className={styles.tagList}>
+                <TagsList tags={uniqueTags} />
+            </div>
             {uniqueTags.length === 0 && (
                 <Alert text="You don’t have any tags yet. Add tags to your notes to make them easier to find." />
             )}

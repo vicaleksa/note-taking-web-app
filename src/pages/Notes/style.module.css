@@ -18,15 +18,30 @@
 
 @media (width >= 64rem) {
     .notesContainer {
-        max-width: 18.125rem;
+        max-width: 16rem;
+        display: flex;
+        flex-direction: column;
         height: 100%;
         box-sizing: border-box;
         flex: 1 0;
-        padding: var(--spacing-250) var(--spacing-200) var(--spacing-250) var(--spacing-400);
+        padding: var(--spacing-250) var(--spacing-200);
         border-right: 1px solid var(--color-border);
     }
 
     .notesTitle {
         display: none;
+    }
+
+    .buttonContainer {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--spacing-200);
+    }
+
+    .noteList {
+        overflow: hidden auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-050);
     }
 }

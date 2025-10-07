@@ -26,7 +26,6 @@ export default function NoteList({ notes }: NoteListProps) {
                     date={note.lastEdited}
                 />
             </NavLink>
-            <div className={styles.divider} aria-hidden="true" />
         </Fragment>
     ));
 

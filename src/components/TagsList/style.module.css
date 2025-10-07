@@ -34,10 +34,12 @@
     }
 
     .icon {
+        overflow: visible;
         color: var(--color-icon-primary);
     }
 
     .tagTitle {
+        overflow-x: hidden;
         font: var(--text-preset4);
         color: var(--color-text-primary);
     }

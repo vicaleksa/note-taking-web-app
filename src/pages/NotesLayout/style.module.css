@@ -10,6 +10,7 @@
     }
 
     .noteView {
+        overflow: hidden auto;
         justify-content: space-between;
         flex-direction: row;
         gap: var(--spacing-800);

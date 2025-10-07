@@ -6,6 +6,10 @@
 }
 
 @media (width >= 64rem) {
+    .noteCard {
+        border-bottom: 1px solid var(--color-border);
+    }
+
     .noteCard:hover {
         background-color: var(--color-bg-secondary);
         border-radius: var(--radius-6);

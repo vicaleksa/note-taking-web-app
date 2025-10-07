@@ -4,7 +4,6 @@
     gap: var(--spacing-150);
     padding: var(--spacing-100);
     margin-bottom: var(--spacing-050);
-    border-radius: var(--radius-6);
 }
 
 .title {
@@ -19,6 +18,7 @@
 }
 
 .tag {
+    overflow: hidden;
     padding: var(--spacing-025) var(--spacing-075);
     font: var(--text-preset6);
     letter-spacing: var(--letter-spacing-preset6);

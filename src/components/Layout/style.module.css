@@ -39,24 +39,27 @@
 
 @media (width >= 64rem) {
     .layout {
+        overflow: hidden;
         flex-direction: row-reverse;
         background-color: var(--color-bg-primary);
     }
 
     .content {
         flex: 4 0;
+        overflow: initial;
     }
 
     .mainContent {
+        overflow: hidden;
         padding: 0;
     }
 
     .navigation {
+        display: flex;
         max-width: 17rem;
         box-sizing: border-box;
         flex: 1 0;
         border-right: 1px solid var(--color-border);
-        overflow-y: scroll;
         flex-direction: column;
         padding: var(--spacing-150) var(--spacing-200);
         border-top: none;
