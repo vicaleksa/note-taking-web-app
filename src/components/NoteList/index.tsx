@@ -7,6 +7,7 @@ import { Note } from '../../types';
 
 interface NoteListProps {
     notes: Note[],
+    archived?: boolean,
 }
 
 const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
@@ -14,12 +15,12 @@ const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
     { [styles.noteCardActive]: isActive },
 );
 
-export default function NoteList({ notes }: NoteListProps) {
+export default function NoteList({ notes, archived }: NoteListProps) {
     const location = useLocation();
 
     const noteListElement = notes.map((note) => (
         <Fragment key={note.id}>
-            <NavLink to={`/${note.id}`} className={getNavClassName}>
+            <NavLink to={`${archived ? '/archive/' : '/'}${note.id}`} className={getNavClassName}>
                 <NoteCard
                     title={note.title || 'Untitled Note'}
                     tags={note.tags}

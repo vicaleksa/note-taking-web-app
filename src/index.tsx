@@ -7,10 +7,8 @@ import 'normalize.css';
 import './variables.css';
 import './index.css';
 import Layout from './components/Layout';
-import Notes from './pages/Notes';
 import NoteDetail from './pages/NoteDetail';
 import Search from './pages/Search';
-import Archive from './pages/Archive';
 import TagsOverview from './pages/TagsOverview';
 import NotesByTag from './pages/NotesByTag';
 import SettingsOverview from './pages/SettingsOverview';
@@ -23,11 +21,29 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+        handle: { title: 'All Notes' },
         children: [
-            { index: true, element: <Notes />, handle: { title: 'All Notes' } },
-
-            { path: 'new', element: <NoteDetail create /> },
-            { path: ':id', element: <NotesLayout><NoteDetail /></NotesLayout>, handle: { title: 'All Notes' } },
+            {
+                path: '/',
+                element: <NotesLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: null,
+                        handle: { title: 'All Notes' },
+                    },
+                    {
+                        path: 'new',
+                        element: <NoteDetail create key="new" />,
+                        handle: { title: 'All Notes' },
+                    },
+                    {
+                        path: ':id',
+                        element: <NoteDetail />,
+                        handle: { title: 'All Notes' },
+                    },
+                ],
+            },
 
             {
                 path: 'search',
@@ -39,9 +55,18 @@ const router = createBrowserRouter([
 
             {
                 path: 'archive',
+                element: <NotesLayout archived />,
                 children: [
-                    { index: true, element: <Archive /> },
-                    { path: ':id', element: <NoteDetail archived /> },
+                    {
+                        index: true,
+                        element: null,
+                        handle: { title: 'Archived Notes' },
+                    },
+                    {
+                        path: ':id',
+                        element: <NoteDetail archived />,
+                        handle: { title: 'Archived Notes' },
+                    },
                 ],
             },
 
