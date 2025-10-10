@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import styles from './style.module.css';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
@@ -13,6 +13,8 @@ interface NotesProps {
 }
 
 export default function Notes({ archived }: NotesProps) {
+    const navigate = useNavigate();
+
     const storageNotes = getNotesFromStorage();
 
     let notes: Note[] = [];
@@ -42,12 +44,11 @@ export default function Notes({ archived }: NotesProps) {
         <div className={styles.notesContainer}>
             <h1 className={styles.notesTitle}>{getTitle()}</h1>
             {breakpointType === 'desktop' && (
-                <Link to="/new" className={styles.buttonContainer}>
-                    <Button
-                        variant="primary"
-                        buttonText="New note"
-                    />
-                </Link>
+                <Button
+                    variant="primary"
+                    buttonText="New note"
+                    onClick={() => { navigate('/new'); }}
+                />
             )}
             {archived && (
                 <p className={styles.description}>
