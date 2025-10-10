@@ -12,6 +12,7 @@ export default function BackLink({ text }: BackLinkProps) {
             to=".."
             relative="path"
             className={styles.backButton}
+            aria-label={text}
         >
             <IconArrowLeft className={styles.backIcon} />
             {text}

@@ -16,7 +16,11 @@ const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
 export default function TagsList({ tags }: TagsListProps) {
     const tagsList = tags.map((tag) => (
         <Fragment key={tag}>
-            <NavLink to={tag} className={getNavClassName}>
+            <NavLink
+                to={tag}
+                className={getNavClassName}
+                aria-label={`View notes tagged '${tag}'`}
+            >
                 <Icon type="tag" className={styles.icon} />
                 <p className={styles.tagTitle}>{tag}</p>
             </NavLink>

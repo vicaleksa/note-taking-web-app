@@ -20,7 +20,7 @@ export default function MenuItem({
     text,
 }: MenuItemProps) {
     return (
-        <NavLink to={link} className={getNavClassName}>
+        <NavLink to={link} className={getNavClassName} aria-label={text}>
             <Icon type={leftIcon} className={styles.icon} />
             <p className={styles.text}>{text}</p>
         </NavLink>

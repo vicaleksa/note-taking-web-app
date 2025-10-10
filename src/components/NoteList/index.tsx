@@ -20,7 +20,14 @@ export default function NoteList({ notes, archived }: NoteListProps) {
 
     const noteListElement = notes.map((note) => (
         <Fragment key={note.id}>
-            <NavLink to={`${archived ? '/archive/' : '/'}${note.id}`} className={getNavClassName}>
+            <NavLink
+                to={`${archived ? '/archive/' : '/'}${note.id}`}
+                className={getNavClassName}
+                aria-label={
+                    `Open ${archived ? '/archive/' : ''}note '${note.title || 'Untitled'}',
+                    last edited on ${note.lastEdited}`
+                }
+            >
                 <NoteCard
                     title={note.title || 'Untitled Note'}
                     tags={note.tags}
