@@ -17,7 +17,7 @@ export default function TagsList({ tags }: TagsListProps) {
     const tagsList = tags.map((tag) => (
         <Fragment key={tag}>
             <NavLink
-                to={tag}
+                to={`/tags/${tag}`}
                 className={getNavClassName}
                 aria-label={`View notes tagged '${tag}'`}
             >

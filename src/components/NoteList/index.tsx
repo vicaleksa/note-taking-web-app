@@ -8,6 +8,8 @@ import { Note } from '../../types';
 interface NoteListProps {
     notes: Note[],
     archived?: boolean,
+    tags?: boolean,
+    tagId?: string,
 }
 
 const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
@@ -15,13 +17,26 @@ const getNavClassName = ({ isActive }: { isActive: boolean }) => clsx(
     { [styles.noteCardActive]: isActive },
 );
 
-export default function NoteList({ notes, archived }: NoteListProps) {
+export default function NoteList({
+    notes,
+    archived,
+    tags,
+    tagId = '',
+}: NoteListProps) {
     const location = useLocation();
+
+    let path = '/';
+    if (archived) {
+        path = '/archive/';
+    }
+    if (tags) {
+        path = `/tags/${tagId}/`;
+    }
 
     const noteListElement = notes.map((note) => (
         <Fragment key={note.id}>
             <NavLink
-                to={`${archived ? '/archive/' : '/'}${note.id}`}
+                to={`${path}${note.id}`}
                 className={getNavClassName}
                 aria-label={
                     `Open ${archived ? '/archive/' : ''}note '${note.title || 'Untitled'}',

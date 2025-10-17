@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import styles from './style.module.css';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
@@ -10,16 +10,20 @@ import { Note } from '../../types';
 
 interface NotesProps {
     archived?: boolean,
+    tags?: boolean,
 }
 
-export default function Notes({ archived }: NotesProps) {
+export default function Notes({ archived, tags }: NotesProps) {
     const navigate = useNavigate();
+    const { tagId } = useParams();
 
     const storageNotes = getNotesFromStorage();
 
     let notes: Note[] = [];
     if (archived) {
         notes = storageNotes.filter((note) => note.isArchived);
+    } else if (tags) {
+        notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === tagId?.toLowerCase()));
     } else {
         notes = storageNotes.filter((note) => !note.isArchived);
     }
@@ -55,8 +59,15 @@ export default function Notes({ archived }: NotesProps) {
                     All your archived notes are stored here. You can restore or delete them anytime.
                 </p>
             )}
+            {tags && (
+                <p className={styles.description}>
+                    All notes with the ”
+                    {tagId}
+                    ” tag are shown here.
+                </p>
+            )}
             <div className={styles.noteList}>
-                <NoteList notes={notes} archived={archived} />
+                <NoteList notes={notes} archived={archived} tags={tags} tagId={tagId} />
             </div>
             {notes.length === 0 && (
                 <Alert text={getAlertText()} />

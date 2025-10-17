@@ -9,13 +9,12 @@ import './index.css';
 import Layout from './components/Layout';
 import NoteDetail from './pages/NoteDetail';
 import Search from './pages/Search';
-import TagsOverview from './pages/TagsOverview';
-import NotesByTag from './pages/NotesByTag';
 import SettingsOverview from './pages/SettingsOverview';
 import ColorTheme from './pages/ColorTheme';
 import FontTheme from './pages/FontTheme';
 import SettingsLayout from './pages/SettingsLayout';
 import NotesLayout from './pages/NotesLayout';
+import ResponsiveNotes from './components/ResponsiveNotes';
 
 const router = createBrowserRouter([
     {
@@ -72,10 +71,24 @@ const router = createBrowserRouter([
 
             {
                 path: 'tags',
+                element: <NotesLayout tags />,
+                handle: { title: 'Notes Tagged:' },
                 children: [
-                    { index: true, element: <TagsOverview /> },
-                    { path: ':tagId', element: <NotesByTag /> },
-                    { path: ':tagId/:id', element: <NoteDetail /> },
+                    {
+                        index: true,
+                        element: null,
+                        handle: { title: 'Notes Tagged:' },
+                    },
+                    {
+                        path: ':tagId',
+                        element: <ResponsiveNotes />,
+                        handle: { title: 'Notes Tagged:' },
+                    },
+                    {
+                        path: ':tagId/:id',
+                        element: <NoteDetail />,
+                        handle: { title: 'Notes Tagged:' },
+                    },
                 ],
             },
 
