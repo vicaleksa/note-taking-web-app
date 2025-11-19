@@ -32,6 +32,7 @@
     --color-accent-primary: #335CFF; /* blue-500 */
     --color-accent-primary-hover: #2547D0; /* blue-700 */
     --color-accent-danger: #FB3748;
+    --color-accent-danger-hover: #C50011;
     --color-accent-success: #21C16B;
 
     /* Components */

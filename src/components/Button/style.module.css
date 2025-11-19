@@ -10,13 +10,6 @@
     letter-spacing: var(--letter-spacing-preset4);
 }
 
-.button:disabled {
-    pointer-events: none;
-    box-shadow: none;
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-muted);
-}
-
 .buttonPrimary {
     background-color: var(--color-accent-primary);
     color: var(--color-text-inverted);
@@ -46,14 +39,14 @@
     transition: background-color 125ms, box-shadow 125ms;
 }
 
-.buttonOutlined {
+.iconButton {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     box-shadow: 0 0 0 1px var(--color-border-strong) inset;
     transition: background-color 450ms, box-shadow 450ms;
 }
 
-.buttonOutlined:hover {
+.iconButton:hover {
     background-color: var(--color-bg-secondary);
     color: var(--color-text-secondary);
     box-shadow: none;
@@ -61,7 +54,7 @@
 }
 
 .buttonSecondary:focus,
-.buttonOutlined:focus {
+.iconButton:focus {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     box-shadow: 0 0 0 1px var(--color-border-strong-focus) inset;
@@ -76,6 +69,20 @@
     padding: 0;
 }
 
+.buttonDanger {
+    background-color: var(--color-accent-danger);
+    color: var(--color-text-inverted);
+}
+
+.buttonDanger:hover {
+    background-color: var(--color-accent-danger-hover);
+}
+
+.buttonDanger:focus {
+    outline: var(--spacing-025) solid var(--color-border-focus);
+    outline-offset: var(--spacing-025);
+}
+
 .leftIcon {
     width: var(--spacing-250);
     height: var(--spacing-250);
@@ -87,16 +94,9 @@
     height: var(--spacing-225);
 }
 
-.buttonGhostBlue {
+.buttonAccentGhost {
+    padding: 0;
     color: var(--color-text-accent);
-}
-
-.buttonDanger {
-    background-color: var(--color-accent-danger);
-}
-
-.buttonBlue {
-    background-color: var(--color-accent-primary);
 }
 
 button:hover .leftIcon {

@@ -4,10 +4,10 @@ import Icon, { IconType } from '../Icons/Icon';
 import styles from './style.module.css';
 
 type ModalProps = {
+    type: 'delete' | 'archive',
     icon: IconType,
     title: string,
     text: string,
-    color: string,
     open: boolean,
     onClose: React.MouseEventHandler,
     onAction: React.MouseEventHandler,
@@ -15,10 +15,10 @@ type ModalProps = {
 }
 
 export default function Modal({
+    type,
     icon,
     title,
     text,
-    color,
     open = false,
     onClose,
     onAction,
@@ -52,8 +52,7 @@ export default function Modal({
             <div className={styles.buttonContainer}>
                 <Button variant="secondary" buttonText="Cancel" onClick={onClose} />
                 <Button
-                    variant="primary"
-                    color={color}
+                    variant={type === 'delete' ? 'danger' : 'primary'}
                     buttonText={actionContent}
                     onClick={onAction}
                 />

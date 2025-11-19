@@ -195,10 +195,10 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
             </div>
             <div className={styles.note}>
                 <Modal
+                    type="delete"
                     icon="delete"
                     title="Delete Note"
                     text="Are you sure you want to permanently delete this note? This action cannot be undone."
-                    color="red"
                     open={isOpenDeleteModal}
                     onClose={() => { setIsOpenDeleteModal(false); }}
                     onAction={deleteNote}
@@ -206,11 +206,11 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
                 />
                 {!archived && (
                     <Modal
+                        type="archive"
                         icon="archive"
                         title="Archive Note"
                         text="Are you sure you want to archive this note?
                         You can find it in the Archived Notes section and restore it anytime."
-                        color="blue_bg"
                         open={isOpenArchiveModal}
                         onClose={() => { setIsOpenArchiveModal(false); }}
                         onAction={archiveNote}

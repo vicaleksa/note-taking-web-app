@@ -35,7 +35,7 @@ export default function NoteActions({
                                     onClick={onArchive}
                                 />
                             )}
-                            <Button variant="ghost" buttonText="Save Note" color="blue" onClick={onSave} />
+                            <Button variant="accentGhost" buttonText="Save Note" onClick={onSave} />
                         </div>
                     </div>
                 )
@@ -44,14 +44,14 @@ export default function NoteActions({
                 <div className={styles.actionsSidebar}>
                     { !create && (
                         <Button
-                            variant="outlined"
+                            variant="iconButton"
                             leftIcon={archived ? 'restore' : 'archive'}
                             onClick={onArchive}
                         />
                     )}
                     { !create && (
                         <Button
-                            variant="outlined"
+                            variant="iconButton"
                             leftIcon="delete"
                             onClick={onDelete}
                         />
