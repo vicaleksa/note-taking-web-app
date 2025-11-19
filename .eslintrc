@@ -19,7 +19,8 @@
         "airbnb",
         "airbnb/hooks",
         "plugin:react/jsx-runtime",
-        "plugin:@typescript-eslint/strict-type-checked"
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:storybook/recommended"
     ],
     "rules": {
         "indent": ["error", 4],
@@ -41,5 +42,13 @@
             "ts": "never",
             "tsx": "never"
         }]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.stories.*", ".storybook/**/*"],
+            "rules": {
+                "import/no-extraneous-dependencies": "off"
+            }
+        }
+    ]
 }
