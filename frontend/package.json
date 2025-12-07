@@ -7,7 +7,7 @@
     "build": "webpack",
     "lint": "eslint ./src --ext .ts,.tsx",
     "lint:style": "stylelint \"./src/**/*.css\"",
-    "ts": "tsc --noEmit",
+    "ts:check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
