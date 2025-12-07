@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Note {
@@ -8,13 +13,13 @@ export class Note {
     @Column()
         title: string;
 
-    @Column()
+    @Column('simple-array')
         tags: string[];
 
     @Column()
         content: string;
 
-    @Column()
+    @UpdateDateColumn()
         lastEdited: Date;
 
     @Column()
