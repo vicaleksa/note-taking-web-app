@@ -2,19 +2,19 @@ import clsx from 'clsx';
 import styles from './style.module.css';
 import Icon, { IconType } from '../Icons/Icon';
 
-type ButtonProps = {
+type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
     variant: 'primary' | 'secondary' | 'ghost' | 'accentGhost' | 'danger' | 'iconButton';
     buttonText?: string;
     leftIcon?: IconType;
-    onClick?: React.MouseEventHandler;
 }
 
 export default function Button({
-    variant, buttonText, leftIcon, onClick,
+    variant, type = 'button', buttonText, leftIcon, onClick,
 }: ButtonProps) {
     return (
         <button
-            type="button"
+            // eslint-disable-next-line react/button-has-type
+            type={type}
             onClick={onClick}
             className={clsx(styles.button, {
                 [styles.buttonPrimary]: variant === 'primary',
