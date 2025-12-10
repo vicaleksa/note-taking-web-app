@@ -2,7 +2,7 @@ import { NavLink, UIMatch, useMatches } from 'react-router';
 import styles from './style.module.css';
 import IconLogo from '../Icons/IconLogo';
 import useBreakpointType from '../../hooks/useBreakpointType';
-import SearchInput from '../SearchInput';
+// import SearchInput from '../SearchInput';
 import IconSettings from '../Icons/IconSettings';
 
 interface Handle {
@@ -28,7 +28,7 @@ export default function PageHeader() {
                 breakpointType === 'desktop' && (
                     <div className={styles.topBar}>
                         <h1 className={styles.title}>{title}</h1>
-                        <SearchInput />
+                        {/* <SearchInput /> */}
                         <NavLink
                             to="settings"
                             aria-label="Go to settings"

@@ -15,8 +15,13 @@ import FontTheme from './pages/FontTheme';
 import SettingsLayout from './pages/SettingsLayout';
 import NotesLayout from './pages/NotesLayout';
 import ResponsiveNotes from './components/ResponsiveNotes';
+import SignUp from './pages/SignUp';
 
 const router = createBrowserRouter([
+    {
+        path: 'register',
+        element: <SignUp />,
+    },
     {
         path: '/',
         element: <Layout />,

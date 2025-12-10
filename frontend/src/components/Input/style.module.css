@@ -1,0 +1,97 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-075);
+}
+
+.label {
+    font: var(--text-preset4);
+    letter-spacing: var(--letter-spacing-preset4);
+}
+
+.inputField {
+    display: flex;
+    gap: var(--spacing-100);
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-8);
+    padding: var(--spacing-150) var(--spacing-200);
+    transition: background-color 450ms;
+}
+
+.leftIcon,
+.rightIcon {
+    color: var(--color-icon-tertiary);
+    width: var(--spacing-250);
+    height: var(--spacing-250);
+}
+
+.input {
+    flex-grow: 1;
+    border: none;
+    background-color: transparent;
+}
+
+.input::placeholder {
+    font: var(--text-preset5);
+    color: var(--color-text-tertiary);
+}
+
+.hint {
+    display: flex;
+    gap: var(--spacing-075);
+    align-items: center;
+    color: var(--color-text-secondary);
+}
+
+.hintIcon {
+    color: var(--color-accent-danger);
+    width: var(--spacing-200);
+    height: var(--spacing-200);
+}
+
+.hintText {
+    color: var(--color-accent-danger);
+    font: var(--text-preset6);
+    letter-spacing: var(--letter-spacing-preset6);
+}
+
+.inputField:hover {
+    background-color: var(--color-bg-accent);
+    transition: background-color 125ms;
+}
+
+.inputField:focus-within {
+    border: 1px solid var(--color-border-strong-focus);
+    outline: var(--spacing-025) solid var(--color-border-focus);
+    outline-offset: var(--spacing-025);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.inputContainer[disabled] {
+    pointer-events: none;
+    user-select: none;
+}
+
+.inputContainer[disabled] .inputContainer {
+    background-color: var(--color-bg-accent);
+}
+
+.inputContainer[disabled] .input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.inputContainer[disabled] .leftIcon {
+    color: var(--color-text-muted);
+}
+
+.inputContainer[disabled] .rightIcon {
+    color: var(--color-text-muted);
+}
+
+.inputContainer[disabled] .hint {
+    color: var(--color-text-muted);
+}
