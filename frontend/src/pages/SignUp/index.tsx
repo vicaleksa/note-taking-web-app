@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import IconLogo from '../../components/Icons/IconLogo';
 import Input from '../../components/Input';
 import styles from './style.module.css';
+import LinkButton from '../../components/LinkButton';
 
 type FormInputs = {
     email: string,
@@ -59,7 +60,9 @@ export default function SignUp() {
                 </form>
                 <div className={styles.loginContainer}>
                     <p className={styles.description}>Already have an account?</p>
-                    <Button variant="accentGhost" buttonText="Login" />
+                    <LinkButton href="/login" variant="accent">
+                        Login
+                    </LinkButton>
                 </div>
             </div>
         </div>

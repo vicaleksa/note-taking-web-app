@@ -1,5 +1,5 @@
 
-.backButton {
+.primaryLink {
     display: flex;
     align-items: center;
     gap: var(--spacing-050);
@@ -8,7 +8,11 @@
     letter-spacing: var(--letter-spacing-preset4);
 }
 
-.backIcon {
-    width: var(--spacing-225);
-    height: var(--spacing-225);
+.primaryLink:hover {
+    color: var(--color-accent-primary-hover);
+    text-decoration: underline;
+}
+
+.accentLink {
+    color: var(--color-text-accent);
 }

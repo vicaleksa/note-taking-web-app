@@ -1,4 +1,5 @@
-import BackLink from '../../components/BackLink';
+import IconArrowLeft from '../../components/Icons/IconArrowLeft';
+import LinkButton from '../../components/LinkButton';
 import RadioItem from '../../components/RadioItem';
 import { useFont } from '../../contexts/FontContext';
 import useBreakpointType from '../../hooks/useBreakpointType';
@@ -10,7 +11,12 @@ export default function FontTheme() {
 
     return (
         <>
-            {breakpointType === 'mobile' && <BackLink text="Settings" />}
+            {breakpointType === 'mobile' && (
+                <LinkButton href=".." variant="primary">
+                    <IconArrowLeft className={styles.backIcon} />
+                    Settings
+                </LinkButton>
+            )}
             <fieldset className={styles.themeOptions}>
                 <legend className={styles.title}>Font Theme</legend>
                 <p className={styles.description}>Choose your font theme:</p>

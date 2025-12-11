@@ -1,4 +1,5 @@
-import BackLink from '../../components/BackLink';
+import IconArrowLeft from '../../components/Icons/IconArrowLeft';
+import LinkButton from '../../components/LinkButton';
 import RadioItem from '../../components/RadioItem';
 import { useTheme } from '../../contexts/ThemeContext';
 import useBreakpointType from '../../hooks/useBreakpointType';
@@ -10,7 +11,12 @@ export default function ColorTheme() {
 
     return (
         <>
-            {breakpointType === 'mobile' && <BackLink text="Settings" />}
+            {breakpointType === 'mobile' && (
+                <LinkButton href=".." variant="primary">
+                    <IconArrowLeft className={styles.backIcon} />
+                    Settings
+                </LinkButton>
+            )}
             <fieldset className={styles.themeOptions}>
                 <legend className={styles.title}>Color Theme</legend>
                 <p className={styles.description}>Choose your color theme:</p>

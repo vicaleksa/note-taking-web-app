@@ -1,3 +1,8 @@
+.backIcon {
+    width: var(--spacing-225);
+    height: var(--spacing-225);
+}
+
 .title {
     font: var(--text-preset1);
     letter-spacing: var(--letter-spacing-preset1);

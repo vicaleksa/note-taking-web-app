@@ -1,7 +1,8 @@
 import Button from '../Button';
 import styles from './style.module.css';
-import BackLink from '../BackLink';
+import LinkButton from '../LinkButton';
 import useBreakpointType from '../../hooks/useBreakpointType';
+import IconArrowLeft from '../Icons/IconArrowLeft';
 
 type NoteActionsProps = {
     onSave: React.MouseEventHandler,
@@ -25,7 +26,10 @@ export default function NoteActions({
             {
                 breakpointType === 'mobile' && (
                     <div className={styles.navContainer}>
-                        <BackLink text="Go Back" />
+                        <LinkButton href=".." variant="primary">
+                            <IconArrowLeft className={styles.backIcon} />
+                            Go Back
+                        </LinkButton>
                         <div className={styles.rightControl}>
                             { !create && <Button variant="ghost" leftIcon="delete" onClick={onDelete} /> }
                             { !create && (

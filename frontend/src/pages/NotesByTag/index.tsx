@@ -1,10 +1,11 @@
 import { useParams } from 'react-router';
 import styles from './style.module.css';
-import BackLink from '../../components/BackLink';
+import LinkButton from '../../components/LinkButton';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import NoteList from '../../components/NoteList';
 import useBreakpointType from '../../hooks/useBreakpointType';
+import IconArrowLeft from '../../components/Icons/IconArrowLeft';
 
 export default function NotesByTag() {
     const { tagId } = useParams();
@@ -16,7 +17,12 @@ export default function NotesByTag() {
 
     return (
         <>
-            <BackLink text="Go Back" />
+            {breakpointType === 'mobile' && (
+                <LinkButton href=".." variant="primary">
+                    <IconArrowLeft className={styles.backIcon} />
+                    Go Back
+                </LinkButton>
+            )}
             <h1 className={styles.title}>
                 Notes Tagged:
                 {' '}

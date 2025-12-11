@@ -1,3 +1,8 @@
+.backIcon {
+    width: var(--spacing-225);
+    height: var(--spacing-225);
+}
+
 .themeOptions {
     display: flex;
     flex-direction: column;
