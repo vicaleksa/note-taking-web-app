@@ -16,11 +16,16 @@ import SettingsLayout from './pages/SettingsLayout';
 import NotesLayout from './pages/NotesLayout';
 import ResponsiveNotes from './components/ResponsiveNotes';
 import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 
 const router = createBrowserRouter([
     {
         path: 'register',
         element: <SignUp />,
+    },
+    {
+        path: 'login',
+        element: <LogIn />,
     },
     {
         path: '/',
