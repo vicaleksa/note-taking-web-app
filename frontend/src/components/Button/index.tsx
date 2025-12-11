@@ -9,13 +9,13 @@ type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
 }
 
 export default function Button({
-    variant, type = 'button', buttonText, leftIcon, onClick,
+    variant, type = 'button', buttonText, leftIcon, ...buttonProps
 }: ButtonProps) {
     return (
         <button
+            {...buttonProps}
             // eslint-disable-next-line react/button-has-type
             type={type}
-            onClick={onClick}
             className={clsx(styles.button, {
                 [styles.buttonPrimary]: variant === 'primary',
                 [styles.buttonSecondary]: variant === 'secondary',
