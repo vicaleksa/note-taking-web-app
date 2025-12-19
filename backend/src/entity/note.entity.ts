@@ -1,9 +1,11 @@
 import {
     Column,
     Entity,
+    ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
 export class Note {
@@ -24,4 +26,7 @@ export class Note {
 
     @Column()
         isArchived: boolean;
+
+    @ManyToOne(() => User, (user) => user.notes)
+        user: User;
 }
