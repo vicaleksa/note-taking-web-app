@@ -4,6 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "lint": "eslint --ext .ts,.tsx .",
     "ts:check": "tsc --noEmit"
   },
@@ -20,6 +21,7 @@
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^4.4.4",
+    "nodemon": "^3.1.11",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "typescript": "^5.9.3",
