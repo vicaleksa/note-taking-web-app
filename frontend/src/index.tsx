@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { FontProvider } from './contexts/FontContext';
 import 'normalize.css';
@@ -17,6 +18,8 @@ import NotesLayout from './pages/NotesLayout';
 import ResponsiveNotes from './components/ResponsiveNotes';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
@@ -117,11 +120,13 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <ThemeProvider>
-            <FontProvider>
-                <RouterProvider router={router} />
-            </FontProvider>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider>
+                <FontProvider>
+                    <RouterProvider router={router} />
+                </FontProvider>
+            </ThemeProvider>
+        </QueryClientProvider>
     );
 }
 
