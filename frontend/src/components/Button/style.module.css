@@ -102,3 +102,10 @@
 button:hover .leftIcon {
     transition: color 450ms;
 }
+
+.button:disabled {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-muted);
+    box-shadow: none;
+    cursor: default;
+}
