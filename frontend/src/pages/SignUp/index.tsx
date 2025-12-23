@@ -1,21 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string } from 'yup';
+import { InferType, object, string } from 'yup';
+import { useMutation } from '@tanstack/react-query';
 import Button from '../../components/Button';
 import IconLogo from '../../components/Icons/IconLogo';
 import Input from '../../components/Input';
 import styles from './style.module.css';
 import LinkButton from '../../components/LinkButton';
-
-type FormInputs = {
-    email: string,
-    password: string,
-}
+import registerUser from '../../api/registerUser';
 
 const formSchema = object({
     email: string().email().required(),
     password: string().min(6).required(),
 });
+
+type FormInputs = InferType<typeof formSchema>;
 
 export default function SignUp() {
     const {
@@ -25,10 +24,14 @@ export default function SignUp() {
     } = useForm<FormInputs>({
         resolver: yupResolver(formSchema),
     });
-    const onSubmit = handleSubmit((data) => {
-        // eslint-disable-next-line no-console
-        console.log(data);
+
+    const mutation = useMutation({
+        mutationFn: registerUser,
     });
+
+    const onSubmit = (data: FormInputs) => {
+        mutation.mutate(data);
+    };
 
     return (
         <div className={styles.background}>
@@ -38,8 +41,7 @@ export default function SignUp() {
                 <p className={styles.description}>
                     Sign up to start organizing your notes and boost your productivity.
                 </p>
-                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-                <form onSubmit={onSubmit} className={styles.form} noValidate>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
                     <Input
                         {...register('email')}
                         aria-invalid={errors.email ? 'true' : 'false'}
@@ -54,9 +56,15 @@ export default function SignUp() {
                         errorMessage={errors.password && errors.password.message}
                         type="password"
                         label="Password"
-                        placeholder=""
+                        placeholder="At least 6 characters"
                     />
-                    <Button variant="primary" buttonText="Sign up" type="submit" />
+                    {mutation.isError ? (<p className={styles.errorMessage}>{mutation.error.message}</p>) : null}
+                    <Button
+                        variant="primary"
+                        buttonText={mutation.isPending ? 'Signing up' : 'Sign up'}
+                        type="submit"
+                        disabled={mutation.isPending}
+                    />
                 </form>
                 <div className={styles.loginContainer}>
                     <p className={styles.description}>Already have an account?</p>
