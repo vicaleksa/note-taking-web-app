@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import express from 'express';
-import dataSource from './data-source';
-import { authRouter } from './routes/auth';
 import cors from 'cors';
+import { authRouter } from './routes/auth';
+import { initDBConnection } from './db/initDBConnection';
 
 const app = express();
 const PORT = 8000;
@@ -13,9 +13,11 @@ app.use(express.json());
 
 app.use('/api/auth', authRouter);
 
-dataSource.initialize()
+initDBConnection()
     .then(() => {
         app.listen(PORT, () => {
             console.log(`server connected on port ${String(PORT)}`);
+        }).on('error', (error) => {
+            console.error('Failed to start server:', error);
         });
     });
