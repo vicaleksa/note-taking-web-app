@@ -43,6 +43,8 @@ export async function registerUser(req: Request<{}, {}, UserData>, res: Response
 
     await userRepository.save(user);
 
+    req.session.userId = user.id;
+
     return res.status(201).json({
         message: 'User registered',
         userId: user.id,
