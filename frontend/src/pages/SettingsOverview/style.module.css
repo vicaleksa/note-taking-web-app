@@ -15,6 +15,10 @@
     background-color: var(--color-border);
 }
 
+.buttonContainer {
+    padding: var(--spacing-100);
+}
+
 @media (width >= 64rem) {
     .title {
         display: none;

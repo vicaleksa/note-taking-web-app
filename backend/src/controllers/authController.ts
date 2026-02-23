@@ -75,3 +75,9 @@ export async function loginUser(req: Request<{}, {}, UserData>, res: Response) {
         message: 'Logged in',
     });
 }
+
+export function logoutUser(req: Request, res: Response) {
+    req.session.destroy(() => {
+        res.json({ message: 'Logged out' });
+    });
+}

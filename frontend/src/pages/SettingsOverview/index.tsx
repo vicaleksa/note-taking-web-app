@@ -1,5 +1,7 @@
 import MenuItem from '../../components/MenuItem';
 import styles from './style.module.css';
+import Button from '../../components/Button';
+import logout from '../../api/logout';
 
 export default function SettingsOverview() {
     return (
@@ -22,11 +24,14 @@ export default function SettingsOverview() {
                     text="Change Password"
                 />
                 <div className={styles.divider} aria-hidden="true" />
-                <MenuItem
-                    link="/settings/logout"
-                    leftIcon="logout"
-                    text="Logout"
-                />
+                <div className={styles.buttonContainer}>
+                    <Button
+                        variant="ghost"
+                        buttonText="Logout"
+                        leftIcon="logout"
+                        onClick={logout}
+                    />
+                </div>
             </div>
         </>
     );
