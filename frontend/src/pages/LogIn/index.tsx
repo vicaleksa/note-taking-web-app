@@ -1,23 +1,22 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string } from 'yup';
+import { InferType, object, string } from 'yup';
+import { useMutation } from '@tanstack/react-query';
 import Button from '../../components/Button';
 import IconLogo from '../../components/Icons/IconLogo';
 import Input from '../../components/Input';
 import styles from './style.module.css';
 import LinkButton from '../../components/LinkButton';
-
-type FormInputs = {
-    email: string,
-    password: string,
-}
+import login from '../../api/login';
 
 const formSchema = object({
     email: string().email().required(),
     password: string().min(6).required(),
 });
 
-export default function SignUp() {
+type FormInputs = InferType<typeof formSchema>;
+
+export default function LogIn() {
     const {
         register,
         formState: { errors },
@@ -25,21 +24,24 @@ export default function SignUp() {
     } = useForm<FormInputs>({
         resolver: yupResolver(formSchema),
     });
-    const onSubmit = handleSubmit((data) => {
-        // eslint-disable-next-line no-console
-        console.log(data);
+
+    const mutation = useMutation({
+        mutationFn: login,
     });
+
+    const onSubmit = (data: FormInputs) => {
+        mutation.mutate(data);
+    };
 
     return (
         <div className={styles.background}>
             <div className={styles.tile}>
                 <IconLogo />
-                <h1 className={styles.header}>Welcome to Note</h1>
+                <h1 className={styles.header}>Welcome to Notes</h1>
                 <p className={styles.description}>
                     Please log in to continue
                 </p>
-                {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-                <form onSubmit={onSubmit} className={styles.form} noValidate>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
                     <Input
                         {...register('email')}
                         aria-invalid={errors.email ? 'true' : 'false'}
@@ -56,7 +58,13 @@ export default function SignUp() {
                         label="Password"
                         placeholder=""
                     />
-                    <Button variant="primary" buttonText="Log in" type="submit" />
+                    {mutation.isError ? (<p className={styles.errorMessage}>{mutation.error.message}</p>) : null}
+                    <Button
+                        variant="primary"
+                        buttonText={mutation.isPending ? 'Logging in' : 'Log in'}
+                        type="submit"
+                        disabled={mutation.isPending}
+                    />
                 </form>
                 <div className={styles.loginContainer}>
                     <p className={styles.description}>No account yet?</p>

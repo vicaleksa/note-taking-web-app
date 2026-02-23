@@ -50,3 +50,28 @@ export async function registerUser(req: Request<{}, {}, UserData>, res: Response
         userId: user.id,
     });
 }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export async function loginUser(req: Request<{}, {}, UserData>, res: Response) {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const existingUser = await dataSource.getRepository(User).findOneBy({ email });
+    if (!existingUser) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const isValidPassword = await bcrypt.compare(password, existingUser.password);
+    if (!isValidPassword) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    req.session.userId = existingUser.id;
+
+    return res.status(201).json({
+        message: 'Logged in',
+    });
+}

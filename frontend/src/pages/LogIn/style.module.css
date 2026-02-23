@@ -39,6 +39,10 @@
     gap: var(--spacing-200);
 }
 
+.errorMessage {
+    color: var(--color-accent-danger);
+}
+
 .loginContainer {
     display: flex;
     margin-top: var(--spacing-200);
