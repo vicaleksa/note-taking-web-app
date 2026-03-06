@@ -1,10 +1,8 @@
-const logout = async () => {
-    try {
-        await fetch('http://localhost:8000/api/auth/logout');
-        window.location.replace('/login');
-    } catch (err) {
-        console.error('Failed to log out', err);
-    }
-};
+import fetchHelper from '../utils/fetchHelper';
+
+const logout = () => fetchHelper('auth/logout', {
+    method: 'POST',
+    credentials: 'include',
+}, 'Logout failed');
 
 export default logout;

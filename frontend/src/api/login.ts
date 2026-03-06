@@ -1,24 +1,17 @@
+import fetchHelper from '../utils/fetchHelper';
+
 type User = {
     email: string,
     password: string,
 }
 
-const login = async (user: User) => {
-    const res = await fetch('http://localhost:8000/api/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-        throw new Error(data.error || 'Login failed. Please try again.');
-    } else {
-        window.location.href = '/';
-    }
-};
+const login = (user: User) => fetchHelper('auth/login', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+}, 'Login failed. Please try again.');
 
 export default login;
