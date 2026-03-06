@@ -25,30 +25,39 @@ export async function registerUser(req: Request<{}, {}, UserData>, res: Response
         return res.status(400).json({ error: 'Password must be at least 6 characters' });
     }
 
-    const userRepository = dataSource.getRepository(User);
+    try {
+        const userRepository = dataSource.getRepository(User);
 
-    const existingUser = await userRepository.findOne({
-        where: { email },
-    });
+        const existingUser = await userRepository.findOne({
+            where: { email },
+        });
 
-    if (existingUser) {
-        return res.status(400).json({ error: 'Email already in use' });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already in use' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const user = new User();
+        user.email = email;
+        user.password = hashedPassword;
+
+        await userRepository.save(user);
+
+        req.session.userId = user.id;
+
+        return res.status(201).json({
+            message: 'User registered',
+            userId: user.id,
+        });
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Registration error:', err.message);
+        } else {
+            console.error('Registration error:', err);
+        }
+        return res.status(500).json({ error: 'Registration failed. Please try again.' });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User();
-    user.email = email;
-    user.password = hashedPassword;
-
-    await userRepository.save(user);
-
-    req.session.userId = user.id;
-
-    return res.status(201).json({
-        message: 'User registered',
-        userId: user.id,
-    });
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -59,25 +68,40 @@ export async function loginUser(req: Request<{}, {}, UserData>, res: Response) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const existingUser = await dataSource.getRepository(User).findOneBy({ email });
-    if (!existingUser) {
-        return res.status(401).json({ error: 'Invalid credentials' });
+    try {
+        const existingUser = await dataSource.getRepository(User).findOneBy({ email });
+        if (!existingUser) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const isValidPassword = await bcrypt.compare(password, existingUser.password);
+        if (!isValidPassword) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        req.session.userId = existingUser.id;
+
+        return res.status(200).json({
+            message: 'Logged in',
+        });
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Login error:', err.message);
+        } else {
+            console.error('Login error:', err);
+        }
+        return res.status(500).json({ error: 'Login failed. Please try again.' });
     }
-
-    const isValidPassword = await bcrypt.compare(password, existingUser.password);
-    if (!isValidPassword) {
-        return res.status(401).json({ error: 'Invalid credentials' });
-    }
-
-    req.session.userId = existingUser.id;
-
-    return res.status(201).json({
-        message: 'Logged in',
-    });
 }
 
 export function logoutUser(req: Request, res: Response) {
-    req.session.destroy(() => {
-        res.json({ message: 'Logged out' });
+    req.session.destroy((err) => {
+        if (err instanceof Error) {
+            console.error('Logout error:', err.message);
+            return res.status(500).json({ error: 'Logout failed' });
+        }
+
+        res.clearCookie('connect.sid');
+        return res.json({ message: 'Logged out' });
     });
 }
