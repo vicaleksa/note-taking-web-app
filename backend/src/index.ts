@@ -24,7 +24,10 @@ if (process.env.SPIRAL_SESSION_SECRET) {
     throw new Error('SPIRAL_SESSION_SECRET variable is not set');
 }
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true,
+}));
 
 app.use(express.json());
 
