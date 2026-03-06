@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType, object, string } from 'yup';
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 import Button from '../../components/Button';
 import IconLogo from '../../components/Icons/IconLogo';
 import Input from '../../components/Input';
@@ -24,9 +25,13 @@ export default function SignUp() {
     } = useForm<FormInputs>({
         resolver: yupResolver(formSchema),
     });
+    const navigate = useNavigate();
 
     const mutation = useMutation({
         mutationFn: registerUser,
+        onSuccess: () => {
+            navigate('/login');
+        },
     });
 
     const onSubmit = (data: FormInputs) => {
