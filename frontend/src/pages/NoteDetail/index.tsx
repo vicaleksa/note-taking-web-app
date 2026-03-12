@@ -1,19 +1,20 @@
 import { useNavigate, useParams } from 'react-router';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { v4 as uuidv4 } from 'uuid';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 import IconClock from '../../components/Icons/IconClock';
 import IconTag from '../../components/Icons/IconTag';
 import styles from './style.module.css';
 import formatDate from '../../utils/formatDate';
 import NoteActions from '../../components/NoteActions';
 import useTextareaResize from '../../hooks/useTextareaResize';
-import parseTags from '../../utils/parseTags';
 import formatTags from '../../utils/formatTags';
 import Modal from '../../components/Modal';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import IconLoading from '../../components/Icons/IconLoading';
 import Toast from '../../components/Toast';
+import saveNote from '../../api/saveNote';
 
 interface NoteDetailProps {
     create?: boolean,
@@ -24,8 +25,8 @@ interface FormDataType {
     title: string,
     tags: string,
     content: string,
-    lastEdited: null | string,
-    isArchived: boolean,
+    lastEdited?: null | string,
+    isArchived?: boolean,
 }
 
 const defaultFormData: FormDataType = {
@@ -48,47 +49,56 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
     const titleRef = useRef<HTMLTextAreaElement>(null);
     const tagsRef = useRef<HTMLTextAreaElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
+    const { register, handleSubmit } = useForm<FormDataType>();
 
-    const saveNote = () => {
-        const newNote = {
-            ...formState,
-            lastEdited: new Date().toISOString(),
-        };
-        setFormState(newNote);
+    const mutation = useMutation({
+        mutationFn: saveNote,
+    });
 
-        const notes = getNotesFromStorage();
-
-        if (create) {
-            const noteId = uuidv4();
-            notes.push({
-                ...newNote,
-                id: noteId,
-                tags: parseTags(newNote.tags),
-            });
-            navigate(`/${noteId}`);
-        } else {
-            const noteIndex = notes.findIndex((note) => note.id === id);
-            if (!id) {
-                console.error('id is undefined');
-                return;
-            }
-            if (noteIndex === -1) {
-                notes.push({
-                    ...newNote,
-                    id,
-                    tags: parseTags(newNote.tags),
-                });
-            } else {
-                notes[noteIndex] = {
-                    ...newNote,
-                    id,
-                    tags: parseTags(newNote.tags),
-                };
-            }
-        }
-
-        localStorage.setItem('notes', JSON.stringify(notes));
+    const onSubmit = (data: FormDataType) => {
+        mutation.mutate(data);
     };
+
+    // const saveNote = () => {
+    //     const newNote = {
+    //         ...formState,
+    //         lastEdited: new Date().toISOString(),
+    //     };
+    //     setFormState(newNote);
+    //
+    //     const notes = getNotesFromStorage();
+    //
+    //     if (create) {
+    //         const noteId = uuidv4();
+    //         notes.push({
+    //             ...newNote,
+    //             id: noteId,
+    //             tags: parseTags(newNote.tags),
+    //         });
+    //         navigate(`/${noteId}`);
+    //     } else {
+    //         const noteIndex = notes.findIndex((note) => note.id === id);
+    //         if (!id) {
+    //             console.error('id is undefined');
+    //             return;
+    //         }
+    //         if (noteIndex === -1) {
+    //             notes.push({
+    //                 ...newNote,
+    //                 id,
+    //                 tags: parseTags(newNote.tags),
+    //             });
+    //         } else {
+    //             notes[noteIndex] = {
+    //                 ...newNote,
+    //                 id,
+    //                 tags: parseTags(newNote.tags),
+    //             };
+    //         }
+    //     }
+    //
+    //     localStorage.setItem('notes', JSON.stringify(notes));
+    // };
 
     const deleteNote = () => {
         const notes = getNotesFromStorage();
@@ -113,18 +123,18 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
         setIsOpenArchiveToast(true);
     };
 
-    const unarchiveNote = () => {
-        const notes = getNotesFromStorage();
-        const noteIndex = notes.findIndex((note) => note.id === id);
-        notes[noteIndex].isArchived = false;
-        localStorage.setItem('notes', JSON.stringify(notes));
-        if (!id) {
-            console.error('id is undefined');
-            return;
-        }
-        navigate(`/${id}`);
-        setIsOpenUnarchiveToast(true);
-    };
+    // const unarchiveNote = () => {
+    //     const notes = getNotesFromStorage();
+    //     const noteIndex = notes.findIndex((note) => note.id === id);
+    //     notes[noteIndex].isArchived = false;
+    //     localStorage.setItem('notes', JSON.stringify(notes));
+    //     if (!id) {
+    //         console.error('id is undefined');
+    //         return;
+    //     }
+    //     navigate(`/${id}`);
+    //     setIsOpenUnarchiveToast(true);
+    // };
 
     useEffect(() => {
         const el = textRef.current;
@@ -155,13 +165,13 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
         }
     }, [create, id]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormState((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //     const { name, value } = e.target;
+    //     setFormState((prev) => ({
+    //         ...prev,
+    //         [name]: value,
+    //     }));
+    // };
 
     const handleEnterDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
@@ -178,7 +188,7 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
         <>
             <div className={styles.actions}>
                 <NoteActions
-                    onSave={saveNote}
+                    onSave={handleSubmit(onSubmit)}
                     onDelete={() => { setIsOpenDeleteModal(true); }}
                     onArchive={() => {
                         if (!archived) {
@@ -186,7 +196,7 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
                             setIsOpenArchiveModal(true);
                         } else {
                             setIsOpenArchiveToast(false);
-                            unarchiveNote();
+                            // unarchiveNote();
                         }
                     }}
                     create={create}
@@ -236,12 +246,9 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
                     />
                 )}
                 <textarea
-                    ref={titleRef}
-                    value={formState.title}
-                    onChange={handleChange}
+                    {...register('title')}
                     onKeyDown={handleEnterDown}
                     rows={1}
-                    name="title"
                     id="title"
                     className={clsx(styles.title, styles.textarea)}
                     placeholder="Enter a title…"
@@ -250,14 +257,11 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
                     <IconTag className={styles.propertyIcon} />
                     <label className={styles.propertyName} htmlFor="tags">Tags</label>
                     <textarea
-                        ref={tagsRef}
-                        name="tags"
+                        {...register('tags')}
                         id="tags"
                         rows={1}
-                        value={formState.tags}
                         className={clsx(styles.tags, styles.textarea)}
                         placeholder="Add tags separated by commas (e.g. Work, Planning)"
-                        onChange={handleChange}
                         onKeyDown={handleEnterDown}
                     />
 
@@ -274,12 +278,9 @@ export default function NoteDetail({ create = false, archived }: NoteDetailProps
                     <time>{formState.lastEdited ? formatDate(formState.lastEdited) : 'Not yet saved'}</time>
                 </div>
                 <textarea
-                    ref={textRef}
-                    name="content"
+                    {...register('content')}
                     className={clsx(styles.text, styles.textarea)}
-                    value={formState.content}
                     placeholder="Start typing your note here…"
-                    onChange={handleChange}
                 />
             </div>
         </>

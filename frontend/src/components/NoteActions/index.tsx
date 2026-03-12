@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../Button';
 import styles from './style.module.css';
 import LinkButton from '../LinkButton';
@@ -39,7 +40,11 @@ export default function NoteActions({
                                     onClick={onArchive}
                                 />
                             )}
-                            <Button variant="accentGhost" buttonText="Save Note" onClick={onSave} />
+                            <Button
+                                variant="accentGhost"
+                                buttonText="Save Note"
+                                onClick={onSave}
+                            />
                         </div>
                     </div>
                 )
@@ -60,7 +65,12 @@ export default function NoteActions({
                             onClick={onDelete}
                         />
                     )}
-                    <Button variant="primary" buttonText="Save" onClick={onSave} />
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        buttonText="Save"
+                        onClick={onSave}
+                    />
                 </div>
             )}
         </>
