@@ -1,11 +1,14 @@
 import {
     Column,
     Entity,
+    JoinTable,
+    ManyToMany,
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Tag } from './tag.entity';
 
 @Entity()
 export class Note {
@@ -15,9 +18,6 @@ export class Note {
     @Column()
         title: string;
 
-    @Column('simple-array')
-        tags: string[];
-
     @Column()
         content: string;
 
@@ -26,6 +26,10 @@ export class Note {
 
     @Column()
         isArchived: boolean;
+
+    @ManyToMany(() => Tag, (tag) => tag.notes)
+    @JoinTable()
+        tags: Tag[];
 
     @ManyToOne(() => User, (user) => user.notes)
         user: User;

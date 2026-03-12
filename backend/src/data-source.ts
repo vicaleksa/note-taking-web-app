@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { Note } from './entity/note.entity';
 import { User } from './entity/user.entity';
+import { Tag } from './entity/tag.entity';
 
 const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
@@ -10,7 +11,7 @@ const dataSourceOptions: DataSourceOptions = {
     username: 'postgres',
     password: 'postgres',
     database: 'notes',
-    entities: [User, Note],
+    entities: [User, Note, Tag],
     synchronize: true,
     logging: false,
 };
