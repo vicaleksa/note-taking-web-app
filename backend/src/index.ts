@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
-import { authRouter } from './routes/auth';
 import { initDBConnection } from './db/initDBConnection';
+import { authRouter } from './routes/auth';
+import { notesRouter } from './routes/notes';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use(session({
     },
 }));
 
+app.use('/api/notes', notesRouter);
 app.use('/api/auth', authRouter);
 
 initDBConnection()
