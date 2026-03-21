@@ -79,10 +79,16 @@ export async function loginUser(req: Request<{}, {}, UserData>, res: Response) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        req.session.userId = existingUser.id;
+        req.session.regenerate((err) => {
+            if (err) {
+                return res.status(500);
+            }
 
-        return res.status(200).json({
-            message: 'Logged in',
+            req.session.userId = existingUser.id;
+
+            req.session.save(() => res.status(200).json({
+                message: 'Logged in',
+            }));
         });
     } catch (err) {
         if (err instanceof Error) {

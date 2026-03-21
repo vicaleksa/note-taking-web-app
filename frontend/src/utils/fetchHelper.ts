@@ -7,7 +7,13 @@ const fetchHelper = async <T = unknown>(
     options?: RequestInit,
     errorMessage?: string,
 ): Promise<T> => {
-    const response = await fetch(`http://localhost:8000/api/${path}`, options);
+    const response = await fetch(
+        `http://localhost:8000/api/${path}`,
+        {
+            ...options,
+            credentials: 'include',
+        },
+    );
 
     let data: unknown;
     try {

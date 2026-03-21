@@ -7,7 +7,6 @@ type User = {
 
 const login = (user: User) => fetchHelper('auth/login', {
     method: 'POST',
-    credentials: 'include',
     headers: {
         'Content-Type': 'application/json',
     },
