@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
+import { RedisStore } from 'connect-redis';
+import { createClient } from 'redis';
 import { initDBConnection } from './db/initDBConnection';
 import { authRouter } from './routes/auth';
 import { notesRouter } from './routes/notes';
@@ -14,6 +16,14 @@ declare module 'express-session' {
         userId: number;
     }
 }
+
+const redisClient = createClient();
+redisClient.connect().catch(console.error);
+
+const redisStore = new RedisStore({
+    client: redisClient,
+    prefix: 'session:',
+});
 
 const app = express();
 const PORT = 8000;
@@ -34,6 +44,7 @@ app.use(express.json());
 
 app.use(session({
     secret,
+    store: redisStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
