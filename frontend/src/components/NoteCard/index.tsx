@@ -1,9 +1,14 @@
 import formatDate from '../../utils/formatDate';
 import styles from './style.module.css';
 
+type Tags = {
+    id: number,
+    name: string,
+}
+
 type NoteCardProps = {
     title: string,
-    tags: string[],
+    tags: Tags[],
     date: string,
 }
 
@@ -13,7 +18,7 @@ export default function NoteCard({
     date,
 }: NoteCardProps) {
     const tagElements = tags.map((tag) => (
-        <div key={tag} className={styles.tag}>{tag}</div>
+        <div key={tag.name} className={styles.tag}>{tag.name}</div>
     ));
     const formattedDate = formatDate(date);
 

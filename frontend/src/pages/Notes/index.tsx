@@ -1,12 +1,13 @@
 import { useNavigate, useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 import styles from './style.module.css';
 import FloatingActionButton from '../../components/FloatingActionButton';
 import Alert from '../../components/Alert';
-import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import NoteList from '../../components/NoteList';
 import useBreakpointType from '../../hooks/useBreakpointType';
 import Button from '../../components/Button';
 import { Note } from '../../types';
+import getNotes from '../../api/getNotes';
 
 interface NotesProps {
     archived?: boolean,
@@ -16,16 +17,36 @@ interface NotesProps {
 export default function Notes({ archived, tags }: NotesProps) {
     const navigate = useNavigate();
     const { tagId } = useParams();
+    const breakpointType = useBreakpointType();
 
-    const storageNotes = getNotesFromStorage();
+    const {
+        isPending, isError, data, error,
+    } = useQuery({
+        queryKey: ['notes'],
+        queryFn: getNotes,
+    });
+
+    if (isPending) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return (
+            <span>
+                Error:
+                {' '}
+                {error.message}
+            </span>
+        );
+    }
 
     let notes: Note[] = [];
     if (archived) {
-        notes = storageNotes.filter((note) => note.isArchived);
+        notes = data.filter((note) => note.isArchived);
     } else if (tags) {
-        notes = storageNotes.filter((note) => note.tags.some((tag) => tag.toLowerCase() === tagId?.toLowerCase()));
+        notes = data.filter((note) => note.tags.some((tag) => tag.name.toLowerCase() === tagId?.toLowerCase()));
     } else {
-        notes = storageNotes.filter((note) => !note.isArchived);
+        notes = data.filter((note) => !note.isArchived);
     }
 
     const getTitle = () => {
@@ -41,8 +62,6 @@ export default function Notes({ archived, tags }: NotesProps) {
         }
         return 'You don’t have any notes yet. Start a new note to capture your thoughts and ideas.';
     };
-
-    const breakpointType = useBreakpointType();
 
     return (
         <div className={styles.notesContainer}>
