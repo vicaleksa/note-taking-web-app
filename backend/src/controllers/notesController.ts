@@ -78,13 +78,14 @@ export async function getAllNotes(req: Request, res: Response) {
 
         if (user) {
             const notes = await noteRepository.find({
-                where: {
-                    userId: req.session.userId,
-                    isArchived: false,
-                },
                 relations: {
-                    user: true,
                     tags: true,
+                },
+                where: {
+                    user: {
+                        id: req.session.userId,
+                    },
+                    isArchived: false,
                 },
             });
 

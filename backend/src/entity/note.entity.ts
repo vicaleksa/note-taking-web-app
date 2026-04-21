@@ -27,9 +27,6 @@ export class Note {
     @Column()
         isArchived: boolean;
 
-    @Column()
-        userId: number;
-
     @ManyToMany(() => Tag, (tag) => tag.notes)
     @JoinTable()
         tags: Tag[];
