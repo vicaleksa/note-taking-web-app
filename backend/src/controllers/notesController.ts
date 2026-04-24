@@ -63,9 +63,50 @@ export async function saveNotes(req: Request<{}, {}, NoteData>, res: Response) {
     }
 }
 
+export async function getNote(req: Request, res: Response) {
+    const noteItem = parseInt(req.params.noteId, 10);
+
+    if (Number.isNaN(noteItem)) {
+        return res.status(400).json({ error: 'Invalid note ID' });
+    }
+
+    try {
+        const userRepository = dataSource.getRepository(User);
+        const noteRepository = dataSource.getRepository(Note);
+
+        const user = await userRepository.findOne({
+            where: { id: req.session.userId },
+        });
+
+        if (user) {
+            const note = await noteRepository.findOne({
+                relations: {
+                    tags: true,
+                },
+                where: {
+                    id: noteItem,
+                    user: {
+                        id: req.session.userId,
+                    },
+                },
+            });
+
+            if (!note) {
+                return res.status(400).json({ error: 'Note not found' });
+            }
+
+            return res.json(note);
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Failed to get a note:', err.message);
+        }
+    }
+}
+
 export async function getAllNotes(req: Request, res: Response) {
     if (!req.session.userId) {
-        return res.json({ error: 'not logged in' });
+        return res.json({ error: 'Not logged in' });
     }
 
     try {
