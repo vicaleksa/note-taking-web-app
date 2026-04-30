@@ -8,7 +8,6 @@ import 'normalize.css';
 import './variables.css';
 import './index.css';
 import Layout from './components/Layout';
-import NoteDetail from './pages/NoteDetail';
 import Search from './pages/Search';
 import SettingsOverview from './pages/SettingsOverview';
 import ColorTheme from './pages/ColorTheme';
@@ -18,6 +17,8 @@ import NotesLayout from './pages/NotesLayout';
 import ResponsiveNotes from './components/ResponsiveNotes';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
+import CreateNote from './pages/CreateNote';
+import EditNote from './pages/EditNote';
 
 const queryClient = new QueryClient();
 
@@ -46,12 +47,12 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'new',
-                        element: <NoteDetail create key="new" />,
+                        element: <CreateNote />,
                         handle: { title: 'All Notes' },
                     },
                     {
                         path: ':id',
-                        element: <NoteDetail />,
+                        element: <EditNote />,
                         handle: { title: 'All Notes' },
                     },
                 ],
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
                 path: 'search',
                 children: [
                     { index: true, element: <Search /> },
-                    { path: ':id', element: <NoteDetail /> },
+                    { path: ':id', element: <EditNote /> },
                 ],
             },
 
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: ':id',
-                        element: <NoteDetail archived />,
+                        element: <EditNote archived />,
                         handle: { title: 'Archived Notes' },
                     },
                 ],
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: ':tagId/:id',
-                        element: <NoteDetail />,
+                        element: <EditNote />,
                         handle: { title: 'Notes Tagged:' },
                     },
                 ],
