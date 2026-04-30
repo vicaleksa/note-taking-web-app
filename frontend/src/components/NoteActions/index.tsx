@@ -7,9 +7,9 @@ import IconArrowLeft from '../Icons/IconArrowLeft';
 
 type NoteActionsProps = {
     onSave: React.MouseEventHandler,
-    onDelete: React.MouseEventHandler,
-    onArchive: React.MouseEventHandler,
-    create: boolean,
+    onDelete?: React.MouseEventHandler,
+    onArchive?: React.MouseEventHandler,
+    create?: boolean,
     archived?: boolean,
 }
 
