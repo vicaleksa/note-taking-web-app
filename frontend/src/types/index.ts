@@ -6,3 +6,9 @@ export interface Note {
     lastEdited: string,
     isArchived: boolean;
 }
+
+export interface FormDataType {
+    title: string,
+    tags: string,
+    content: string,
+}
