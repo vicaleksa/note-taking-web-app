@@ -1,3 +1,5 @@
+import { FormDataType } from './index';
+
 interface ApiTag {
     id: number,
     name: string,
@@ -10,4 +12,9 @@ export interface ApiNote {
     content: string,
     lastEdited: string,
     isArchived: boolean,
+}
+
+export interface UpdatedNoteData {
+    id: string,
+    submitData: FormDataType
 }

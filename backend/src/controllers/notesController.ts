@@ -10,6 +10,10 @@ interface NoteData {
     content: string,
 }
 
+interface NoteIdParam {
+    noteId: string,
+}
+
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export async function saveNotes(req: Request<{}, {}, NoteData>, res: Response) {
     const {
@@ -60,6 +64,77 @@ export async function saveNotes(req: Request<{}, {}, NoteData>, res: Response) {
             console.error('Note creation error:', err);
         }
         return res.status(500).json({ error: 'Note creation failed. Please try again.' });
+    }
+}
+
+export async function updateNote(req: Request<NoteIdParam, unknown, NoteData>, res: Response) {
+    const {
+        title,
+        tags,
+        content,
+    } = req.body;
+
+    const noteItem = parseInt(req.params.noteId, 10);
+
+    if (Number.isNaN(noteItem)) {
+        return res.status(400).json({ error: 'Invalid note ID' });
+    }
+
+    try {
+        const userRepository = dataSource.getRepository(User);
+        const noteRepository = dataSource.getRepository(Note);
+        const tagRepository = dataSource.getRepository(Tag);
+
+        const user = await userRepository.findOne({
+            where: { id: req.session.userId },
+        });
+
+        const tagEntities = await Promise.all(tags.map(async (tagName) => {
+            let tag = await tagRepository.findOne({
+                where: { name: tagName },
+            });
+
+            if (!tag) {
+                tag = tagRepository.create({ name: tagName });
+                await tagRepository.save(tag);
+            }
+            return tag;
+        }));
+
+        if (user) {
+            const note = await noteRepository.findOne({
+                relations: {
+                    tags: true,
+                },
+                where: {
+                    id: noteItem,
+                    user: {
+                        id: req.session.userId,
+                    },
+                },
+            });
+
+            if (!note) {
+                return res.status(400).json({ error: 'Note not found' });
+            }
+
+            note.title = title;
+            note.tags = tagEntities;
+            note.content = content;
+
+            await noteRepository.save(note);
+
+            return res.status(200).json({
+                message: 'Note updated',
+            });
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Note update error:', err.message);
+        } else {
+            console.error('Note update error:', err);
+        }
+        return res.status(500).json({ error: 'Note update failed. Please try again.' });
     }
 }
 

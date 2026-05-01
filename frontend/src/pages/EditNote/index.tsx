@@ -13,9 +13,9 @@ import Modal from '../../components/Modal';
 import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import IconLoading from '../../components/Icons/IconLoading';
 import Toast from '../../components/Toast';
-import saveNote from '../../api/saveNote';
 import getNoteItem from '../../api/getNoteItem';
 import { FormDataType } from '../../types';
+import updateNote from '../../api/updateNote';
 
 interface NoteDetailProps {
     archived?: boolean,
@@ -64,11 +64,11 @@ export default function EditNote({ archived }: NoteDetailProps) {
     }, [data, reset, id]);
 
     const mutation = useMutation({
-        mutationFn: saveNote,
+        mutationFn: updateNote,
     });
 
     const onSubmit = (submitData: FormDataType) => {
-        mutation.mutate(submitData);
+        mutation.mutate({ id, submitData });
     };
 
     const deleteNote = () => {
