@@ -1,13 +1,8 @@
 import fetchHelper from '../utils/fetchHelper';
 import parseTags from '../utils/parseTags';
+import { FormDataType } from '../types';
 
-interface NoteData {
-    title: string,
-    tags: string,
-    content: string,
-}
-
-const saveNote = (newNote: NoteData) => fetchHelper('notes/add', {
+const saveNote = (newNote: FormDataType) => fetchHelper('notes/add', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
