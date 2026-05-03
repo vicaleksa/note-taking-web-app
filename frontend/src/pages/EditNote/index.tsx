@@ -10,13 +10,13 @@ import formatDate from '../../utils/formatDate';
 import NoteActions from '../../components/NoteActions';
 import formatTags from '../../utils/formatTags';
 import Modal from '../../components/Modal';
-import getNotesFromStorage from '../../utils/getNotesFromStorage';
 import IconLoading from '../../components/Icons/IconLoading';
 import Toast from '../../components/Toast';
 import getNoteItem from '../../api/getNoteItem';
 import { FormDataType } from '../../types';
 import updateNote from '../../api/updateNote';
 import deleteNote from '../../api/deleteNote';
+import archiveNote from '../../api/archiveNote';
 
 interface NoteDetailProps {
     archived?: boolean,
@@ -83,32 +83,16 @@ export default function EditNote({ archived }: NoteDetailProps) {
         deleteNoteMutation.mutate(id);
     };
 
-    const archiveNote = () => {
-        const notes = getNotesFromStorage();
-        const noteIndex = notes.findIndex((note) => note.id === id);
-        notes[noteIndex].isArchived = true;
-        localStorage.setItem('notes', JSON.stringify(notes));
-        setIsOpenArchiveModal(false);
-        if (!id) {
-            console.error('id is undefined');
-            return;
-        }
-        navigate(`/archive/${id}`);
-        setIsOpenArchiveToast(true);
-    };
+    const archiveNoteMutation = useMutation({
+        mutationFn: archiveNote,
+        onSuccess: () => {
+            navigate('/archive');
+        },
+    });
 
-    // const unarchiveNote = () => {
-    //     const notes = getNotesFromStorage();
-    //     const noteIndex = notes.findIndex((note) => note.id === id);
-    //     notes[noteIndex].isArchived = false;
-    //     localStorage.setItem('notes', JSON.stringify(notes));
-    //     if (!id) {
-    //         console.error('id is undefined');
-    //         return;
-    //     }
-    //     navigate(`/${id}`);
-    //     setIsOpenUnarchiveToast(true);
-    // };
+    const onArchive = () => {
+        archiveNoteMutation.mutate(id);
+    };
 
     useEffect(() => {
         const el = textRef.current;
@@ -181,7 +165,7 @@ export default function EditNote({ archived }: NoteDetailProps) {
                         You can find it in the Archived Notes section and restore it anytime."
                         open={isOpenArchiveModal}
                         onClose={() => { setIsOpenArchiveModal(false); }}
-                        onAction={archiveNote}
+                        onAction={onArchive}
                         actionContent="Archive Note"
                     />
                 )}

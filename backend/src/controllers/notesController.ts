@@ -224,7 +224,6 @@ export async function deleteNote(req: Request, res: Response) {
     try {
         const userRepository = dataSource.getRepository(User);
         const noteRepository = dataSource.getRepository(Note);
-        // const tagRepository = dataSource.getRepository(Tag);
 
         const user = await userRepository.findOne({
             where: { id: req.session.userId },
@@ -254,6 +253,53 @@ export async function deleteNote(req: Request, res: Response) {
     } catch (err) {
         if (err instanceof Error) {
             console.error('Failed to delete a note:', err.message);
+        }
+    }
+}
+
+export async function archiveNote(req: Request, res: Response) {
+    const noteItem = parseInt(req.params.noteId, 10);
+
+    if (Number.isNaN(noteItem)) {
+        return res.status(400).json({ error: 'Invalid note ID' });
+    }
+
+    try {
+        const userRepository = dataSource.getRepository(User);
+        const noteRepository = dataSource.getRepository(Note);
+
+        const user = await userRepository.findOne({
+            where: { id: req.session.userId },
+        });
+
+        if (user) {
+            const note = await noteRepository.findOne({
+                relations: {
+                    tags: true,
+                },
+                where: {
+                    id: noteItem,
+                    user: {
+                        id: req.session.userId,
+                    },
+                },
+            });
+
+            if (!note) {
+                return res.status(400).json({ error: 'Note not found' });
+            }
+
+            note.isArchived = true;
+
+            await noteRepository.save(note);
+
+            return res.status(200).json({
+                message: 'Note has been archived',
+            });
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Failed to archive a note:', err.message);
         }
     }
 }
