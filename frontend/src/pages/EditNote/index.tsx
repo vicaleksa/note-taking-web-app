@@ -16,6 +16,7 @@ import Toast from '../../components/Toast';
 import getNoteItem from '../../api/getNoteItem';
 import { FormDataType } from '../../types';
 import updateNote from '../../api/updateNote';
+import deleteNote from '../../api/deleteNote';
 
 interface NoteDetailProps {
     archived?: boolean,
@@ -63,21 +64,23 @@ export default function EditNote({ archived }: NoteDetailProps) {
         });
     }, [data, reset, id]);
 
-    const mutation = useMutation({
+    const updateNoteMutation = useMutation({
         mutationFn: updateNote,
     });
 
     const onSubmit = (submitData: FormDataType) => {
-        mutation.mutate({ id, submitData });
+        updateNoteMutation.mutate({ id, submitData });
     };
 
-    const deleteNote = () => {
-        const notes = getNotesFromStorage();
-        const noteIndex = notes.findIndex((note) => note.id === id);
-        notes.splice(noteIndex, 1);
-        localStorage.setItem('notes', JSON.stringify(notes));
-        setIsOpenDeleteModal(false);
-        navigate('/');
+    const deleteNoteMutation = useMutation({
+        mutationFn: deleteNote,
+        onSuccess: () => {
+            navigate('/');
+        },
+    });
+
+    const onDelete = () => {
+        deleteNoteMutation.mutate(id);
     };
 
     const archiveNote = () => {
@@ -166,7 +169,7 @@ export default function EditNote({ archived }: NoteDetailProps) {
                     text="Are you sure you want to permanently delete this note? This action cannot be undone."
                     open={isOpenDeleteModal}
                     onClose={() => { setIsOpenDeleteModal(false); }}
-                    onAction={deleteNote}
+                    onAction={onDelete}
                     actionContent="Delete Note"
                 />
                 {!archived && (

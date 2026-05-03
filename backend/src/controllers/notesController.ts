@@ -213,3 +213,47 @@ export async function getAllNotes(req: Request, res: Response) {
         }
     }
 }
+
+export async function deleteNote(req: Request, res: Response) {
+    const noteItem = parseInt(req.params.noteId, 10);
+
+    if (Number.isNaN(noteItem)) {
+        return res.status(400).json({ error: 'Invalid note ID' });
+    }
+
+    try {
+        const userRepository = dataSource.getRepository(User);
+        const noteRepository = dataSource.getRepository(Note);
+        // const tagRepository = dataSource.getRepository(Tag);
+
+        const user = await userRepository.findOne({
+            where: { id: req.session.userId },
+        });
+
+        if (user) {
+            const note = await noteRepository.findOne({
+                relations: {
+                    tags: true,
+                },
+                where: {
+                    id: noteItem,
+                    user: {
+                        id: req.session.userId,
+                    },
+                },
+            });
+
+            if (!note) {
+                return res.status(400).json({ error: 'Note not found' });
+            }
+
+            await noteRepository.delete(noteItem);
+
+            return res.status(204).send();
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            console.error('Failed to delete a note:', err.message);
+        }
+    }
+}

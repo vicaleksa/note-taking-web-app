@@ -27,7 +27,7 @@ export class Note {
     @Column()
         isArchived: boolean;
 
-    @ManyToMany(() => Tag, (tag) => tag.notes)
+    @ManyToMany(() => Tag, (tag) => tag.notes, { onDelete: 'CASCADE' })
     @JoinTable()
         tags: Tag[];
 
