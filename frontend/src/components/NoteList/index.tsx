@@ -3,10 +3,10 @@ import { Fragment } from 'react/jsx-runtime';
 import clsx from 'clsx';
 import NoteCard from '../NoteCard';
 import styles from './style.module.css';
-import { Note } from '../../types';
+import { ApiNotes } from '../../types/api';
 
 interface NoteListProps {
-    notes: Note[],
+    notes: ApiNotes,
     archived?: boolean,
     tags?: boolean,
     tagId?: string,
@@ -36,7 +36,7 @@ export default function NoteList({
     const noteListElement = notes.map((note) => (
         <Fragment key={note.id}>
             <NavLink
-                to={`${path}${note.id}`}
+                to={`${path}${String(note.id)}`}
                 className={getNavClassName}
                 aria-label={
                     `Open ${archived ? '/archive/' : ''}note '${note.title || 'Untitled'}',

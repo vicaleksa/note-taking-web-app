@@ -14,6 +14,8 @@ export interface ApiNote {
     isArchived: boolean,
 }
 
+export type ApiNotes = Array<ApiNote>
+
 export interface UpdatedNoteData {
     id: string,
     submitData: FormDataType

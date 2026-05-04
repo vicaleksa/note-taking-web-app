@@ -6,8 +6,8 @@ import Alert from '../../components/Alert';
 import NoteList from '../../components/NoteList';
 import useBreakpointType from '../../hooks/useBreakpointType';
 import Button from '../../components/Button';
-import { Note } from '../../types';
 import getNotes from '../../api/getNotes';
+import { ApiNotes } from '../../types/api';
 
 interface NotesProps {
     archived?: boolean,
@@ -22,7 +22,7 @@ export default function Notes({ archived, tags }: NotesProps) {
     const {
         isPending, isError, data, error,
     } = useQuery({
-        queryKey: ['notes'],
+        queryKey: ['notes', archived, tags],
         queryFn: getNotes,
     });
 
@@ -40,7 +40,7 @@ export default function Notes({ archived, tags }: NotesProps) {
         );
     }
 
-    let notes: Note[] = [];
+    let notes: ApiNotes;
     if (archived) {
         notes = data.filter((note) => note.isArchived);
     } else if (tags) {
