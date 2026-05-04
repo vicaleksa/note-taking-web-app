@@ -201,7 +201,6 @@ export async function getAllNotes(req: Request, res: Response) {
                     user: {
                         id: req.session.userId,
                     },
-                    isArchived: false,
                 },
             });
 
